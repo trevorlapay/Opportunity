@@ -1,0 +1,174 @@
+{
+  "runs": [
+    {
+      "timestamp": "2026-04-14T15:08:08.705383+00:00",
+      "sources_checked": 35,
+      "sources_healthy": 20,
+      "sources_degraded": 15,
+      "raw_items_found": 16,
+      "new_items_after_filter": 7,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "healed_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-14T15:46:43.136925+00:00",
+      "sources_checked": 22,
+      "sources_skipped_dead": 18,
+      "sources_healthy": 22,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 8,
+      "email_sent": true,
+      "dead_sources": [
+        "nbcuniversal_careers",
+        "adventhealth_careers",
+        "orlando_health_careers",
+        "lockheed_martin_careers",
+        "siemens_careers"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-14T15:52:20.942148+00:00",
+      "sources_checked": 17,
+      "sources_skipped_dead": 23,
+      "sources_healthy": 17,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 8,
+      "email_sent": true,
+      "dead_sources": [
+        "hilton_careers",
+        "florida_blue_careers",
+        "orange_county_jobs",
+        "florida_state_jobs",
+        "builtin_remote"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-14T16:00:00.945289+00:00",
+      "sources_checked": 12,
+      "sources_skipped_dead": 28,
+      "sources_healthy": 12,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 1,
+      "email_sent": true,
+      "dead_sources": [
+        "glassdoor_jobs",
+        "eventbrite_orlando",
+        "orlando_econ_partnership",
+        "meetup_orlando",
+        "acg_florida"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-14T19:00:05.585466+00:00",
+      "sources_checked": 7,
+      "sources_skipped_dead": 32,
+      "sources_healthy": 7,
+      "raw_items_found": 2,
+      "new_items_after_filter": 2,
+      "new_items_after_dedup": 1,
+      "email_sent": true,
+      "dead_sources": [
+        "orlando_chamber",
+        "seminole_chamber",
+        "orlando_biz_journal",
+        "orlando_sentinel_biz"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-15T13:21:13.082453+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 32,
+      "sources_healthy": 3,
+      "raw_items_found": 16,
+      "new_items_after_filter": 7,
+      "new_items_after_dedup": 1,
+      "email_sent": true,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-15T19:21:29.353107+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 32,
+      "sources_healthy": 3,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 2,
+      "email_sent": true,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-15T19:25:35.790761+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 32,
+      "sources_healthy": 3,
+      "raw_items_found": 18,
+      "new_items_after_filter": 18,
+      "new_items_after_dedup": 12,
+      "email_sent": true,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-15T19:38:31.385716+00:00",
+      "sources_checked": 15,
+      "sources_skipped_dead": 37,
+      "sources_healthy": 10,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 2,
+      "email_sent": true,
+      "dead_sources": [
+        "seaworld_parks_careers",
+        "nemours_childrens_health_careers",
+        "remote_exec_flexjobs",
+        "cfhla_careers_events",
+        "visit_orlando_industry_careers"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-16T12:07:55.312184+00:00",
+      "sources_checked": 10,
+      "sources_skipped_dead": 39,
+      "sources_healthy": 8,
+      "raw_items_found": 18,
+      "new_items_after_filter": 8,
+      "new_items_after_dedup": 2,
+      "email_sent": true,
+      "dead_sources": [
+        "orlando_tech_association_events",
+        "spectrum_health_careers"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-16T13:21:13.620075+00:00",
+      "sources_checked": 20,
+      "sources_skipped_dead": 44,
+      "sources_healthy": 20,
+      "raw_items_found": 68,
+      "new_items_after_filter": 12,
+      "new_items_after_dedup": 6,
+      "email_sent": true,
+      "dead_sources": [
+        "guidewell_florida_blue_parent_careers",
+        "hca_healthcare_central_florida_careers",
+        "wework_remotely_management",
+        "ziprecruiter_orlando_director",
+        "the_muse_remote_director"
+      ],
+      "errors": []
+    }
+  ]
+}

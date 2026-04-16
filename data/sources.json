@@ -1,0 +1,1133 @@
+{
+  "sources": [
+    {
+      "id": "indeed_jobs",
+      "name": "Indeed Jobs",
+      "category": "jobs",
+      "active_url": "https://www.indeed.com/rss?q=manager+director+%22vice+president%22&l=Orlando%2C+FL&radius=50&sort=date",
+      "alternate_urls": [
+        "https://www.indeed.com/jobs?q=director+manager&l=Orlando+FL&radius=50&sort=date"
+      ],
+      "strategy": "rss_feed",
+      "selectors": {
+        "item_container": ".jobsearch-SerpJobCard",
+        "title": ".title a",
+        "location": ".location",
+        "link": ".title a"
+      },
+      "dead_content_patterns": [
+        "did not match any jobs",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:36:58.314378+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "linkedin_jobs",
+      "name": "LinkedIn Jobs",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs/search/?keywords=director+manager+%22vice+president%22&location=Orlando%2C+FL&distance=50&sortBy=DD&f_TPR=r86400",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search",
+        "page not found",
+        "something went wrong"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-14T15:37:12.004607+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "disney_careers",
+      "name": "Walt Disney World Careers",
+      "category": "jobs",
+      "active_url": "https://jobs.disneycareers.com/search-jobs/manager%20director/391/4/4574987-4574990-4575022/28x53834/-81x37924/50/2",
+      "alternate_urls": [
+        "https://jobs.disneycareers.com/search-jobs/director/391/4/4574987-4574990-4575022/28x53834/-81x37924/50/2",
+        "https://jobs.disneycareers.com/search-jobs/manager/391/4/4574987-4574990-4575022/28x53834/-81x37924/50/2",
+        "https://jobs.disneycareers.com/search-jobs?q=manager+director&location=Orlando%2C+FL"
+      ],
+      "strategy": "playwright",
+      "selectors": {
+        "wait_for_selector": "table tr td a[data-job-id]",
+        "item_container": "tbody tr",
+        "title": "h2",
+        "location": ".job-location",
+        "link": "a[data-job-id]",
+        "date": ".job-date-posted"
+      },
+      "dead_content_patterns": [
+        "no results found",
+        "this posting does not exist",
+        "job no longer available",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-01-01T00:00:00Z",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "universal_careers",
+      "name": "Universal Parks & Resorts Careers (Workday)",
+      "category": "jobs",
+      "active_url": "https://universalparks.wd1.myworkdayjobs.com/Universal_Parks_Resorts",
+      "alternate_urls": [
+        "https://universalparks.wd5.myworkdayjobs.com/Universal_Parks_Resorts",
+        "https://universalparks.wd1.myworkdayjobs.com/en-US/Universal_Parks_Resorts",
+        "https://careers.universalparks.com"
+      ],
+      "strategy": "workday_api",
+      "api_config": {
+        "base_url": "https://universalparks.wd1.myworkdayjobs.com",
+        "endpoint": "/wday/cxs/universalparks/Universal_Parks_Resorts/jobs",
+        "search_text": "manager director",
+        "limit": 50,
+        "locations": []
+      },
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:37:36.051908+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "nbcuniversal_careers",
+      "name": "NBCUniversal Corporate Careers (Workday)",
+      "category": "jobs",
+      "active_url": "https://nbcuniversal.wd5.myworkdayjobs.com/NBCUCareers",
+      "alternate_urls": [
+        "https://nbcuniversal.wd1.myworkdayjobs.com/NBCUCareers",
+        "https://www.nbcunicareers.com/search-jobs?keywords=director+manager&location=Orlando"
+      ],
+      "strategy": "workday_api",
+      "api_config": {
+        "base_url": "https://nbcuniversal.wd5.myworkdayjobs.com",
+        "endpoint": "/wday/cxs/nbcuniversal/NBCUCareers/jobs",
+        "search_text": "manager director",
+        "limit": 50,
+        "locations": []
+      },
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:47:30.993841+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "adventhealth_careers",
+      "name": "AdventHealth Careers",
+      "category": "jobs",
+      "active_url": "https://adventhealth.wd5.myworkdayjobs.com/adventhealth",
+      "alternate_urls": [
+        "https://www.adventhealth.com/careers/search?keywords=director+manager"
+      ],
+      "strategy": "workday_api",
+      "api_config": {
+        "base_url": "https://adventhealth.wd5.myworkdayjobs.com",
+        "endpoint": "/wday/cxs/adventhealth/adventhealth/jobs",
+        "search_text": "manager director",
+        "limit": 50,
+        "locations": []
+      },
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:48:00.283687+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "orlando_health_careers",
+      "name": "Orlando Health Careers",
+      "category": "jobs",
+      "active_url": "https://orlandohealth.wd5.myworkdayjobs.com/Orlando_Health",
+      "alternate_urls": [
+        "https://www.orlandohealth.com/careers/job-search?keywords=director+manager"
+      ],
+      "strategy": "workday_api",
+      "api_config": {
+        "base_url": "https://orlandohealth.wd5.myworkdayjobs.com",
+        "endpoint": "/wday/cxs/orlandohealth/Orlando_Health/jobs",
+        "search_text": "manager director",
+        "limit": 50,
+        "locations": []
+      },
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:48:20.678610+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "lockheed_martin_careers",
+      "name": "Lockheed Martin Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://www.lockheedmartinjobs.com/search-jobs/director%20manager/694/4/4574987/28x53834/-81x37924/50/2",
+      "alternate_urls": [
+        "https://www.lockheedmartinjobs.com/search-jobs?keywords=director+manager&location=Orlando+FL"
+      ],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".job-list-item",
+        "title": ".job-title a",
+        "location": ".job-location",
+        "link": ".job-title a"
+      },
+      "dead_content_patterns": [
+        "no results found",
+        "no jobs match",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:48:34.911089+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "siemens_careers",
+      "name": "Siemens Careers (Orlando area)",
+      "category": "jobs",
+      "active_url": "https://jobs.siemens.com/careers?query=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".job-item",
+        "title": ".job-title",
+        "location": ".job-location",
+        "link": "a"
+      },
+      "dead_content_patterns": [
+        "no results",
+        "no jobs found",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:48:50.283735+00:00",
+      "consecutive_empty_runs": 3
+    },
+    {
+      "id": "darden_careers",
+      "name": "Darden Restaurants Careers",
+      "category": "jobs",
+      "active_url": "https://jobs.darden.com/search/?q=manager+director&locationsearch=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".jobCard",
+        "title": ".jobTitle",
+        "location": ".jobLocation",
+        "link": "a.jobTitle-link"
+      },
+      "dead_content_patterns": [
+        "no results",
+        "no jobs found",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:38:08.611735+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "hilton_careers",
+      "name": "Hilton Careers (Corporate/Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.hilton.com/us/en/search-results?keywords=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".job-search-list-item",
+        "title": ".job-title",
+        "location": ".job-location",
+        "link": "a"
+      },
+      "dead_content_patterns": [
+        "no results",
+        "no jobs found",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:52:40.513133+00:00",
+      "consecutive_empty_runs": 4
+    },
+    {
+      "id": "florida_blue_careers",
+      "name": "Florida Blue Careers",
+      "category": "jobs",
+      "active_url": "https://careers.floridablue.com/search/?q=manager+director&locationsearch=orlando",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".jobCard",
+        "title": ".jobTitle",
+        "location": ".jobLocation",
+        "link": "a.jobTitle-link"
+      },
+      "dead_content_patterns": [
+        "no results",
+        "no jobs found",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:52:51.617778+00:00",
+      "consecutive_empty_runs": 4
+    },
+    {
+      "id": "city_of_orlando_jobs",
+      "name": "City of Orlando Jobs",
+      "category": "jobs",
+      "active_url": "https://www.orlando.gov/Our-Government/Departments-Offices/Human-Resources/Employment-Opportunities",
+      "alternate_urls": [
+        "https://www.governmentjobs.com/careers/orlando"
+      ],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".job-item",
+        "title": ".job-title",
+        "location": ".job-department",
+        "link": "a"
+      },
+      "dead_content_patterns": [
+        "no open positions",
+        "no current vacancies",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:39:51.145004+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "orange_county_jobs",
+      "name": "Orange County Government Jobs",
+      "category": "jobs",
+      "active_url": "https://www.governmentjobs.com/careers/orangecountyfl?keywords=director+manager",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".job-item",
+        "title": ".job-title a",
+        "location": ".job-location",
+        "link": ".job-title a"
+      },
+      "dead_content_patterns": [
+        "no jobs match",
+        "no open positions",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:53:02.615107+00:00",
+      "consecutive_empty_runs": 4
+    },
+    {
+      "id": "florida_state_jobs",
+      "name": "State of Florida Jobs (People First)",
+      "category": "jobs",
+      "active_url": "https://jobs.myflorida.com/search/?q=director+manager&locationsearch=orlando",
+      "alternate_urls": [
+        "https://peoplefirst.myflorida.com/PeopleFirst/login.htm"
+      ],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".jobCard",
+        "title": ".jobTitle",
+        "location": ".jobLocation",
+        "link": "a.jobTitle-link"
+      },
+      "dead_content_patterns": [
+        "no results",
+        "no jobs found",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:53:33.621268+00:00",
+      "consecutive_empty_runs": 4
+    },
+    {
+      "id": "builtin_remote",
+      "name": "Built In (Remote Tech Management)",
+      "category": "jobs",
+      "active_url": "https://builtin.com/jobs/remote?search=director+manager&level=management",
+      "alternate_urls": [
+        "https://builtinflolrida.com/jobs?search=director+manager"
+      ],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": "[data-id='job-card']",
+        "title": "[data-id='job-title']",
+        "location": "[data-id='job-location']",
+        "link": "a[data-id='job-title-link']"
+      },
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:53:45.217857+00:00",
+      "consecutive_empty_runs": 4
+    },
+    {
+      "id": "glassdoor_jobs",
+      "name": "Glassdoor Jobs",
+      "category": "jobs",
+      "active_url": "https://www.glassdoor.com/Job/orlando-fl-director-manager-jobs-SRCH_IL.0,10_IC1154170_KO11,27.htm",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".react-job-listing",
+        "title": ".job-title",
+        "location": ".job-location",
+        "link": "a.job-title"
+      },
+      "dead_content_patterns": [
+        "no jobs found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T16:00:13.993427+00:00",
+      "consecutive_empty_runs": 5
+    },
+    {
+      "id": "eventbrite_orlando",
+      "name": "Eventbrite Orlando Career Events",
+      "category": "events",
+      "active_url": "https://www.eventbrite.com/d/fl--orlando/career-fair/?sort=date",
+      "alternate_urls": [
+        "https://www.eventbrite.com/d/fl--orlando/job-expo/",
+        "https://www.eventbrite.com/d/fl--orlando/hiring-event/"
+      ],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".search-event-card-wrapper",
+        "title": ".eds-event-card__formatted-name--is-clamped",
+        "location": ".card-text--truncated__one",
+        "link": "a.eds-media-card-content__action-link",
+        "date": ".eds-text-bm"
+      },
+      "dead_content_patterns": [
+        "no events found",
+        "0 results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T16:00:30.818057+00:00",
+      "consecutive_empty_runs": 5
+    },
+    {
+      "id": "careersource_events",
+      "name": "CareerSource Central Florida Events",
+      "category": "events",
+      "active_url": "https://www.careersourcecentralflorida.com/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-card",
+        "title": ".event-title",
+        "location": ".event-location",
+        "link": "a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "no upcoming events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:24.901619+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "orlando_econ_partnership",
+      "name": "Orlando Economic Partnership Events",
+      "category": "events",
+      "active_url": "https://www.orlando.org/events/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-item",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "no upcoming events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T16:00:41.713792+00:00",
+      "consecutive_empty_runs": 5
+    },
+    {
+      "id": "ucf_career_events",
+      "name": "UCF Career Services Events",
+      "category": "events",
+      "active_url": "https://career.ucf.edu/events/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "no upcoming events",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-01-01T00:00:00Z",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "florida_leads_events",
+      "name": "Florida Leads Events",
+      "category": "events",
+      "active_url": "https://www.floridalea.com/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-card",
+        "title": ".event-title",
+        "location": ".event-location",
+        "link": "a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:31.253015+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "meetup_orlando",
+      "name": "Meetup.com Orlando (Career/Leadership)",
+      "category": "events",
+      "active_url": "https://www.meetup.com/find/?keywords=career+leadership+professional+development&location=Orlando+FL&source=EVENTS&distance=50",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": "[data-testid='categoryResults-eventCard']",
+        "title": "[data-testid='event-card-title']",
+        "location": "[data-testid='event-card-location']",
+        "link": "a[data-testid='event-card-link']",
+        "date": "[data-testid='event-card-date']"
+      },
+      "dead_content_patterns": [
+        "no events found",
+        "no results",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T16:00:55.077782+00:00",
+      "consecutive_empty_runs": 5
+    },
+    {
+      "id": "orlando_young_professionals",
+      "name": "Orlando Young Professionals",
+      "category": "networking",
+      "active_url": "https://www.orlandoyp.com/events/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-card",
+        "title": ".event-title",
+        "location": ".event-location",
+        "link": "a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:38.153263+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "florida_cio_council",
+      "name": "Florida CIO Council Events",
+      "category": "networking",
+      "active_url": "https://www.floridaciocouncil.org/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:43.162890+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "acg_florida",
+      "name": "Association for Corporate Growth (ACG) Florida",
+      "category": "networking",
+      "active_url": "https://www.acg.org/orlando/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-card",
+        "title": ".event-title",
+        "location": ".event-location",
+        "link": "a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T16:01:04.697220+00:00",
+      "consecutive_empty_runs": 5
+    },
+    {
+      "id": "leadership_orlando",
+      "name": "Leadership Orlando",
+      "category": "networking",
+      "active_url": "https://www.leadershiporlando.com/programs/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".program-card",
+        "title": ".program-title",
+        "location": ".program-location",
+        "link": "a"
+      },
+      "dead_content_patterns": [
+        "no programs",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:48.890878+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "orlando_chamber",
+      "name": "Orlando Regional Chamber of Commerce Events",
+      "category": "networking",
+      "active_url": "https://www.orlando.org/events/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-card",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T19:00:18.317719+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-14T19:00:14.130370+00:00"
+    },
+    {
+      "id": "osceola_chamber",
+      "name": "Osceola Chamber of Commerce Events",
+      "category": "networking",
+      "active_url": "https://www.kissimmeeorlando.org/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-item",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:40:54.884156+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "seminole_chamber",
+      "name": "Seminole County Chamber Events",
+      "category": "networking",
+      "active_url": "https://www.orlandorealtors.org/events",
+      "alternate_urls": [
+        "https://www.seminolecountychamber.com/events"
+      ],
+      "strategy": "html_list",
+      "selectors": {
+        "item_container": ".event-item",
+        "title": ".event-title a",
+        "location": ".event-location",
+        "link": ".event-title a",
+        "date": ".event-date"
+      },
+      "dead_content_patterns": [
+        "no events",
+        "page not found"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T19:00:29.112472+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-14T19:00:24.960244+00:00"
+    },
+    {
+      "id": "orlando_biz_journal",
+      "name": "Orlando Business Journal",
+      "category": "news",
+      "active_url": "https://www.bizjournals.com/orlando/feed/",
+      "alternate_urls": [
+        "https://www.bizjournals.com/orlando/news"
+      ],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T19:00:37.268658+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-14T19:00:34.960475+00:00"
+    },
+    {
+      "id": "orlando_sentinel_biz",
+      "name": "Orlando Sentinel Business",
+      "category": "news",
+      "active_url": "https://www.orlandosentinel.com/business/feed/",
+      "alternate_urls": [
+        "https://www.orlandosentinel.com/business/"
+      ],
+      "strategy": "rss_feed",
+      "selectors": {
+        "item_container": ".article-card",
+        "title": ".article-title a",
+        "link": ".article-title a"
+      },
+      "dead_content_patterns": [
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T19:00:48.181488+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-14T19:00:44.959693+00:00"
+    },
+    {
+      "id": "florida_trend",
+      "name": "Florida Trend",
+      "category": "news",
+      "active_url": "https://www.floridatrend.com/feed",
+      "alternate_urls": [
+        "https://www.floridatrend.com/article"
+      ],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:41:02.464704+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "builtin_orlando_news",
+      "name": "Built In Orlando News",
+      "category": "news",
+      "active_url": "https://builtinflolrida.com/articles/feed",
+      "alternate_urls": [
+        "https://builtinflolrida.com/articles"
+      ],
+      "strategy": "rss_feed",
+      "selectors": {
+        "item_container": ".article-card",
+        "title": ".article-title",
+        "link": "a"
+      },
+      "dead_content_patterns": [
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:41:07.472873+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "pr_newswire_orlando",
+      "name": "PR Newswire (Orlando Region)",
+      "category": "news",
+      "active_url": "https://www.prnewswire.com/rss/news-releases-list.rss?qn=orlando+florida",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "dead",
+      "last_verified": "2026-04-14T15:41:14.335132+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "seaworld_parks_careers",
+      "name": "SeaWorld Parks & Entertainment Careers",
+      "category": "jobs",
+      "active_url": "https://seaworldentertainment.wd1.myworkdayjobs.com/SeaWorldCareers?q=manager+director&locations=1250d4f2a2a04bfeb7fa72427d34e830",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-15T19:38:59.384413+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-15T19:38:55.451765+00:00"
+    },
+    {
+      "id": "nemours_childrens_health_careers",
+      "name": "Nemours Children's Health Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.nemours.org/search/?q=director+manager&locationsearch=Orlando",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-15T19:39:08.398843+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-15T19:39:05.444163+00:00"
+    },
+    {
+      "id": "guidewell_florida_blue_parent_careers",
+      "name": "GuideWell / Florida Blue Parent Company Careers",
+      "category": "jobs",
+      "active_url": "https://careers.guidewell.com/us/en/search-results?keywords=director%20manager&location=Orlando%2C%20FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T13:21:37.542288+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-16T13:21:33.010323+00:00"
+    },
+    {
+      "id": "hca_healthcare_central_florida_careers",
+      "name": "HCA Healthcare Central Florida Careers",
+      "category": "jobs",
+      "active_url": "https://careers.hcahealthcare.com/search/director-manager/jobs?q=director+manager&location=Orlando%2C+FL&radius=50",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T13:21:47.030704+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-16T13:21:43.282151+00:00"
+    },
+    {
+      "id": "remote_exec_flexjobs",
+      "name": "FlexJobs Remote Management/Director Roles",
+      "category": "jobs",
+      "active_url": "https://www.flexjobs.com/search?search=director+manager&jobtype=remote&category=Operations%2CProject+Management%2CExecutive&experience=Senior+Level",
+      "alternate_urls": [],
+      "strategy": "playwright",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-15T19:40:01.123725+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-15T19:39:56.109983+00:00"
+    },
+    {
+      "id": "wework_remotely_management",
+      "name": "We Work Remotely \u2013 Management/Exec Jobs",
+      "category": "jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-executive-management-jobs",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T13:21:58.049189+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-16T13:21:53.288491+00:00"
+    },
+    {
+      "id": "ziprecruiter_orlando_director",
+      "name": "ZipRecruiter Orlando Director/Manager Jobs",
+      "category": "jobs",
+      "active_url": "https://www.ziprecruiter.com/jobs-search?search=director+manager+-cybersecurity&location=Orlando%2C+FL&radius=50",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T13:22:06.549277+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-16T13:22:03.325086+00:00"
+    },
+    {
+      "id": "cfhla_careers_events",
+      "name": "Central Florida Hotel & Lodging Association Events/Careers",
+      "category": "events",
+      "active_url": "https://www.cfhla.org/events",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-15T19:40:15.693352+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-15T19:40:10.358673+00:00"
+    },
+    {
+      "id": "visit_orlando_industry_careers",
+      "name": "Visit Orlando / Orange County Convention Center Careers",
+      "category": "jobs",
+      "active_url": "https://www.visitorlando.com/en/about-us/careers",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-15T19:40:24.406083+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-15T19:40:21.661950+00:00"
+    },
+    {
+      "id": "orlando_tech_association_events",
+      "name": "Orlando Tech Association (OTA) Events",
+      "category": "networking",
+      "active_url": "https://orlandotech.org/events/",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T12:08:20.471607+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-16T12:08:16.627847+00:00"
+    },
+    {
+      "id": "spectrum_health_careers",
+      "name": "Centurion / Health First Careers (Brevard-Orlando Corridor)",
+      "category": "jobs",
+      "active_url": "https://careers.healthfirst.org/search/?q=director+manager",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T12:08:31.575589+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-16T12:08:26.623727+00:00"
+    },
+    {
+      "id": "the_muse_remote_director",
+      "name": "The Muse \u2013 Remote Director/VP Operations Jobs",
+      "category": "jobs",
+      "active_url": "https://www.themuse.com/search?keyword=director+operations+manager&location=Flexible+%2F+Remote&level=Senior+Level",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "dead",
+      "last_verified": "2026-04-16T13:22:16.942144+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-16T13:22:13.325290+00:00"
+    },
+    {
+      "id": "legoland_merlin_careers",
+      "name": "Merlin Entertainments (LEGOLAND Florida) Careers",
+      "category": "jobs",
+      "active_url": "https://jobs.merlinentertainments.biz/search/?q=manager+director&locationsearch=Orlando&searchby=location",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "marriott_orlando_careers",
+      "name": "Marriott International Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.marriott.com/marriott/jobs?keywords=director+manager&location=Orlando%2C+FL&stretch=50&sortBy=relevance",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "elevance_health_careers",
+      "name": "Elevance Health Careers (Remote/FL)",
+      "category": "jobs",
+      "active_url": "https://elevancehealth.wd1.myworkdayjobs.com/ANT/jobs?q=director+manager&locations=d4f22b5ecfab01f6c1a0d733c901a204",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "spectrum_charter_orlando_careers",
+      "name": "Charter/Spectrum Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.spectrum.com/search-jobs/director%20manager/Orlando%2C%20FL/4466/1/4/6252001-4155751-4167060/28.538336/-81.379236/50/2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "deloitte_orlando_careers",
+      "name": "Deloitte Careers (Orlando/Remote Director+)",
+      "category": "jobs",
+      "active_url": "https://apply.deloitte.com/careers/SearchJobs?keywords=director+manager&location=Orlando%2C+FL&radius=50",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "l3harris_orlando_careers",
+      "name": "L3Harris Technologies Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://careers.l3harris.com/search-jobs/director%20manager/Orlando%2C%20FL/4832/1/4/6252001-4155751-4167060/28.538336/-81.379236/50/2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "unitedhealth_remote_careers",
+      "name": "UnitedHealth Group Careers (Remote Director/VP)",
+      "category": "jobs",
+      "active_url": "https://careers.unitedhealthgroup.com/search-jobs?k=director+operations+manager&l=Remote&rl=true",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "orlando_utilities_commission_careers",
+      "name": "Orlando Utilities Commission (OUC) Careers",
+      "category": "jobs",
+      "active_url": "https://www.ouc.com/about-ouc/careers/search-positions?keyword=manager+director",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "remote_ok_executive",
+      "name": "RemoteOK Executive/Management Jobs",
+      "category": "jobs",
+      "active_url": "https://remoteok.com/remote-executive-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 0
+    },
+    {
+      "id": "cfbr_central_florida_business_review",
+      "name": "GrowthSpotter / Orlando Business Growth News",
+      "category": "news",
+      "active_url": "https://www.growthspotter.com/feed/",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "orlando_city_soccer_careers",
+      "name": "Orlando City Soccer / Orlando Pride Careers",
+      "category": "jobs",
+      "active_url": "https://www.orlandocitysc.com/careers",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    },
+    {
+      "id": "cfec_central_florida_executive_council",
+      "name": "C-Suite Network / Florida Executive Events",
+      "category": "networking",
+      "active_url": "https://c-suitenetwork.com/events/?_sft_event-region=florida",
+      "alternate_urls": [],
+      "strategy": "html_list",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "consecutive_empty_runs": 1
+    }
+  ]
+}
