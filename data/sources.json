@@ -102,7 +102,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "nbcuniversal_careers",
@@ -129,7 +129,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "adventhealth_careers",
@@ -155,7 +155,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_health_careers",
@@ -181,7 +181,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "lockheed_martin_careers",
@@ -205,7 +205,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "siemens_careers",
@@ -227,7 +227,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "darden_careers",
@@ -272,7 +272,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "florida_blue_careers",
@@ -294,7 +294,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "city_of_orlando_jobs",
@@ -341,7 +341,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "florida_state_jobs",
@@ -365,7 +365,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "builtin_remote",
@@ -389,7 +389,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "glassdoor_jobs",
@@ -411,7 +411,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "eventbrite_orlando",
@@ -437,7 +437,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "careersource_events",
@@ -484,7 +484,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "ucf_career_events",
@@ -553,7 +553,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_young_professionals",
@@ -573,9 +573,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "status": "dead",
+      "last_verified": "2026-04-24T16:00:27.485249+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-24T16:00:24.560571+00:00"
     },
     {
       "id": "florida_cio_council",
@@ -595,9 +596,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "status": "dead",
+      "last_verified": "2026-04-24T16:00:37.463220+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-24T16:00:34.569691+00:00"
     },
     {
       "id": "acg_florida",
@@ -619,7 +621,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "leadership_orlando",
@@ -638,9 +640,10 @@
         "no programs",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "status": "dead",
+      "last_verified": "2026-04-24T16:00:53.255484+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-24T16:00:49.655611+00:00"
     },
     {
       "id": "orlando_chamber",
@@ -662,7 +665,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "osceola_chamber",
@@ -682,9 +685,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "status": "dead",
+      "last_verified": "2026-04-24T16:01:04.960678+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-24T16:01:00.739860+00:00"
     },
     {
       "id": "seminole_chamber",
@@ -708,7 +712,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_biz_journal",
@@ -726,7 +730,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_sentinel_biz",
@@ -748,7 +752,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "florida_trend",
@@ -764,9 +768,10 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "status": "dead",
+      "last_verified": "2026-04-24T16:01:22.247382+00:00",
+      "consecutive_empty_runs": 1,
+      "last_llm_heal_ts": "2026-04-24T16:01:17.249884+00:00"
     },
     {
       "id": "builtin_orlando_news",
@@ -788,7 +793,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "pr_newswire_orlando",
@@ -817,7 +822,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "nemours_childrens_health_careers",
@@ -830,7 +835,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "guidewell_florida_blue_parent_careers",
@@ -843,7 +848,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "hca_healthcare_central_florida_careers",
@@ -856,7 +861,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "remote_exec_flexjobs",
@@ -869,7 +874,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "wework_remotely_management",
@@ -882,7 +887,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "ziprecruiter_orlando_director",
@@ -895,7 +900,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "cfhla_careers_events",
@@ -908,7 +913,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "visit_orlando_industry_careers",
@@ -921,7 +926,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_tech_association_events",
@@ -934,7 +939,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "spectrum_health_careers",
@@ -947,7 +952,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "the_muse_remote_director",
@@ -960,7 +965,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "legoland_merlin_careers",
@@ -973,7 +978,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "marriott_orlando_careers",
@@ -986,7 +991,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "elevance_health_careers",
@@ -999,7 +1004,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "spectrum_charter_orlando_careers",
@@ -1012,7 +1017,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "deloitte_orlando_careers",
@@ -1025,7 +1030,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-16T12:18:02.915084+00:00",
-      "consecutive_empty_runs": 28,
+      "consecutive_empty_runs": 29,
       "last_llm_heal_ts": "2026-04-17T17:25:13.743681+00:00"
     },
     {
@@ -1039,7 +1044,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "unitedhealth_remote_careers",
@@ -1052,7 +1057,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_utilities_commission_careers",
@@ -1065,7 +1070,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "remote_ok_executive",
@@ -1091,7 +1096,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "orlando_city_soccer_careers",
@@ -1104,7 +1109,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "cfec_central_florida_executive_council",
@@ -1117,7 +1122,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 2
     },
     {
       "id": "hosp_jw_marriott_grande_lakes",
@@ -1130,7 +1135,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1145,7 +1150,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1160,7 +1165,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1175,7 +1180,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1190,7 +1195,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1205,7 +1210,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1220,7 +1225,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1235,7 +1240,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1250,7 +1255,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1265,7 +1270,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1280,7 +1285,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1295,7 +1300,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1310,7 +1315,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     }

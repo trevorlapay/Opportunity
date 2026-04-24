@@ -503,6 +503,25 @@
       ],
       "errors": [],
       "auto_revived": []
+    },
+    {
+      "timestamp": "2026-04-24T15:58:36.731537+00:00",
+      "sources_checked": 67,
+      "sources_skipped_dead": 10,
+      "sources_healthy": 62,
+      "raw_items_found": 87,
+      "new_items_after_filter": 34,
+      "new_items_after_dedup": 21,
+      "email_sent": true,
+      "dead_sources": [
+        "orlando_young_professionals",
+        "florida_cio_council",
+        "leadership_orlando",
+        "osceola_chamber",
+        "florida_trend"
+      ],
+      "errors": [],
+      "auto_revived": []
     }
   ]
 }
