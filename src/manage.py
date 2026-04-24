@@ -357,35 +357,55 @@ def _load_user_prefs() -> str:
 
 # ── Shared LLM helpers (used by apply-prefs, research, and build-sources) ──────
 
-def _llm_call(client, prompt: str, label: str, max_tokens: int = 8192) -> str:
-    """Make a Claude API call and return the text content. Exits on failure."""
+def _llm_call(client, prompt: str, label: str, max_tokens: int = 8192) -> tuple[str, str]:
+    """Make a streaming Claude API call; echo tokens to stdout as they arrive.
+    Returns (raw_text, stop_reason). Exits on failure."""
     import anthropic
+    print(f"\n── {label}: streaming response (max_tokens={max_tokens}) ──", flush=True)
+    chunks: list[str] = []
     try:
-        response = client.messages.create(
+        with client.messages.stream(
             model="claude-opus-4-6",
             max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
-        )
+        ) as stream:
+            for text in stream.text_stream:
+                chunks.append(text)
+                print(text, end="", flush=True)
+            final = stream.get_final_message()
     except anthropic.APIError as exc:
+        print()
         print(f"ERROR: Anthropic API call failed ({label}): {exc}")
         sys.exit(1)
 
-    if response.stop_reason == "max_tokens":
-        print(f"WARNING: {label} response was cut off (max_tokens reached).")
+    print("\n── end stream ──", flush=True)
 
-    raw = ""
-    for block in response.content:
-        if getattr(block, "type", "") == "text":
-            raw = block.text.strip()
-            break
+    stop_reason = getattr(final, "stop_reason", None) or ""
+    usage = getattr(final, "usage", None)
+    if usage is not None:
+        print(f"  usage: input={getattr(usage, 'input_tokens', '?')}  "
+              f"output={getattr(usage, 'output_tokens', '?')}  "
+              f"stop_reason={stop_reason!r}")
+
+    if stop_reason == "max_tokens":
+        print(f"WARNING: {label} response was cut off (max_tokens reached at {max_tokens}).")
+
+    # Prefer the text we streamed — it's what we actually saw. Fall back to
+    # final.content in case the stream produced nothing (shouldn't happen).
+    raw = "".join(chunks).strip()
+    if not raw:
+        for block in getattr(final, "content", []) or []:
+            if getattr(block, "type", "") == "text":
+                raw = (block.text or "").strip()
+                break
 
     if not raw:
         print(f"ERROR: Claude returned no text for {label}.")
-        print(f"  stop_reason={response.stop_reason!r}")
-        print(f"  Content blocks: {[getattr(b, 'type', '?') for b in response.content]}")
+        print(f"  stop_reason={stop_reason!r}")
+        print(f"  Content blocks: {[getattr(b, 'type', '?') for b in getattr(final, 'content', []) or []]}")
         sys.exit(1)
 
-    return raw
+    return raw, stop_reason
 
 
 def _build_filter_config(client, prefs: str) -> dict:
@@ -439,7 +459,7 @@ JSON schema:
   "geography_exempt_categories": ["events", "networking", "news"]
 }}"""
 
-    raw = _llm_call(client, prompt, "apply-prefs")
+    raw, _ = _llm_call(client, prompt, "apply-prefs")
     start = raw.find("{")
     end = raw.rfind("}") + 1
     if start < 0 or end <= start:
@@ -615,22 +635,74 @@ HARD REQUIREMENTS:
 - If a source is already in the existing list but its URL looks stale or generic,
   suggest a more specific replacement URL as a new entry (different id, new notes).
 
-Respond with a JSON array only — no markdown, no preamble, no explanation outside the JSON.
+OUTPUT FORMAT — THIS IS A HARD REQUIREMENT:
+- Your VERY FIRST character MUST be `[`. Do not write ANY preamble, explanation,
+  apology, or markdown. No "Here are…", no code fences, no headings. Just the
+  JSON array, starting with `[` and ending with `]`.
+- Keep each entry's `notes` field to at most 2 short sentences — the response
+  budget is finite and long notes push later entries out of the response.
+- If you run low on output budget, finish the CURRENT object cleanly, then close
+  the array with `]` rather than leaving an object half-written.
+
 Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...", "strategy": "...", "cluster": "...", "notes": "..."}}]"""
 
     # Larger budget: the taxonomy produces dozens of suggestions.
-    raw = _llm_call(client, prompt, "research", max_tokens=16384)
+    raw, stop_reason = _llm_call(client, prompt, "research", max_tokens=32768)
     start = raw.find("[")
+    if start < 0:
+        print("ERROR: Claude did not return a JSON array (no `[` in response).")
+        print(f"  stop_reason={stop_reason!r}  len(raw)={len(raw)}")
+        print("  First 3000 chars of response:\n")
+        print(raw[:3000])
+        print("\n  (If stop_reason is 'max_tokens', the model spent its entire budget on preamble. "
+              "Try simplifying USER_PREFS.md or rerun — the stricter output instructions should prevent this.)")
+        sys.exit(1)
+
+    # Happy path: well-formed array.
     end = raw.rfind("]") + 1
-    if start < 0 or end <= start:
-        print("ERROR: Claude did not return a JSON array. Raw:\n")
-        print(raw[:2000])
-        sys.exit(1)
-    try:
-        return json.loads(raw[start:end])
-    except json.JSONDecodeError as exc:
-        print(f"ERROR: Could not parse source suggestions JSON: {exc}\nRaw:\n{raw}")
-        sys.exit(1)
+    if end > start:
+        try:
+            return json.loads(raw[start:end])
+        except json.JSONDecodeError:
+            pass  # fall through to salvage
+
+    # Salvage path: response was cut off mid-array. Parse as many complete
+    # object entries as we can from the prefix, then return those.
+    if stop_reason == "max_tokens":
+        print("  Attempting to salvage complete entries from truncated output …")
+    salvaged = _salvage_json_array(raw[start:])
+    if salvaged:
+        print(f"  Recovered {len(salvaged)} complete suggestion(s) from truncated response.")
+        return salvaged
+
+    print("ERROR: Could not parse source suggestions JSON. Raw:\n")
+    print(raw[:2000])
+    sys.exit(1)
+
+
+def _salvage_json_array(text: str) -> list[dict]:
+    """Given a string starting with '[' that may be truncated, return whatever
+    complete top-level JSON objects we can decode in order."""
+    decoder = json.JSONDecoder()
+    i = text.find("[")
+    if i < 0:
+        return []
+    i += 1
+    out: list[dict] = []
+    n = len(text)
+    while i < n:
+        while i < n and text[i] in " \t\n\r,":
+            i += 1
+        if i >= n or text[i] != "{":
+            break
+        try:
+            obj, end = decoder.raw_decode(text, i)
+        except json.JSONDecodeError:
+            break
+        if isinstance(obj, dict):
+            out.append(obj)
+        i = end
+    return out
 
 
 def _add_sources(suggestions: list[dict], sources: list[dict]) -> list[str]:
