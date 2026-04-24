@@ -10,8 +10,8 @@ Commands:
   test-run          Run a single scrape pass without sending email (dry run)
   set-key           Update a single env var (e.g., ANTHROPIC_API_KEY)
   apply-prefs       Read USER_PREFS.md and regenerate data/filter_config.json
-  research          Ask Claude to suggest new sources not in the pipeline
-                    (use --add to interactively add selected suggestions)
+  research          Ask Claude to suggest new sources and auto-add them
+                    to sources.json (duplicates are skipped)
   build-sources     First-time setup: apply-prefs → research → add all → validate
 
 Usage:
@@ -818,7 +818,7 @@ def cmd_apply_prefs(args) -> None:
 
 
 def cmd_research(args) -> None:
-    """Ask Claude to suggest new sources; optionally add selected ones interactively."""
+    """Ask Claude to suggest new sources and auto-add them to sources.json."""
     from dotenv import load_dotenv
     load_dotenv(ENV_FILE)
     import anthropic
@@ -838,48 +838,24 @@ def cmd_research(args) -> None:
         print("Claude returned no suggestions.")
         return
 
-    # ── Display table ─────────────────────────────────────────────────────────
-    existing_ids = {s["id"] for s in sources}
-    print(f"{'#':<3}  {'ID':<35} {'CAT':<12} {'STRATEGY':<22} {'NAME'}")
-    print("  " + "-" * 100)
-    for i, s in enumerate(suggestions, 1):
-        sid  = s.get("id", "")[:34]
-        dupe = " [DUPLICATE]" if sid in existing_ids else ""
-        print(f"{i:<3}  {sid:<35} {s.get('category',''):<12} {s.get('strategy',''):<22} {s.get('name','')}{dupe}")
-    print()
-    for i, s in enumerate(suggestions, 1):
-        print(f"  [{i}] {s.get('name', '')}")
-        print(f"       URL:   {s.get('url', '')}")
-        print(f"       Notes: {s.get('notes', '')}")
+    print(f"\n  Claude suggested {len(suggestions)} source(s):\n")
+    for s in suggestions:
+        print(f"  {s.get('name', s.get('id', '?'))}")
+        print(f"    URL:      {s.get('url', '')}")
+        print(f"    Category: {s.get('category', '')}  |  Strategy: {s.get('strategy', '')}")
+        print(f"    Notes:    {s.get('notes', '')}")
         print()
 
-    if not args.add:
-        print("Run with --add to interactively select sources to add.")
-        return
-
-    # ── Interactive selection ─────────────────────────────────────────────────
-    choice = input("Enter numbers to add (comma-separated), or Enter to skip: ").strip()
-    if not choice:
-        print("No sources added.")
-        return
-
-    to_add = []
-    for tok in choice.split(","):
-        tok = tok.strip()
-        if tok.isdigit():
-            idx = int(tok) - 1
-            if 0 <= idx < len(suggestions):
-                to_add.append(suggestions[idx])
-
-    if not to_add:
-        print("No valid selections.")
-        return
-
-    added = _add_sources(to_add, sources)
+    added = _add_sources(suggestions, sources)
     if added:
         _save_sources(sources)
-        print(f"\n  ✓ Added {len(added)} source(s) to data/sources.json.")
+        print(f"  ✓ Added {len(added)} new source(s) to data/sources.json.")
+        skipped = len(suggestions) - len(added)
+        if skipped:
+            print(f"  Skipped {skipped} duplicate(s).")
         print("  Tip: fill in selectors in data/sources.json before the next pipeline run.")
+    else:
+        print("  All suggestions were duplicates — nothing new to add.")
 
 
 def cmd_build_sources(args) -> None:
@@ -1011,13 +987,9 @@ def main() -> None:
         help="Read USER_PREFS.md and regenerate data/filter_config.json",
     )
 
-    p_research = sub.add_parser(
+    sub.add_parser(
         "research",
-        help="Ask Claude to suggest new sources not already in the pipeline",
-    )
-    p_research.add_argument(
-        "--add", action="store_true",
-        help="After displaying suggestions, prompt to add selected ones to sources.json",
+        help="Ask Claude to suggest new sources and auto-add them to sources.json",
     )
 
     sub.add_parser(
