@@ -169,6 +169,340 @@
         "the_muse_remote_director"
       ],
       "errors": []
+    },
+    {
+      "timestamp": "2026-04-16T17:02:37.740283+00:00",
+      "sources_checked": 15,
+      "sources_skipped_dead": 48,
+      "sources_healthy": 11,
+      "raw_items_found": 67,
+      "new_items_after_filter": 12,
+      "new_items_after_dedup": 2,
+      "email_sent": true,
+      "dead_sources": [
+        "legoland_merlin_careers",
+        "orlando_utilities_commission_careers",
+        "orlando_city_soccer_careers",
+        "cfec_central_florida_executive_council"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-17T17:24:13.202844+00:00",
+      "sources_checked": 11,
+      "sources_skipped_dead": 52,
+      "sources_healthy": 11,
+      "raw_items_found": 67,
+      "new_items_after_filter": 12,
+      "new_items_after_dedup": 1,
+      "email_sent": true,
+      "dead_sources": [
+        "marriott_orlando_careers",
+        "elevance_health_careers",
+        "spectrum_charter_orlando_careers",
+        "l3harris_orlando_careers"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-18T13:21:14.720994+00:00",
+      "sources_checked": 7,
+      "sources_skipped_dead": 54,
+      "sources_healthy": 7,
+      "raw_items_found": 66,
+      "new_items_after_filter": 12,
+      "new_items_after_dedup": 2,
+      "email_sent": true,
+      "dead_sources": [
+        "unitedhealth_remote_careers",
+        "cfbr_central_florida_business_review"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-18T19:22:06.002778+00:00",
+      "sources_checked": 5,
+      "sources_skipped_dead": 54,
+      "sources_healthy": 5,
+      "raw_items_found": 66,
+      "new_items_after_filter": 12,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-19T00:19:41.446250+00:00",
+      "sources_checked": 4,
+      "sources_skipped_dead": 55,
+      "sources_healthy": 4,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-19T13:21:14.519731+00:00",
+      "sources_checked": 4,
+      "sources_skipped_dead": 55,
+      "sources_healthy": 4,
+      "raw_items_found": 66,
+      "new_items_after_filter": 11,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-19T13:23:47.979540+00:00",
+      "sources_checked": 4,
+      "sources_skipped_dead": 55,
+      "sources_healthy": 4,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-19T19:27:19.502093+00:00",
+      "sources_checked": 4,
+      "sources_skipped_dead": 55,
+      "sources_healthy": 4,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-20T01:26:47.264492+00:00",
+      "sources_checked": 4,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 4,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [
+        "disney_careers"
+      ],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-20T13:21:14.500013+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 6,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-20T14:14:05.692081+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-20T20:09:27.275090+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-21T01:54:00.391302+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-21T13:21:13.959532+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 6,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-21T14:47:54.538550+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-21T20:47:39.908050+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-22T02:38:29.478641+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-22T13:21:13.810426+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 6,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-22T14:44:18.267307+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-22T20:50:30.100224+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-23T02:50:28.937653+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-23T13:21:14.092495+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 6,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-23T15:51:06.409309+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-23T21:59:01.926877+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-24T03:59:23.741969+00:00",
+      "sources_checked": 3,
+      "sources_skipped_dead": 56,
+      "sources_healthy": 3,
+      "raw_items_found": 51,
+      "new_items_after_filter": 3,
+      "new_items_after_dedup": 0,
+      "email_sent": false,
+      "dead_sources": [],
+      "errors": []
+    },
+    {
+      "timestamp": "2026-04-24T13:20:49.181396+00:00",
+      "sources_checked": 72,
+      "sources_skipped_dead": 5,
+      "sources_healthy": 67,
+      "raw_items_found": 87,
+      "new_items_after_filter": 34,
+      "new_items_after_dedup": 24,
+      "email_sent": true,
+      "dead_sources": [
+        "indeed_jobs",
+        "darden_careers",
+        "city_of_orlando_jobs",
+        "careersource_events",
+        "florida_leads_events"
+      ],
+      "errors": [],
+      "auto_revived": []
     }
   ]
 }

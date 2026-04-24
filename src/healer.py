@@ -28,6 +28,16 @@ logger = logging.getLogger(__name__)
 
 CONSECUTIVE_EMPTY_RUNS_THRESHOLD = 3
 
+# Sources marked "dead" are auto-revived after this many days so the pipeline
+# gets a fresh chance at them. This prevents the permanent-trap failure mode
+# where a one-time URL hiccup or selector problem kills a source forever.
+DEAD_SOURCE_AUTO_REVIVE_DAYS = 14
+
+# Each heal archives the previous active_url into alternate_urls so the heal
+# pipeline accumulates fallbacks over time instead of discarding them. Capped
+# so a source that gets healed repeatedly doesn't grow an unbounded list.
+MAX_ALTERNATE_URLS = 10
+
 # ── Anthropic client (lazy) ────────────────────────────────────────────────────
 _anthropic_client: anthropic.Anthropic | None = None
 
@@ -57,6 +67,34 @@ def _get_anthropic_client() -> anthropic.Anthropic | None:
 
 # ── Public entry point ────────────────────────────────────────────────────────
 
+def _archive_active_url(source: dict, new_url: str) -> None:
+    """
+    Push the current active_url onto alternate_urls before we overwrite it.
+
+    Ensures every heal grows the source's fallback list instead of discarding
+    the URL that used to work. Skips if the old URL equals the new URL, if
+    it's already in alternates, or if it's missing. Caps at MAX_ALTERNATE_URLS
+    (oldest first is dropped) so a churny source can't grow an unbounded list.
+    """
+    old_url = source.get("active_url", "").strip()
+    if not old_url or old_url == new_url.strip():
+        return
+
+    alternates = source.setdefault("alternate_urls", [])
+    if old_url in alternates:
+        return
+
+    alternates.append(old_url)
+    if len(alternates) > MAX_ALTERNATE_URLS:
+        # Drop the oldest entries to keep the list bounded.
+        dropped = len(alternates) - MAX_ALTERNATE_URLS
+        del alternates[:dropped]
+    logger.info(
+        "Heal archive: %s → previous URL archived to alternate_urls (%d total).",
+        source["id"], len(alternates),
+    )
+
+
 def heal_source(source: dict, sources: list[dict]) -> dict:
     """
     Run the healing pipeline for a broken source.  NEVER raises.
@@ -81,6 +119,11 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
         # Step 2 — Alternate URLs (free, no API calls)
         recovered_url = _try_alternate_urls(source)
         if recovered_url:
+            _archive_active_url(source, recovered_url)
+            # The winning alternate is now the active URL — remove it from the
+            # alternates list so we don't have the same URL in both slots.
+            if recovered_url in source.get("alternate_urls", []):
+                source["alternate_urls"].remove(recovered_url)
             source["active_url"] = recovered_url
             source["status"] = "healthy"
             source["last_verified"] = _now()
@@ -98,6 +141,7 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
             logger.warning("LLM lookup error for %s: %s — will retry next run.", source_id, exc)
 
         if new_url:
+            _archive_active_url(source, new_url)
             source["active_url"] = new_url
             if new_api_cfg:
                 source.setdefault("api_config", {}).update(new_api_cfg)
@@ -135,6 +179,36 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
         )
 
     return source
+
+
+def maybe_auto_revive(source: dict, sources: list[dict]) -> bool:
+    """
+    If a source has been marked dead for longer than the auto-revive window,
+    flip it back to healthy so the pipeline re-tries it. Returns True if revived.
+
+    This is the safety valve for the "dead is permanent" trap — a source that
+    went dead because of a one-off scrape failure, temporary bot block, or
+    since-fixed selector bug gets another shot every two weeks.
+    """
+    if source.get("status") != "dead":
+        return False
+    last = source.get("last_verified", "")
+    try:
+        last_dt = datetime.fromisoformat(last)
+    except (ValueError, TypeError):
+        return False
+    if datetime.now(timezone.utc) - last_dt < timedelta(days=DEAD_SOURCE_AUTO_REVIVE_DAYS):
+        return False
+
+    source["status"] = "healthy"
+    source["consecutive_empty_runs"] = 0
+    source.pop("last_llm_heal_ts", None)  # reset cooldown so heal can re-try
+    _persist(sources)
+    logger.info(
+        "Auto-revive: %s was dead for >%d days — promoted to healthy for a retry.",
+        source["id"], DEAD_SOURCE_AUTO_REVIVE_DAYS,
+    )
+    return True
 
 
 def should_heal(source: dict) -> bool:

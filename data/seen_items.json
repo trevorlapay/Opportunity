@@ -279,6 +279,238 @@
       "url": "https://remoteOK.com/remote-jobs/remote-channel-manager-team-lead-united-states-jumpcloud-1130600",
       "first_seen": "2026-04-16T13:22:56.468698+00:00",
       "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:9a21364c0f8867026692358fc424510aa60d444ff926f3a53459211e26db400c",
+      "title": "Vice President of Operations - Heavy Civil Construction",
+      "source_id": "linkedin_jobs",
+      "url": "https://www.linkedin.com/jobs/view/vice-president-of-operations-heavy-civil-construction-at-alphax-4400448119?position=1&pageNum=0&refId=0I8FaYtYc%2B8E%2B%2Fh78CsmKA%3D%3D&trackingId=NfX8wYq5O3mGAS5lbY1UXA%3D%3D",
+      "first_seen": "2026-04-16T17:03:44.633026+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:131c91a8d7dd3a3adebafb94cb73f52748026dceedf49956869e752de622b4a1",
+      "title": "Paralegal Legal Operations",
+      "source_id": "remote_ok_executive",
+      "url": "https://remoteOK.com/remote-jobs/remote-paralegal-legal-operations-sterlington-pllc-1131142",
+      "first_seen": "2026-04-16T17:03:44.633026+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:62ca01154f5f53d9699157842f020becc1d78f7f454bf59f5514e582485c75ba",
+      "title": "Regional Business Director",
+      "source_id": "linkedin_jobs",
+      "url": "https://www.linkedin.com/jobs/view/regional-business-director-at-intercept-pharmaceuticals-4388242490?position=1&pageNum=0&refId=gXqALWT4JkQT0EPJzoMbvA%3D%3D&trackingId=PPyHt2%2FmQ%2BbnmqXAuJVj1Q%3D%3D",
+      "first_seen": "2026-04-17T17:25:49.397688+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:6dffedf7dd118ace7269a920ecd28588b99412e531537d28170bebdd87c5440b",
+      "title": "Lead Technical Project Manager",
+      "source_id": "disney_careers",
+      "url": "https://jobs.disneycareers.com/job/orlando/lead-technical-project-manager/391/94072095824",
+      "first_seen": "2026-04-18T13:22:02.830088+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:54d11e88ee805a84c895416cfe238f738322a770bddb28f6b5146973ee67058d",
+      "title": "Sr Manager, Product Management",
+      "source_id": "disney_careers",
+      "url": "https://jobs.disneycareers.com/job/orlando/sr-manager-product-management/391/94038620304",
+      "first_seen": "2026-04-18T13:22:02.830088+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:c2b8a89bc247615c66dc380d520898f168be97e726ec3762d6a071a7c69dec2c",
+      "title": "Sr. Manager 3 Global Trade - R10230535-2",
+      "source_id": "linkedin_jobs",
+      "url": "https://www.linkedin.com/jobs/view/sr-manager-3-global-trade-r10230535-2-at-northrop-grumman-4405883340?position=1&pageNum=0&refId=hS%2B6%2F2JtAhp2kZHgmh9axQ%3D%3D&trackingId=ywQeBp3MbLdxACDGd%2Bu9WA%3D%3D",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:99aa5d70093b130d32e16e661277834c81d2a1bbfe05ac801a898e3f66b5ea0d",
+      "title": "Manager, Product Management",
+      "source_id": "disney_careers",
+      "url": "https://jobs.disneycareers.com/job/orlando/manager-product-management/391/94215296720",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:5744e75ca43d8675fce6048bfcad2b234710a63fd951145133bf5b3681a9772d",
+      "title": "Lead Technical Project Manager",
+      "source_id": "disney_careers",
+      "url": "https://jobs.disneycareers.com/job/orlando/lead-technical-project-manager/391/94177553520",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:1dd8675c8271ffcf6e450f7fb7b99b0683a09ffc7453eb804dc40e6586d69d5d",
+      "title": "Manager, Technical Project Management",
+      "source_id": "disney_careers",
+      "url": "https://jobs.disneycareers.com/job/orlando/manager-technical-project-management/391/94177553504",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "jobs"
+    },
+    {
+      "fingerprint": "sha256:bade2be355b0b66b37711ee574e777517c7df9db278be6240b1c1d5684c7546a",
+      "title": "Horizon Capital gewinnt bei den Real Deals Private Equity Awards 2026 den Preis f\u00fcr die \u201eCEE-Deal des Jahres\" f\u00fcr die Transaktion zwischen Datagroup, Volia und Lifecell",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/horizon-capital-gewinnt-bei-den-real-deals-private-equity-awards-2026-den-preis-fur-die-cee-deal-des-jahres-fur-die-transaktion-zwischen-datagroup-volia-und-lifecell-302752926.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:677b8405d5145918bbbb1bae2cbf8042c4db21c43e97e472233b42068930545f",
+      "title": "PAN GLOBAL K\u00dcNDIGT PRIVATPLATZIERUNG \u00dcBER 7,2 MILLIONEN CAD VON ALPAYANA AN",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/pan-global-kundigt-privatplatzierung-uber-7-2-millionen-cad-von-alpayana-an-302752928.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:698c116559efd751cf2de31dbb3870a02922f512cdeef1f6a8c1564ce96e9870",
+      "title": "Horizon Capital remporte le prix \u00ab Transaction de l'ann\u00e9e en Europe centrale et orientale \u00bb aux Real Deals Private Equity Awards 2026 pour la transaction Datagroup-Volia-Lifecell",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/horizon-capital-remporte-le-prix--transaction-de-lannee-en-europe-centrale-et-orientale--aux-real-deals-private-equity-awards-2026-pour-la-transaction-datagroup-volia-lifecell-302752924.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:863e878de76f0a46695d965d2541685ccd1d8ea520a1ca160b27805c17bea06b",
+      "title": "ACTIVIST INVESTOR WYSER-PRATTE URGES LEONARDO SHAREHOLDERS TO VOTE \"NO\" ON PROPOSAL 6, THE OUSTING OF CEO CINGOLANI",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/activist-investor-wyser-pratte-urges-leonardo-shareholders-to-vote-no-on-proposal-6-the-ousting-of-ceo-cingolani-302752925.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:04c2484c2b17a12337143495a72129afe4344790c02cb14cfe2936b80a385217",
+      "title": "The World's First Open-Source Medical Video LLM Released, Calling the Global Developer Community to Push It Further",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/the-worlds-first-open-source-medical-video-llm-released-calling-the-global-developer-community-to-push-it-further-302752815.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:2dc57466b4fbdb1e2a7341cdaabf36de1880f60ace443a58d6acb8d890453d15",
+      "title": "The World's First Open-Source Medical Video LLM Released, Calling the Global Developer Community to Push It Further",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/the-worlds-first-open-source-medical-video-llm-released-calling-the-global-developer-community-to-push-it-further-302752818.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:b56e6c5458ff2e8cb200903486baa758b91bef78dd2cf5da77c9776879fc4f8a",
+      "title": "PAN GLOBAL ANNONCE UN PLACEMENT PRIV\u00c9 DE 7,2 MILLIONS DE DOLLARS AVEC ALPAYANA",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/pan-global-annonce-un-placement-prive-de-7-2-millions-de-dollars-avec-alpayana-302752923.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:3390c6a6bc684f9bd5547dd8fa35269dc1e10369137408af0c64474f68eb08ba",
+      "title": "TPX-100: OrthoTrophix Presents New Data Revealing Structural Coupling between Femoral Bone Shape and Meniscal Pathology in Knee Osteoarthritis",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/tpx-100-orthotrophix-presents-new-data-revealing-structural-coupling-between-femoral-bone-shape-and-meniscal-pathology-in-knee-osteoarthritis-302752500.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:aed8823475802faa525f57f4ca0da5a01e1a6bfd893fed39332cb0767f000a29",
+      "title": "Woolpert Ranks No. 36 on ENR Top 500 Design Firms List",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/woolpert-ranks-no-36-on-enr-top-500-design-firms-list-302752906.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:5e243f038aa9979b746b11bdc4eeec92adeea1b93fa118d59d6ed05901fb64a8",
+      "title": "WesBanco, Inc. Appoints Nathan Jones as Chief Risk Officer",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/wesbanco-inc-appoints-nathan-jones-as-chief-risk-officer-302752865.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:171818ae5c1a2a5550bbdc43bb8013a5099e98728671970cdcd9c2ba3cbd73a5",
+      "title": "Formula 1 World Champion Sebastian Vettel Receives The Perfect World Foundation Award 2026",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/formula-1-world-champion-sebastian-vettel-receives-the-perfect-world-foundation-award-2026-302752921.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:d6368ccf7b4a34e288c66cc91dc2c7004579f873a73c3e8615748a773fd110fc",
+      "title": "Shanghai Electric met en avant l'int\u00e9gration de l'\u00e9nergie et de l'industrie pilot\u00e9e par l'IA \u00e0 la Foire de Hanovre 2026",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/shanghai-electric-met-en-avant-lintegration-de-lenergie-et-de-lindustrie-pilotee-par-lia-a-la-foire-de-hanovre-2026-302752915.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:03066251db00db2b9e7c9cd06045c1efe1130c4ffd8ba883e61b000514af8829",
+      "title": "MEMORIAL ADVANCES KIDNEY TRANSPLANT CARE WITH ROBOTIC SURGERY FOR DONORS AND RECIPIENTS",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/memorial-advances-kidney-transplant-care-with-robotic-surgery-for-donors-and-recipients-302752916.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:f2a31aec6fe16bba954c0a267649e598d06fcc30e8858aa61299bfa00dd32424",
+      "title": "Aokah lance Explorer et Builder : la premi\u00e8re plateforme aliment\u00e9e par l'IA qui permet aux entreprises de passer de la strat\u00e9gie \u00e0 l'ex\u00e9cution GCC",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/aokah-lance-explorer-et-builder--la-premiere-plateforme-alimentee-par-lia-qui-permet-aux-entreprises-de-passer-de-la-strategie-a-lexecution-gcc-302752913.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:79e7e1d72aa4564adcd6ee2d88d5cd9ddca18683f6844babeae9e153ae88428e",
+      "title": "Tequila Centinela Expands Distribution in Partnership with Republic National Distributing Company in Florida and Texas",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/tequila-centinela-expands-distribution-in-partnership-with-republic-national-distributing-company-in-florida-and-texas-302752400.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:8f7102141b27da378079cb6d6a6b6bf1dead83dd630936a17317713582bc1531",
+      "title": "JTV\u00ae and Make-A-Wish\u00ae Launch National Fundraising Campaign Supporting Children with Critical Illnesses",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/jtv-and-make-a-wish-launch-national-fundraising-campaign-supporting-children-with-critical-illnesses-302752417.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:97c84ebf52e2d8a5dde3ffd278b974348260179ce94ea97e2ae57a0e48ef4ebb",
+      "title": "Horizon Capital zdobywa nagrod\u0119 Real Deals Private Equity Awards 2026 CEE Deal of the Year za transakcj\u0119 Datagroup-Volia-Lifecell",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/horizon-capital-zdobywa-nagrod-real-deals-private-equity-awards-2026-cee-deal-of-the-year-za-transakcj-datagroup-volia-lifecell-302752911.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:5d7d3e9fceafd5955e6f74296b094cbefe0d77f1832058725dc74b5b1eb6145f",
+      "title": "WEPACK 2026 Concludes on a Record High, Reinforcing China's Role at the Heart of the Global Packaging Industry",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/wepack-2026-concludes-on-a-record-high-reinforcing-chinas-role-at-the-heart-of-the-global-packaging-industry-302752910.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:d4e20e7fb1cc49a428fa47a255efc05782b82658e2f7fcb0b7f9ffa1b0a15fff",
+      "title": "The Cigna Group, Leading Health Plans Advance Work to Simplify Prior Authorization",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/the-cigna-group-leading-health-plans-advance-work-to-simplify-prior-authorization-302752909.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
+    },
+    {
+      "fingerprint": "sha256:a51dd962667c456905f56a4f9bf4d8db6d2ce4c271023780e13a10b564a9ddb4",
+      "title": "Vyne Medical to Showcase 5th Annual Automation Workshop and Patient Access Workflow Success at the 52nd NAHAM Conference",
+      "source_id": "pr_newswire_orlando",
+      "url": "https://www.prnewswire.com/news-releases/vyne-medical-to-showcase-5th-annual-automation-workshop-and-patient-access-workflow-success-at-the-52nd-naham-conference-302752486.html",
+      "first_seen": "2026-04-24T13:27:36.768795+00:00",
+      "category": "news"
     }
   ]
 }

@@ -21,8 +21,9 @@
         "page not found"
       ],
       "status": "dead",
-      "last_verified": "2026-04-14T15:36:58.314378+00:00",
-      "consecutive_empty_runs": 3
+      "last_verified": "2026-04-24T13:21:01.808392+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-24T13:20:55.155596+00:00"
     },
     {
       "id": "linkedin_jobs",
@@ -43,7 +44,7 @@
         "something went wrong"
       ],
       "status": "healthy",
-      "last_verified": "2026-04-14T15:37:12.004607+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 0
     },
     {
@@ -72,7 +73,7 @@
         "page not found"
       ],
       "status": "healthy",
-      "last_verified": "2026-01-01T00:00:00Z",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 0
     },
     {
@@ -99,9 +100,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:37:36.051908+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "nbcuniversal_careers",
@@ -126,9 +127,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:47:30.993841+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "adventhealth_careers",
@@ -152,9 +153,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:48:00.283687+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_health_careers",
@@ -178,9 +179,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:48:20.678610+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "lockheed_martin_careers",
@@ -202,9 +203,9 @@
         "no jobs match",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:48:34.911089+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "siemens_careers",
@@ -224,9 +225,9 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:48:50.283735+00:00",
-      "consecutive_empty_runs": 3
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "darden_careers",
@@ -247,8 +248,9 @@
         "page not found"
       ],
       "status": "dead",
-      "last_verified": "2026-04-14T15:38:08.611735+00:00",
-      "consecutive_empty_runs": 0
+      "last_verified": "2026-04-24T13:22:23.528500+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-24T13:22:18.869427+00:00"
     },
     {
       "id": "hilton_careers",
@@ -268,9 +270,9 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:52:40.513133+00:00",
-      "consecutive_empty_runs": 4
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "florida_blue_careers",
@@ -290,9 +292,9 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:52:51.617778+00:00",
-      "consecutive_empty_runs": 4
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "city_of_orlando_jobs",
@@ -315,8 +317,9 @@
         "page not found"
       ],
       "status": "dead",
-      "last_verified": "2026-04-14T15:39:51.145004+00:00",
-      "consecutive_empty_runs": 0
+      "last_verified": "2026-04-24T13:22:38.298116+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-24T13:22:35.645437+00:00"
     },
     {
       "id": "orange_county_jobs",
@@ -336,9 +339,9 @@
         "no open positions",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:53:02.615107+00:00",
-      "consecutive_empty_runs": 4
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "florida_state_jobs",
@@ -360,9 +363,9 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:53:33.621268+00:00",
-      "consecutive_empty_runs": 4
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "builtin_remote",
@@ -384,9 +387,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:53:45.217857+00:00",
-      "consecutive_empty_runs": 4
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "glassdoor_jobs",
@@ -406,9 +409,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T16:00:13.993427+00:00",
-      "consecutive_empty_runs": 5
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "eventbrite_orlando",
@@ -432,9 +435,9 @@
         "0 results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T16:00:30.818057+00:00",
-      "consecutive_empty_runs": 5
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "careersource_events",
@@ -456,8 +459,9 @@
         "page not found"
       ],
       "status": "dead",
-      "last_verified": "2026-04-14T15:40:24.901619+00:00",
-      "consecutive_empty_runs": 0
+      "last_verified": "2026-04-24T13:23:05.448066+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-24T13:23:01.494449+00:00"
     },
     {
       "id": "orlando_econ_partnership",
@@ -478,9 +482,9 @@
         "no upcoming events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T16:00:41.713792+00:00",
-      "consecutive_empty_runs": 5
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "ucf_career_events",
@@ -524,8 +528,9 @@
         "page not found"
       ],
       "status": "dead",
-      "last_verified": "2026-04-14T15:40:31.253015+00:00",
-      "consecutive_empty_runs": 0
+      "last_verified": "2026-04-24T13:23:15.436394+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-24T13:23:12.341198+00:00"
     },
     {
       "id": "meetup_orlando",
@@ -546,9 +551,9 @@
         "no results",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T16:00:55.077782+00:00",
-      "consecutive_empty_runs": 5
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_young_professionals",
@@ -568,9 +573,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:40:38.153263+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "florida_cio_council",
@@ -590,9 +595,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:40:43.162890+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "acg_florida",
@@ -612,9 +617,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T16:01:04.697220+00:00",
-      "consecutive_empty_runs": 5
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "leadership_orlando",
@@ -633,9 +638,9 @@
         "no programs",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:40:48.890878+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_chamber",
@@ -655,10 +660,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T19:00:18.317719+00:00",
-      "consecutive_empty_runs": 6,
-      "last_llm_heal_ts": "2026-04-14T19:00:14.130370+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "osceola_chamber",
@@ -678,9 +682,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:40:54.884156+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "seminole_chamber",
@@ -702,10 +706,9 @@
         "no events",
         "page not found"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T19:00:29.112472+00:00",
-      "consecutive_empty_runs": 6,
-      "last_llm_heal_ts": "2026-04-14T19:00:24.960244+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_biz_journal",
@@ -721,10 +724,9 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T19:00:37.268658+00:00",
-      "consecutive_empty_runs": 6,
-      "last_llm_heal_ts": "2026-04-14T19:00:34.960475+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_sentinel_biz",
@@ -744,10 +746,9 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T19:00:48.181488+00:00",
-      "consecutive_empty_runs": 6,
-      "last_llm_heal_ts": "2026-04-14T19:00:44.959693+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "florida_trend",
@@ -763,9 +764,9 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:41:02.464704+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "builtin_orlando_news",
@@ -785,9 +786,9 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:41:07.472873+00:00",
-      "consecutive_empty_runs": 0
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "pr_newswire_orlando",
@@ -801,8 +802,8 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "dead",
-      "last_verified": "2026-04-14T15:41:14.335132+00:00",
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 0
     },
     {
@@ -814,10 +815,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-15T19:38:59.384413+00:00",
-      "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-15T19:38:55.451765+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "nemours_childrens_health_careers",
@@ -828,10 +828,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-15T19:39:08.398843+00:00",
-      "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-15T19:39:05.444163+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "guidewell_florida_blue_parent_careers",
@@ -842,10 +841,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T13:21:37.542288+00:00",
-      "consecutive_empty_runs": 3,
-      "last_llm_heal_ts": "2026-04-16T13:21:33.010323+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "hca_healthcare_central_florida_careers",
@@ -856,10 +854,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T13:21:47.030704+00:00",
-      "consecutive_empty_runs": 3,
-      "last_llm_heal_ts": "2026-04-16T13:21:43.282151+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "remote_exec_flexjobs",
@@ -870,10 +867,9 @@
       "strategy": "playwright",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-15T19:40:01.123725+00:00",
-      "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-15T19:39:56.109983+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "wework_remotely_management",
@@ -884,10 +880,9 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T13:21:58.049189+00:00",
-      "consecutive_empty_runs": 3,
-      "last_llm_heal_ts": "2026-04-16T13:21:53.288491+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "ziprecruiter_orlando_director",
@@ -898,10 +893,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T13:22:06.549277+00:00",
-      "consecutive_empty_runs": 3,
-      "last_llm_heal_ts": "2026-04-16T13:22:03.325086+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "cfhla_careers_events",
@@ -912,10 +906,9 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-15T19:40:15.693352+00:00",
-      "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-15T19:40:10.358673+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "visit_orlando_industry_careers",
@@ -926,10 +919,9 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-15T19:40:24.406083+00:00",
-      "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-15T19:40:21.661950+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "orlando_tech_association_events",
@@ -940,10 +932,9 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T12:08:20.471607+00:00",
-      "consecutive_empty_runs": 1,
-      "last_llm_heal_ts": "2026-04-16T12:08:16.627847+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "spectrum_health_careers",
@@ -954,10 +945,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T12:08:31.575589+00:00",
-      "consecutive_empty_runs": 1,
-      "last_llm_heal_ts": "2026-04-16T12:08:26.623727+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "the_muse_remote_director",
@@ -968,10 +958,9 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "dead",
-      "last_verified": "2026-04-16T13:22:16.942144+00:00",
-      "consecutive_empty_runs": 3,
-      "last_llm_heal_ts": "2026-04-16T13:22:13.325290+00:00"
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
+      "consecutive_empty_runs": 1
     },
     {
       "id": "legoland_merlin_careers",
@@ -983,7 +972,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -996,7 +985,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1009,7 +998,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1022,7 +1011,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1036,7 +1025,8 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-16T12:18:02.915084+00:00",
-      "consecutive_empty_runs": 1
+      "consecutive_empty_runs": 28,
+      "last_llm_heal_ts": "2026-04-17T17:25:13.743681+00:00"
     },
     {
       "id": "l3harris_orlando_careers",
@@ -1048,7 +1038,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1061,7 +1051,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1074,7 +1064,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1100,7 +1090,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1113,7 +1103,7 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
     },
     {
@@ -1126,8 +1116,203 @@
       "selectors": {},
       "dead_content_patterns": [],
       "status": "healthy",
-      "last_verified": "2026-04-16T12:18:02.915084+00:00",
+      "last_verified": "2026-04-24T13:18:03.581377+00:00",
       "consecutive_empty_runs": 1
+    },
+    {
+      "id": "hosp_jw_marriott_grande_lakes",
+      "name": "JW Marriott Orlando Grande Lakes (Dr Phillips)",
+      "category": "jobs",
+      "active_url": "https://jobs.marriott.com/marriott/jobs?keywords=director+manager&location=Orlando%2C+FL&facility=JW+Marriott+Orlando+Grande+Lakes&stretch=10",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_ritz_carlton_grande_lakes",
+      "name": "Ritz-Carlton Orlando Grande Lakes (Dr Phillips)",
+      "category": "jobs",
+      "active_url": "https://jobs.marriott.com/marriott/jobs?keywords=director+manager&location=Orlando%2C+FL&facility=The+Ritz-Carlton+Orlando%2C+Grande+Lakes&stretch=10",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_gaylord_palms",
+      "name": "Gaylord Palms Resort & Convention Center (Kissimmee)",
+      "category": "jobs",
+      "active_url": "https://jobs.marriott.com/marriott/jobs?keywords=director+manager&location=Kissimmee%2C+FL&facility=Gaylord+Palms&stretch=10",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_signia_bonnet_creek",
+      "name": "Signia by Hilton Orlando Bonnet Creek",
+      "category": "jobs",
+      "active_url": "https://jobs.hilton.com/us/en/search-results?keywords=director+manager&location=Orlando%2C+FL&property=Signia+by+Hilton+Orlando+Bonnet+Creek",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_waldorf_astoria_orlando",
+      "name": "Waldorf Astoria Orlando (Bonnet Creek)",
+      "category": "jobs",
+      "active_url": "https://jobs.hilton.com/us/en/search-results?keywords=director+manager&location=Orlando%2C+FL&property=Waldorf+Astoria+Orlando",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_hyatt_grand_cypress",
+      "name": "Hyatt Regency Grand Cypress",
+      "category": "jobs",
+      "active_url": "https://careers.hyatt.com/en/search-jobs?search-keyword=director+manager&search-location=Orlando+FL&property=Hyatt+Regency+Grand+Cypress",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_four_seasons_orlando",
+      "name": "Four Seasons Resort Orlando at Walt Disney World",
+      "category": "jobs",
+      "active_url": "https://jobs.fourseasons.com/careers/jobs?search=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_omni_championsgate",
+      "name": "Omni Orlando Resort at ChampionsGate",
+      "category": "jobs",
+      "active_url": "https://www.omnihotels.com/careers/search-jobs?search=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_loews_universal_hotels",
+      "name": "Loews Hotels at Universal Orlando (Portofino Bay, Hard Rock, Royal Pacific, Sapphire Falls, Aventura, Cabana Bay, Endless Summer)",
+      "category": "jobs",
+      "active_url": "https://careers.loewshotels.com/search-jobs?search=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_rosen_hotels",
+      "name": "Rosen Hotels & Resorts (Shingle Creek / Centre / Plaza / Pointe / Inn)",
+      "category": "jobs",
+      "active_url": "https://www.rosenhotels.com/careers/job-listings/",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_evermore_orlando",
+      "name": "Evermore Orlando Resort (Conrad Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.hilton.com/us/en/search-results?keywords=director+manager&location=Orlando%2C+FL&property=Conrad+Orlando",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_wyndham_grand_bonnet_creek",
+      "name": "Wyndham Grand Orlando Resort Bonnet Creek",
+      "category": "jobs",
+      "active_url": "https://careers.wyndhamhotels.com/search-jobs?search=director+manager&location=Orlando+FL",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "hosp_marriott_corporate_orlando",
+      "name": "Marriott International Corporate Careers (Orlando)",
+      "category": "jobs",
+      "active_url": "https://jobs.marriott.com/marriott/jobs?keywords=director+manager&location=Orlando%2C+FL&sortBy=posting_date",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {},
+      "dead_content_patterns": [],
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:18:32.932767+00:00",
+      "consecutive_empty_runs": 1,
+      "cluster": "B-hospitality",
+      "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     }
   ]
 }

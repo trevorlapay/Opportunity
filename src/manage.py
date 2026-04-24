@@ -22,7 +22,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows (avoids cp1252 UnicodeEncodeError for non-ASCII titles)
@@ -211,6 +211,59 @@ def cmd_update_source(args) -> None:
     print(f"  ✓ Source '{args.source_id}' field '{field}' updated.")
 
 
+def cmd_revive(args) -> None:
+    """
+    Reset dead sources back to healthy so the pipeline re-attempts them.
+
+    Without arguments: revives EVERY dead source.
+    With --id <source_id>: revives just that one.
+    With --older-than <days>: only revives sources marked dead more than N days ago.
+    """
+    sources = _load_sources()
+    if not sources:
+        print("No sources found.")
+        return
+
+    target_id = getattr(args, "id", None)
+    older_than = getattr(args, "older_than", None)
+    cutoff = None
+    if older_than is not None:
+        cutoff = datetime.now(timezone.utc) - timedelta(days=int(older_than))
+
+    revived = []
+    for s in sources:
+        if s.get("status") != "dead":
+            continue
+        if target_id and s["id"] != target_id:
+            continue
+        if cutoff is not None:
+            last = s.get("last_verified", "")
+            try:
+                last_dt = datetime.fromisoformat(last)
+                if last_dt > cutoff:
+                    continue
+            except (ValueError, TypeError):
+                pass  # unparseable timestamp → revive anyway
+        s["status"] = "healthy"
+        s["consecutive_empty_runs"] = 0
+        s.pop("last_llm_heal_ts", None)  # clear cooldown so healer can try again
+        revived.append(s["id"])
+
+    if not revived:
+        print("Nothing to revive.")
+        return
+
+    _save_sources(sources)
+    print(f"\n  ✓ Revived {len(revived)} source(s):")
+    for sid in revived:
+        print(f"    - {sid}")
+    print(
+        "\n  Next run will retry these. Sources with empty selectors will likely\n"
+        "  go dead again on the first run — consider adding selectors first, or\n"
+        "  running 'build-sources' to let Claude suggest better endpoints.\n"
+    )
+
+
 def cmd_validate_sources(args) -> None:
     import requests
 
@@ -304,13 +357,13 @@ def _load_user_prefs() -> str:
 
 # ── Shared LLM helpers (used by apply-prefs, research, and build-sources) ──────
 
-def _llm_call(client, prompt: str, label: str) -> str:
+def _llm_call(client, prompt: str, label: str, max_tokens: int = 8192) -> str:
     """Make a Claude API call and return the text content. Exits on failure."""
     import anthropic
     try:
         response = client.messages.create(
             model="claude-opus-4-6",
-            max_tokens=8192,
+            max_tokens=max_tokens,
             messages=[{"role": "user", "content": prompt}],
         )
     except anthropic.APIError as exc:
@@ -444,39 +497,129 @@ def _print_filter_diff(current_cfg: dict, new_cfg: dict) -> None:
 
 
 def _fetch_source_suggestions(client, sources: list[dict]) -> list[dict]:
-    """Call Claude and return a list of suggested new source dicts."""
+    """Call Claude and return a list of suggested new source dicts.
+
+    The prompt forces an exhaustive enumeration of opportunity avenues —
+    major employer clusters (including named properties, not just parent
+    brands), meta-aggregators, signal sources, and niche boards — so the
+    output is a SUPERSET of what a motivated human would manually check.
+    """
     user_prefs = _load_user_prefs()
     existing_summary = "\n".join(
         f"  - {s['name']} ({s.get('category','?')}) — {s.get('active_url','')[:60]}"
         for s in sources
     )
-    prompt = f"""You are helping maintain an automated job-opportunity monitoring pipeline.
+    prompt = f"""You are building an exhaustive opportunity-monitoring pipeline for a candidate.
+The pipeline MUST be a SUPERSET of what any motivated human could find by manually
+browsing LinkedIn, Indeed, and local employer sites. Missing a major local employer
+or category is a failure.
 
 CANDIDATE PREFERENCES (from USER_PREFS.md):
 {user_prefs}
 
-SOURCES ALREADY MONITORED (do not suggest these or their duplicates):
+SOURCES ALREADY MONITORED (do not duplicate these; suggest ADJACENT or MISSING ones):
 {existing_summary}
 
 TASK:
-Suggest up to 12 NEW sources that would add genuine coverage for this candidate
-based on their preferences above.
-Good candidates: job boards with RSS or structured HTML, local business journals,
-professional associations with event listings, chamber of commerce job boards,
-niche leadership/management job boards, region-specific hiring or networking sites.
+Exhaustively enumerate every source that could surface a matching opportunity.
+Do NOT stop at 12 — if the candidate's region has 40 relevant employers, suggest 40.
+Think like a headhunter who knows the region intimately.
 
-For each suggestion provide:
-  id       — unique snake_case identifier (no spaces, no hyphens)
-  name     — human display name
-  category — one of: jobs | events | networking | news
-  url      — the most specific, direct URL to the listings/feed (not a homepage)
-  strategy — one of: rss_feed | html_list | html_search_result | json_api | playwright
-  notes    — 1 sentence: why this source fits the candidate; flag any URL uncertainty
+Work through this taxonomy and suggest sources in EVERY bucket that applies to the
+candidate's region and role targets. Name SPECIFIC properties, not just parent brands
+(e.g. "JW Marriott Orlando Grande Lakes" and "Ritz-Carlton Orlando Grande Lakes",
+not just "Marriott"). Include the actual ATS career page for each.
+
+  A. META-AGGREGATORS (highest leverage — one source, many employers):
+     - Google Jobs via SerpAPI or similar
+     - JSearch (LinkedIn + Indeed + Glassdoor + ZipRecruiter normalised)
+     - Adzuna public API
+     - The Muse API, USAJobs API, RemoteOK, We Work Remotely
+     - LinkedIn job RSS via third-party feeds
+     - Indeed publisher RSS variants
+
+  B. MAJOR LOCAL EMPLOYERS — enumerate by industry cluster. For the candidate's region
+     (use the Geography section of USER_PREFS), list every employer with 500+ local
+     headcount. Prefer Workday / Greenhouse / Lever / SmartRecruiters / Ashby / Workable
+     ATS endpoints over scraping corporate career pages — they return stable JSON.
+     Clusters to cover (add/remove based on region):
+       • Hospitality & lodging — name EVERY large hotel/resort property individually
+         (flagship hotels, convention hotels, destination resorts). Generic brand
+         career pages are INSUFFICIENT; also add the property-specific posting page
+         where one exists.
+       • Theme parks, attractions, entertainment venues, professional sports teams
+       • Healthcare systems, hospitals, specialty-care networks, insurers, MCOs
+       • Defense, aerospace, modeling & simulation, government contractors
+       • Technology employers (SaaS, gaming, ad-tech, fintech) with local offices
+       • Higher ed — universities, colleges, research institutes
+       • State/county/city government + utility authorities + transit/airport authorities
+       • Professional services — Big 4, mid-tier consulting, regional law firms
+       • Retail, restaurant, and consumer-brand HQs headquartered in the region
+       • Financial services — regional banks, wealth managers, insurance HQs
+       • Major non-profits and foundations
+
+  C. EXECUTIVE SEARCH & FRACTIONAL / BOARD ROLES:
+     - Named exec-search firms' current-searches / "open assignments" pages filtered
+       for the region (Heidrick, Russell Reynolds, Spencer Stuart, Korn Ferry,
+       Egon Zehnder, DHR, and regional boutiques)
+     - Board-seat and fractional platforms (BoardProspects, Bolster, Catalant,
+       ExecuNet, Chief.com events)
+
+  D. LOCAL / REGIONAL JOB BOARDS & ASSOCIATIONS:
+     - Regional chamber of commerce job boards
+     - Industry association job boards (e.g. hotel & lodging association,
+       hospital association, CIO council, CFO council)
+     - Economic-development agency hiring pages
+
+  E. EVENTS & NETWORKING (candidate may passively learn of roles here):
+     - Eventbrite / Meetup filtered for leadership, career, networking, industry
+     - Local chapters of national associations (ACG, CHRO forums, CFO forums)
+     - Chamber of commerce signature events
+     - University alumni career nights
+
+  F. SIGNAL SOURCES (roles not yet posted — proactive hunting):
+     - Local business journal feeds (bizjournals, Orlando Inno, Axios Local)
+     - Growth/expansion announcements (new HQ, new office, recent funding)
+     - Executive-departure press releases and SEC 8-K filings implying backfills
+     - M&A announcements implying org restructuring
+     - Major construction / development projects hiring leadership
+
+  G. REMOTE-SPECIFIC BOARDS for executive/director roles:
+     - FlexJobs (paid but high quality), We Work Remotely, RemoteOK executive feed,
+       Himalayas, JustRemote, Working Nomads, Remote.co exec
+
+For EACH suggestion produce:
+  id         — unique snake_case identifier, NO hyphens/spaces; prefix per cluster
+               (hosp_*, health_*, defense_*, tech_*, edu_*, gov_*, search_*, signal_*,
+               meta_*, remote_*, events_*, board_*)
+  name       — human display name including the specific property if applicable
+  category   — one of: jobs | events | networking | news
+  url        — the MOST SPECIFIC, direct URL to the listings/feed/API endpoint.
+               NEVER a homepage. For ATS: use the actual /jobs JSON endpoint if you
+               know the tenant. Flag any guessed tenant IDs in notes.
+  strategy   — one of: rss_feed | html_list | html_search_result | json_api |
+                      playwright | workday_api | sitemap
+  cluster    — which taxonomy letter above (A-G) and the named sub-cluster.
+               Example: "B-hospitality" or "F-signal".
+  notes      — 1-2 sentences: why this fits the candidate; flag URL uncertainty;
+               mention the ATS (Workday tenant, Greenhouse slug, etc.) if applicable.
+
+HARD REQUIREMENTS:
+- Cover every major employer ≥ 500 local headcount the candidate could plausibly
+  target — do NOT omit any because it "seems obvious". Obvious is good.
+- Name specific hotel properties, specific hospital campuses, specific government
+  authorities. Do not collapse a city's entire hospitality sector into one entry.
+- Prefer ATS endpoints (Workday, Greenhouse, Lever) over corporate career pages.
+- Suggest meta-aggregators (Category A) even if the candidate might need an API key
+  — the pipeline operator will decide whether to wire them up.
+- If a source is already in the existing list but its URL looks stale or generic,
+  suggest a more specific replacement URL as a new entry (different id, new notes).
 
 Respond with a JSON array only — no markdown, no preamble, no explanation outside the JSON.
-Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...", "strategy": "...", "notes": "..."}}]"""
+Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...", "strategy": "...", "cluster": "...", "notes": "..."}}]"""
 
-    raw = _llm_call(client, prompt, "research")
+    # Larger budget: the taxonomy produces dozens of suggestions.
+    raw = _llm_call(client, prompt, "research", max_tokens=16384)
     start = raw.find("[")
     end = raw.rfind("]") + 1
     if start < 0 or end <= start:
@@ -510,7 +653,7 @@ def _add_sources(suggestions: list[dict], sources: list[dict]) -> list[str]:
         if url and url in existing_urls:
             print(f"  SKIP (duplicate url): {sid}")
             continue
-        sources.append({
+        new_entry = {
             "id": sid,
             "name": s.get("name", sid),
             "category": s.get("category", "jobs"),
@@ -522,7 +665,13 @@ def _add_sources(suggestions: list[dict], sources: list[dict]) -> list[str]:
             "status": "healthy",
             "last_verified": now_ts,
             "consecutive_empty_runs": 0,
-        })
+        }
+        # Preserve taxonomy cluster + research notes for coverage reporting.
+        if s.get("cluster"):
+            new_entry["cluster"] = s["cluster"]
+        if s.get("notes"):
+            new_entry["research_notes"] = s["notes"]
+        sources.append(new_entry)
         existing_ids.add(sid)
         existing_urls.add(url)
         added.append(sid)
@@ -771,6 +920,16 @@ def main() -> None:
 
     sub.add_parser("validate-sources", help="HEAD-test all source URLs")
 
+    p_revive = sub.add_parser(
+        "revive",
+        help="Reset dead sources back to healthy so the pipeline retries them",
+    )
+    p_revive.add_argument("--id", help="Revive only this source_id")
+    p_revive.add_argument(
+        "--older-than", type=int, metavar="DAYS",
+        help="Only revive sources marked dead more than N days ago",
+    )
+
     p_test = sub.add_parser("test-run", help="Dry-run scrape without sending email")
     p_test.add_argument("--category", help="Only scrape this category (jobs/events/news/networking)")
     p_test.add_argument("--verbose", "-v", action="store_true", help="Print all net-new items")
@@ -802,6 +961,7 @@ def main() -> None:
         "add-source": cmd_add_source,
         "update-source": cmd_update_source,
         "validate-sources": cmd_validate_sources,
+        "revive": cmd_revive,
         "test-run": cmd_test_run,
         "apply-prefs": cmd_apply_prefs,
         "research": cmd_research,

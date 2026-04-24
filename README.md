@@ -4,6 +4,29 @@ A self-healing, containerized Python application that monitors the Orlando, FL a
 
 ---
 
+## Install in one go
+
+```bash
+# 1. Clone, enter, copy env template
+git clone <repo-url> opportunity && cd opportunity && cp .env.example .env
+
+# 2. Install dependencies + Playwright browser (local dev)
+py -3.11 -m pip install -r requirements.txt && py -3.11 -m playwright install chromium
+
+# 3. Fill in Gmail + Anthropic creds interactively
+py -3.11 src/manage.py setup
+
+# 4. Generate filter + sources from USER_PREFS.md, then validate everything
+py -3.11 src/manage.py build-sources
+
+# 5. Start the scheduler (runs immediately, then every 6 hours)
+py -3.11 src/main.py
+```
+
+Prefer Docker? After steps 1 and 3, just run `docker compose up --build`.
+
+---
+
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
@@ -146,9 +169,10 @@ py -3.11 src/manage.py <command>
 | `add-source` | Interactively add a new source to `data/sources.json` |
 | `update-source ID FIELD VALUE` | Update a single field on an existing source (e.g. `update-source disney_careers status healthy`) |
 | `validate-sources` | HEAD-test every source URL and report healthy / unreachable |
+| `revive [--id ID] [--older-than DAYS]` | Reset dead sources to `healthy` so the pipeline re-tries them. No args = revive ALL dead. See [Reviving dead sources](#reviving-dead-sources). |
 | `test-run [--category jobs] [--verbose]` | Dry-run scrape without sending email |
 | `apply-prefs` | Read `USER_PREFS.md` and regenerate the filter config (shows diff, asks to confirm) |
-| `research [--add]` | Ask Claude to suggest new sources tailored to the candidate's preferences |
+| `research [--add]` | Ask Claude for an **exhaustive**, cluster-by-cluster enumeration of new sources — every major regional employer, every named flagship property, every meta-aggregator. See [Research command](#research-command). |
 | `build-sources` | **Run this after editing `USER_PREFS.md`** — applies prefs, researches and adds all new sources, then validates every URL. Full output of everything that changed. |
 
 ### After editing `USER_PREFS.md` — run `build-sources`
@@ -239,14 +263,27 @@ Anything else: salary range, company size, culture preferences, deal-breakers.
 
 ### `research` command
 
-`research` reads `USER_PREFS.md` and asks **claude-opus-4-6** to suggest new sources that match the candidate's actual preferences — not a hardcoded profile. It:
+`research` reads `USER_PREFS.md` and asks **claude-opus-4-6** for an **exhaustive** enumeration of opportunity avenues — the pipeline's goal is to be a **superset** of what a motivated human would find by manually browsing LinkedIn, Indeed, and local employer sites. Missing a major local employer or category is treated as a failure.
 
-1. Passes USER_PREFS.md and the full list of existing sources to Claude
-2. Asks for up to 12 new sources — job boards, event aggregators, networking associations, local business news — with specific feed/listing URLs, not homepages
-3. Prints a table of suggestions with URL, scraping strategy hint, and Claude's confidence notes
-4. With `--add`: prompts you to pick suggestions by number; selected sources are written to `data/sources.json` immediately and picked up on the next pipeline run
+The research prompt forces Claude to work through a seven-bucket taxonomy:
 
-New sources added via `research --add` will have empty `selectors: {}`. Check Claude's notes for any URL uncertainty, and fill in selectors before relying on the source.
+| Bucket | What it covers |
+|---|---|
+| **A. Meta-aggregators** | Google Jobs (SerpAPI), JSearch, Adzuna, The Muse, USAJobs, RemoteOK, We Work Remotely, LinkedIn job RSS via third parties |
+| **B. Major local employers** | Every employer with 500+ local headcount, **named individually** — e.g. *JW Marriott Orlando Grande Lakes*, *Ritz-Carlton Orlando Grande Lakes*, *Gaylord Palms*, *Signia by Hilton Orlando Bonnet Creek*, *AdventHealth*, *Orlando Health*, *Lockheed Martin Missiles & Fire Control*, *UCF*, etc. Generic brand-level career pages are treated as insufficient — specific property/campus pages are required. |
+| **C. Executive search & board / fractional roles** | Heidrick, Russell Reynolds, Spencer Stuart, Korn Ferry, Egon Zehnder, DHR + BoardProspects, Bolster, Catalant, ExecuNet, Chief.com |
+| **D. Local / regional job boards & associations** | Chamber of commerce boards, industry association boards (hotel-lodging, hospital, CIO council, CFO council), economic-development agencies |
+| **E. Events & networking** | Eventbrite / Meetup filtered for leadership and industry events; chapters of ACG, CHRO/CFO forums; alumni career nights |
+| **F. Signal sources** | Local business journals, growth/expansion announcements, exec-departure press releases, SEC 8-K backfill signals, M&A announcements |
+| **G. Remote executive boards** | FlexJobs, We Work Remotely, RemoteOK executive, Himalayas, JustRemote, Working Nomads, Remote.co exec |
+
+For each suggestion Claude returns: `id`, `name`, `category`, `url`, `strategy`, `cluster` (which bucket), and `notes`. The `cluster` and `notes` are persisted on each source for later coverage reporting.
+
+Unlike the old 12-source cap, there is no ceiling — if your region has 40 relevant employers, the command will return 40. Output is a JSON array with `max_tokens=16384`.
+
+With `--add`: you pick suggestions by number; selected sources are written to `data/sources.json` immediately and picked up on the next pipeline run.
+
+> **Caveat:** New sources added via `research --add` still have empty `selectors: {}`. They will scrape zero items on the first run and may go dead after three consecutive empty runs. Check Claude's notes for URL uncertainty, fill in selectors (or convert the strategy to `rss_feed` / `workday_api` / `json_api` where possible), and rely on [auto-revive](#dead-sources-and-auto-revive) as the safety net.
 
 ---
 
@@ -326,21 +363,44 @@ When a source fails (dead URL or zero results for 3 consecutive runs), the self-
 | Step | Action |
 |---|---|
 | **1 — Quick retry** | Re-check the URL once after a 5-second pause (catches transient network blips) |
-| **2 — Alternate URLs** | Try any `alternate_urls` configured in `sources.json` |
+| **2 — Alternate URLs** | Try any `alternate_urls` configured in `sources.json`. The winning alternate is promoted to `active_url` and removed from the alternates list. |
 | **3 — LLM lookup** | Ask Claude (`claude-sonnet-4-6`) whether it knows a current replacement URL. If yes → validate by scraping → swap in. If no → mark source `dead`. |
-| **4 — Dead** | Source is permanently skipped. Stays in `sources.json` for auditability but never retried automatically. |
+| **4 — Dead** | Source is skipped until the [14-day auto-revive](#dead-sources-and-auto-revive) fires, or until a manual `revive`. Stays in `sources.json` for auditability. |
+
+**Every successful URL swap archives the previous URL** into `alternate_urls` (capped at 10 entries, oldest first is dropped) — so the heal pipeline accumulates fallbacks over time instead of discarding the URL that used to work. Next time the source breaks, Step 2 has a richer list to try before burning an LLM call.
+
+**Persistence.** Every mutation — URL swap, status change, empty-run counter, heal timestamp — is written to `data/sources.json` via `config.save_sources()` immediately. In Docker, `./data` is mounted as a volume, so healed URLs survive container restarts. After one heal, all future runs (and all future containers) use the new URL automatically.
 
 **Token efficiency:** The LLM lookup is intentionally minimal (~80 input tokens per call). It asks one question ("do you know a working URL?") with no web search, no agentic loops. To prevent runaway API spend, each source is subject to a **7-day cooldown** between LLM heal attempts, and no more than 5 LLM calls are made per pipeline run.
 
 **Dead vs. skipped:** If the LLM cap or rate limit is hit during a run, the source is left in its current state and retried next run — it is never marked `dead` just because the cap was reached. Only a confirmed "Claude has no replacement" result triggers the permanent `dead` status.
 
-To manually recover a dead source after fixing its URL:
+### Dead sources and auto-revive
+
+`dead` is **not** permanent. Two safety valves prevent the pipeline from slowly strangling itself:
+
+1. **Auto-revive (automatic, no action needed).** Any source that has been `dead` for more than **14 days** is promoted back to `healthy` on the next pipeline run and re-tried. If it still fails, the normal heal pipeline kicks in. This catches the failure mode where a one-off URL hiccup, bot block, or since-fixed selector bug killed a source forever.
+2. **Manual revive via CLI (one command).**
+    ```bash
+    # Revive ALL dead sources
+    py -3.11 src/manage.py revive
+
+    # Revive just one
+    py -3.11 src/manage.py revive --id disney_careers
+
+    # Revive only sources dead more than 7 days (useful after a config change)
+    py -3.11 src/manage.py revive --older-than 7
+    ```
+
+Per-run revivals are recorded in `data/run_log.json` under `auto_revived`.
+
+To recover a dead source after fixing its URL:
 
 ```bash
 # Fix the URL
 py -3.11 src/manage.py update-source <source_id> active_url "https://new-url.com"
 
-# Clear the dead status
+# Clear the dead status (or just run 'revive --id <source_id>')
 py -3.11 src/manage.py update-source <source_id> status healthy
 ```
 

@@ -81,11 +81,22 @@ def run_pipeline() -> None:
 
     all_raw_results = []
 
+    run_entry.setdefault("auto_revived", [])
+
     for source in sources:
         source_id = source["id"]
+
+        # Auto-revive: dead sources older than the revive window get another shot
+        # (safety valve against the dead-is-forever trap).
+        try:
+            if healer.maybe_auto_revive(source, sources):
+                run_entry["auto_revived"].append(source_id)
+        except Exception as exc:
+            logger.warning("Auto-revive check failed for %s: %s", source_id, exc)
+
         status = source.get("status", "healthy")
 
-        # Dead sources are permanently skipped — LLM found no replacement
+        # Dead sources are skipped — will be retried after auto-revive window
         if status in ("dead", "DEGRADED"):
             logger.debug("Skipping %s source: %s", status, source_id)
             run_entry["sources_skipped_dead"] += 1
