@@ -150,7 +150,7 @@ def _fetch_html(url: str) -> BeautifulSoup | None:
     try:
         resp = requests.get(url, headers=_HEADERS, timeout=_REQUEST_TIMEOUT, allow_redirects=True)
         resp.raise_for_status()
-        return BeautifulSoup(resp.text, "lxml")
+        return BeautifulSoup(resp.text, "html.parser")
     except requests.RequestException as exc:
         logger.warning("HTML fetch failed for %s: %s", url, exc)
         return None
@@ -337,10 +337,11 @@ def _scrape_sitemap(source: dict, url: str) -> list[ScrapeResult]:
     Parses a sitemap XML for <loc> URLs matching a configured pattern.
     Selector key used: 'url_pattern' (substring match).
     """
+    import xml.etree.ElementTree as ET
     try:
         resp = requests.get(url, headers=_HEADERS, timeout=_REQUEST_TIMEOUT)
         resp.raise_for_status()
-        soup = BeautifulSoup(resp.text, "xml")
+        root = ET.fromstring(resp.content)
     except Exception as exc:
         logger.warning("Sitemap fetch error for %s: %s", source["id"], exc)
         return []
@@ -348,8 +349,13 @@ def _scrape_sitemap(source: dict, url: str) -> list[ScrapeResult]:
     pattern = source.get("selectors", {}).get("url_pattern", "")
     results: list[ScrapeResult] = []
 
-    for loc in soup.find_all("loc"):
-        loc_url = loc.get_text(strip=True)
+    # iter() walks every element; strip the XML namespace so we match <loc>
+    # regardless of whether it's declared as sitemaps.org/0.9 or similar.
+    for elem in root.iter():
+        tag = elem.tag.rsplit("}", 1)[-1]
+        if tag != "loc":
+            continue
+        loc_url = (elem.text or "").strip()
         if pattern and pattern.lower() not in loc_url.lower():
             continue
         # Derive a title from the URL path
@@ -419,7 +425,7 @@ def _scrape_playwright(source: dict, url: str) -> list[ScrapeResult]:
         logger.info("Dead-content pattern matched for source %s (playwright)", source["id"])
         return []
 
-    soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "html.parser")
     return _extract_items_from_soup(soup, source, url)
 
 
