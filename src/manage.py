@@ -328,7 +328,7 @@ def cmd_test_run(args) -> None:
         print(f"{len(results)} items")
         all_raw.extend(results)
 
-    filtered = apply_profile_filter(all_raw)
+    filtered = apply_profile_filter(all_raw, sources)
     new_items = get_new_items(filtered)
 
     print(f"\nDry run complete:")
@@ -618,11 +618,25 @@ For EACH suggestion produce:
                NEVER a homepage. For ATS: use the actual /jobs JSON endpoint if you
                know the tenant. Flag any guessed tenant IDs in notes.
   strategy   — one of: rss_feed | html_list | html_search_result | json_api |
-                      playwright | workday_api | sitemap
+                      playwright | workday_api | sitemap.
+               STRONGLY prefer rss_feed / workday_api / json_api over html_* —
+               they don't need CSS selectors and won't go dark when a site
+               redesigns. Only use html_list / html_search_result when nothing
+               structured exists.
+  selectors  — REQUIRED when strategy is html_list, html_search_result, or
+               playwright. Must be an object with keys: item_container, title,
+               link, and optionally location, date. Empty selectors = the source
+               returns 0 items on every run and goes dead in ~3 days. If you
+               don't know them, pick a different strategy or omit the source.
+  api_config — REQUIRED when strategy is workday_api or json_api. For Workday:
+               {{"base_url": "https://TENANT.wd5.myworkdayjobs.com",
+                 "endpoint": "/wday/cxs/TENANT/SITE/jobs",
+                 "search_text": "director manager", "limit": 50,
+                 "locations": []}}
   cluster    — which taxonomy letter above (A-G) and the named sub-cluster.
                Example: "B-hospitality" or "F-signal".
-  notes      — 1-2 sentences: why this fits the candidate; flag URL uncertainty;
-               mention the ATS (Workday tenant, Greenhouse slug, etc.) if applicable.
+  notes      — 1-2 sentences: why this fits the candidate; flag URL/tenant
+               uncertainty; explain any educated guess in selectors or api_config.
 
 HARD REQUIREMENTS:
 - Cover every major employer ≥ 500 local headcount the candidate could plausibly
@@ -644,7 +658,10 @@ OUTPUT FORMAT — THIS IS A HARD REQUIREMENT:
 - If you run low on output budget, finish the CURRENT object cleanly, then close
   the array with `]` rather than leaving an object half-written.
 
-Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...", "strategy": "...", "cluster": "...", "notes": "..."}}]"""
+Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...",
+           "strategy": "...", "cluster": "...", "notes": "...",
+           "selectors": {{}} | {{"item_container":"...","title":"...","link":"...","location":"...","date":"..."}},
+           "api_config": {{}} | {{"base_url":"...","endpoint":"...","search_text":"...","limit":50,"locations":[]}}}}]"""
 
     # Larger budget: the taxonomy produces dozens of suggestions.
     raw, stop_reason = _llm_call(client, prompt, "research", max_tokens=32768)
@@ -725,19 +742,25 @@ def _add_sources(suggestions: list[dict], sources: list[dict]) -> list[str]:
         if url and url in existing_urls:
             print(f"  SKIP (duplicate url): {sid}")
             continue
+        strategy = s.get("strategy", "html_list")
         new_entry = {
             "id": sid,
             "name": s.get("name", sid),
             "category": s.get("category", "jobs"),
             "active_url": url,
             "alternate_urls": [],
-            "strategy": s.get("strategy", "html_list"),
-            "selectors": {},
+            "strategy": strategy,
+            "selectors": s.get("selectors") or {},
             "dead_content_patterns": [],
             "status": "healthy",
             "last_verified": now_ts,
             "consecutive_empty_runs": 0,
         }
+        # api_config is only meaningful for workday_api / json_api — pass it
+        # through when the research output provided one. Prevents Workday and
+        # JSON API suggestions from landing with empty configs.
+        if strategy in ("workday_api", "json_api") and s.get("api_config"):
+            new_entry["api_config"] = s["api_config"]
         # Preserve taxonomy cluster + research notes for coverage reporting.
         if s.get("cluster"):
             new_entry["cluster"] = s["cluster"]

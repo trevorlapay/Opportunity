@@ -54,23 +54,55 @@ def _cybersec_description_hit_count(text: str) -> int:
     return sum(1 for term in DESCRIPTION_EXCLUDE_TERMS if term in lower)
 
 
-def _is_geography_match(location: str, title: str = "", snippet: str = "") -> bool:
-    """Return True if the item appears to be in the target area or is remote."""
+_SHORT_TERM_LEN = 3  # terms this short get word-boundary matching instead of substring
+
+
+def _term_matches(text: str, term: str) -> bool:
+    """Match term in text. Short terms (<=3 chars) use word boundaries so
+    'fl' doesn't match 'flexible' / 'flow' / 'Flagstaff' and 'nc' doesn't
+    match 'nautical'. Longer terms use substring so 'orlando' matches
+    'orlando, fl' and 'orlando metro' alike.
+    """
+    if len(term) <= _SHORT_TERM_LEN:
+        return re.search(rf"\b{re.escape(term)}\b", text) is not None
+    return term in text
+
+
+def _is_geography_match(
+    location: str,
+    title: str = "",
+    snippet: str = "",
+    category: str = "jobs",
+) -> bool:
+    """Return True if the item appears to be in the target area or is remote.
+
+    The "no location → treat as remote" fallback applies ONLY to jobs,
+    where many ATS feeds legitimately omit the location field on remote
+    roles. For news articles, no-location defaults to False — otherwise
+    every global PR Newswire item with no location field passes through
+    and the digest turns into a firehose of irrelevant press releases.
+    """
     combined = " ".join([location, title, snippet]).lower()
-    if any(term in combined for term in REMOTE_TERMS):
+    if any(_term_matches(combined, term) for term in REMOTE_TERMS):
         return True
-    if any(term in combined for term in GEOGRAPHY_INCLUDE_TERMS):
+    if any(_term_matches(combined, term) for term in GEOGRAPHY_INCLUDE_TERMS):
         return True
-    # No location listed → treat as potentially remote
-    if not location.strip():
+    # Jobs: no location listed → treat as potentially remote (err toward inclusion).
+    # News / other: no location AND no geography mention → drop.
+    if category == "jobs" and not location.strip():
         return True
     return False
 
 
-def apply_profile_filter(results: list) -> list:
+def apply_profile_filter(results: list, sources: list | None = None) -> list:
     """
     Filter a list of ScrapeResult objects against the candidate profile.
     Returns only items that pass all rules.
+
+    `sources` is the source list from sources.json — if provided, items whose
+    source carries `remote_only_source: true` are exempted from geography
+    filtering. Every item from a remote-only source is by definition remote
+    work, so its company HQ location is irrelevant.
     """
     from scraper import ScrapeResult  # local import to avoid circular
 
@@ -83,17 +115,31 @@ def apply_profile_filter(results: list) -> list:
         )
         return results
 
+    # Build the remote-only source lookup
+    remote_only_ids: set[str] = set()
+    if sources:
+        remote_only_ids = {
+            s["id"] for s in sources if s.get("remote_only_source") is True
+        }
+
     accepted: list[ScrapeResult] = []
     for item in results:
         title    = item.title    or ""
         location = item.location or ""
         snippet  = item.snippet  or ""
         category = item.category or "jobs"
+        is_remote_only = item.source_id in remote_only_ids
 
-        # ── 1. Jobs: title inclusion check ───────────────────────────────────
+        # ── 1. Jobs: title OR snippet must show a seniority keyword ──────────
+        # Err toward inclusion: if the title is terse ("R10230535-2") but the
+        # snippet contains "Senior Director", accept it. Many ATS feeds put
+        # the real title in the description, not the card title.
         if category == "jobs" and TITLE_INCLUDE_PATTERNS:
-            if not _matches_any(title, TITLE_INCLUDE_PATTERNS):
-                logger.debug("EXCLUDED (no seniority keyword): %s", title)
+            if not (
+                _matches_any(title, TITLE_INCLUDE_PATTERNS)
+                or _matches_any(snippet, TITLE_INCLUDE_PATTERNS)
+            ):
+                logger.debug("EXCLUDED (no seniority keyword in title/snippet): %s", title)
                 continue
 
         # ── 2. Title-level exclusion ──────────────────────────────────────────
@@ -108,9 +154,14 @@ def apply_profile_filter(results: list) -> list:
                 logger.debug("EXCLUDED (description saturation, %d hits): %s", hits, title)
                 continue
 
-        # ── 4. Geography (exempt categories pass through) ─────────────────────
+        # ── 4. Geography (exempt categories AND remote-only sources pass through) ─
         if category not in GEOGRAPHY_EXEMPT_CATEGORIES and GEOGRAPHY_INCLUDE_TERMS:
-            if not _is_geography_match(location, title, snippet):
+            if is_remote_only:
+                logger.debug(
+                    "PASS (remote-only source bypasses geography): %s [src=%s]",
+                    title, item.source_id,
+                )
+            elif not _is_geography_match(location, title, snippet, category):
                 logger.debug("EXCLUDED (geography): %s | loc=%s", title, location)
                 continue
 

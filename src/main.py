@@ -155,8 +155,10 @@ def run_pipeline() -> None:
     run_entry["raw_items_found"] = len(all_raw_results)
     logger.info("Total raw items scraped: %d", len(all_raw_results))
 
-    # 4. Apply candidate profile filter
-    filtered = profile_filter.apply_profile_filter(all_raw_results)
+    # 4. Apply candidate profile filter (sources passed so remote-only-source
+    #    items can bypass geography filtering — every item from a remote-only
+    #    feed is by definition remote work, regardless of company HQ).
+    filtered = profile_filter.apply_profile_filter(all_raw_results, sources)
     run_entry["new_items_after_filter"] = len(filtered)
     logger.info("After profile filter: %d items", len(filtered))
 

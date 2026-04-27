@@ -21,7 +21,7 @@ import json
 import logging
 import time
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse
 
 import feedparser
 import requests
@@ -52,6 +52,63 @@ _REQUEST_TIMEOUT = 20  # seconds per individual request
 _MAX_RESULTS_PER_SOURCE = 50  # cap to keep runs fast
 
 
+# Tracking parameters that change every request and must be stripped before
+# fingerprinting. Without this, sites like LinkedIn (refId, trackingId,
+# position, pageNum regenerated every scrape) produce a different fingerprint
+# for the same posting on every run, defeating deduplication.
+#
+# Allowlist params we MUST keep (job-id-bearing): jk (Indeed), currentJobId,
+# jobid, postingid, gh_jid (Greenhouse), lever-id. Anything not in the
+# allowlist gets dropped.
+_FINGERPRINT_QUERY_ALLOWLIST: frozenset[str] = frozenset({
+    "jk",              # Indeed job key
+    "currentjobid",    # ATS current-job pointer
+    "jobid",           # generic job id
+    "postingid",       # generic posting id
+    "gh_jid",          # Greenhouse job id
+    "lever-id",        # Lever job id
+    "id",              # last-resort generic id (kept; cleaner is to leave it)
+})
+
+
+def canonical_url(url: str) -> str:
+    """
+    Normalize a URL for fingerprinting.
+
+    Strips:
+      - All query parameters except those in _FINGERPRINT_QUERY_ALLOWLIST
+      - Fragment (#anchor)
+      - Trailing slash on the path
+    Lowercases the scheme and netloc. Path case is preserved (some sites are
+    path-case-sensitive). Leaves the rest alone.
+
+    Returns the original string unchanged if URL parsing fails — we'd rather
+    fingerprint a noisy URL than crash the pipeline on a malformed input.
+    """
+    if not url:
+        return url
+    try:
+        parts = urlparse(url.strip())
+        if not parts.scheme or not parts.netloc:
+            return url.strip()
+        kept = [
+            (k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True)
+            if k.lower() in _FINGERPRINT_QUERY_ALLOWLIST
+        ]
+        new_query = urlencode(kept) if kept else ""
+        path = parts.path.rstrip("/") or "/"
+        return urlunparse((
+            parts.scheme.lower(),
+            parts.netloc.lower(),
+            path,
+            "",            # params (rarely used)
+            new_query,
+            "",            # fragment
+        ))
+    except Exception:
+        return url.strip()
+
+
 class ScrapeResult:
     """Lightweight container for a single discovered item."""
 
@@ -77,7 +134,10 @@ class ScrapeResult:
 
     @property
     def fingerprint(self) -> str:
-        raw = f"{self.source_id}|{self.title}|{self.url}"
+        # Use the canonicalised URL (tracking params stripped) so the same
+        # posting fingerprints identically across runs even when the source
+        # adds per-request refId / trackingId / position / utm_* noise.
+        raw = f"{self.source_id}|{self.title}|{canonical_url(self.url)}"
         return "sha256:" + hashlib.sha256(raw.encode()).hexdigest()
 
     def to_dict(self) -> dict:

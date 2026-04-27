@@ -23,20 +23,22 @@
       "status": "dead",
       "last_verified": "2026-04-24T13:21:01.808392+00:00",
       "consecutive_empty_runs": 0,
-      "last_llm_heal_ts": "2026-04-24T13:20:55.155596+00:00"
+      "last_llm_heal_ts": "2026-04-24T13:20:55.155596+00:00",
+      "research_notes": "Indeed shut down their public RSS endpoint in 2024. Keeping for posterity; replaced with LinkedIn guest API + RSS aggregators."
     },
     {
       "id": "linkedin_jobs",
       "name": "LinkedIn Jobs",
       "category": "jobs",
-      "active_url": "https://www.linkedin.com/jobs/search/?keywords=director+manager+%22vice+president%22&location=Orlando%2C+FL&distance=50&sortBy=DD&f_TPR=r86400",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=director+manager+%22vice+president%22&location=Orlando%2C+FL&start=0",
       "alternate_urls": [],
       "strategy": "html_search_result",
       "selectors": {
         "item_container": ".base-card",
         "title": ".base-search-card__title",
         "location": ".job-search-card__location",
-        "link": "a.base-card__full-link"
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
       },
       "dead_content_patterns": [
         "no jobs match your search",
@@ -44,8 +46,9 @@
         "something went wrong"
       ],
       "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 0
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "research_notes": "Switched from broken /jobs/search HTML page to the LinkedIn jobs-guest API."
     },
     {
       "id": "disney_careers",
@@ -100,9 +103,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-24T16:28:47.719810+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-24T16:28:43.013450+00:00"
     },
     {
       "id": "nbcuniversal_careers",
@@ -127,9 +131,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-24T16:29:31.915395+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-24T16:29:21.056440+00:00"
     },
     {
       "id": "adventhealth_careers",
@@ -153,9 +158,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-24T16:30:11.424483+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-24T16:29:51.735044+00:00"
     },
     {
       "id": "orlando_health_careers",
@@ -179,9 +185,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-24T16:30:42.203387+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-24T16:30:25.133904+00:00"
     },
     {
       "id": "lockheed_martin_careers",
@@ -203,9 +210,10 @@
         "no jobs match",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-24T16:30:56.346186+00:00",
+      "consecutive_empty_runs": 3,
+      "last_llm_heal_ts": "2026-04-24T16:30:51.451590+00:00"
     },
     {
       "id": "siemens_careers",
@@ -225,9 +233,10 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T13:21:42.795268+00:00",
+      "consecutive_empty_runs": 4,
+      "last_llm_heal_ts": "2026-04-25T13:21:37.300126+00:00"
     },
     {
       "id": "darden_careers",
@@ -270,9 +279,10 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T13:21:56.893445+00:00",
+      "consecutive_empty_runs": 4,
+      "last_llm_heal_ts": "2026-04-25T13:21:52.670728+00:00"
     },
     {
       "id": "florida_blue_careers",
@@ -292,9 +302,10 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T13:22:07.341388+00:00",
+      "consecutive_empty_runs": 4,
+      "last_llm_heal_ts": "2026-04-25T13:22:03.903547+00:00"
     },
     {
       "id": "city_of_orlando_jobs",
@@ -339,9 +350,10 @@
         "no open positions",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T13:22:18.055119+00:00",
+      "consecutive_empty_runs": 4,
+      "last_llm_heal_ts": "2026-04-25T13:22:14.722024+00:00"
     },
     {
       "id": "florida_state_jobs",
@@ -363,33 +375,30 @@
         "no jobs found",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T13:22:49.181765+00:00",
+      "consecutive_empty_runs": 4,
+      "last_llm_heal_ts": "2026-04-25T13:22:45.182872+00:00"
     },
     {
       "id": "builtin_remote",
       "name": "Built In (Remote Tech Management)",
       "category": "jobs",
-      "active_url": "https://builtin.com/jobs/remote?search=director+manager&level=management",
+      "active_url": "https://builtin.com/jobs.rss?search=director+manager+vp&location=Remote",
       "alternate_urls": [
-        "https://builtinflolrida.com/jobs?search=director+manager"
+        "https://builtin.com/jobs/remote/management-finance.rss"
       ],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "[data-id='job-card']",
-        "title": "[data-id='job-title']",
-        "location": "[data-id='job-location']",
-        "link": "a[data-id='job-title-link']"
-      },
+      "strategy": "rss_feed",
+      "selectors": {},
       "dead_content_patterns": [
-        "no jobs found",
-        "no results",
-        "page not found"
+        "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:43:59.535482+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "remote_only_source": true,
+      "last_llm_heal_ts": "2026-04-25T20:43:52.385746+00:00"
     },
     {
       "id": "glassdoor_jobs",
@@ -409,9 +418,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T19:31:55.093233+00:00",
+      "consecutive_empty_runs": 5,
+      "last_llm_heal_ts": "2026-04-25T19:31:50.739665+00:00"
     },
     {
       "id": "eventbrite_orlando",
@@ -435,9 +445,10 @@
         "0 results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T19:32:10.621824+00:00",
+      "consecutive_empty_runs": 5,
+      "last_llm_heal_ts": "2026-04-25T19:32:07.656677+00:00"
     },
     {
       "id": "careersource_events",
@@ -482,9 +493,10 @@
         "no upcoming events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T19:32:20.949471+00:00",
+      "consecutive_empty_runs": 5,
+      "last_llm_heal_ts": "2026-04-25T19:32:17.647879+00:00"
     },
     {
       "id": "ucf_career_events",
@@ -551,9 +563,10 @@
         "no results",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T19:32:34.367567+00:00",
+      "consecutive_empty_runs": 5,
+      "last_llm_heal_ts": "2026-04-25T19:32:28.902941+00:00"
     },
     {
       "id": "orlando_young_professionals",
@@ -619,9 +632,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:44:10.458382+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-25T20:44:07.043647+00:00"
     },
     {
       "id": "leadership_orlando",
@@ -663,9 +677,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:44:20.225047+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-25T20:44:17.306627+00:00"
     },
     {
       "id": "osceola_chamber",
@@ -710,9 +725,10 @@
         "no events",
         "page not found"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:44:30.344049+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-25T20:44:27.303062+00:00"
     },
     {
       "id": "orlando_biz_journal",
@@ -728,9 +744,10 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:44:39.984418+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-25T20:44:37.298771+00:00"
     },
     {
       "id": "orlando_sentinel_biz",
@@ -750,9 +767,10 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T13:38:50.059569+00:00",
+      "consecutive_empty_runs": 7,
+      "last_llm_heal_ts": "2026-04-26T13:38:47.031255+00:00"
     },
     {
       "id": "florida_trend",
@@ -791,9 +809,10 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T13:39:00.426020+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-26T13:38:57.024438+00:00"
     },
     {
       "id": "pr_newswire_orlando",
@@ -807,9 +826,10 @@
         "page not found",
         "feed unavailable"
       ],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 0
+      "status": "dead",
+      "last_verified": "2026-04-26T13:39:10.170033+00:00",
+      "consecutive_empty_runs": 0,
+      "last_llm_heal_ts": "2026-04-26T13:39:07.033540+00:00"
     },
     {
       "id": "seaworld_parks_careers",
@@ -820,9 +840,10 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T13:39:20.066463+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-26T13:39:17.045727+00:00"
     },
     {
       "id": "nemours_childrens_health_careers",
@@ -833,9 +854,10 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T13:39:32.543126+00:00",
+      "consecutive_empty_runs": 6,
+      "last_llm_heal_ts": "2026-04-26T13:39:27.037511+00:00"
     },
     {
       "id": "guidewell_florida_blue_parent_careers",
@@ -846,9 +868,10 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T19:46:00.299878+00:00",
+      "consecutive_empty_runs": 8,
+      "last_llm_heal_ts": "2026-04-26T19:45:56.099034+00:00"
     },
     {
       "id": "hca_healthcare_central_florida_careers",
@@ -859,9 +882,10 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T19:46:09.324091+00:00",
+      "consecutive_empty_runs": 8,
+      "last_llm_heal_ts": "2026-04-26T19:46:06.097553+00:00"
     },
     {
       "id": "remote_exec_flexjobs",
@@ -872,22 +896,29 @@
       "strategy": "playwright",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-25T20:30:08.569438+00:00",
+      "consecutive_empty_runs": 0,
+      "research_notes": "FlexJobs requires login and aggressive bot evasion. Remove or replace with RemoteOK/WWR/Remotive feeds (all added).",
+      "remote_only_source": true
     },
     {
       "id": "wework_remotely_management",
       "name": "We Work Remotely \u2013 Management/Exec Jobs",
       "category": "jobs",
-      "active_url": "https://weworkremotely.com/categories/remote-executive-management-jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss",
       "alternate_urls": [],
-      "strategy": "html_list",
+      "strategy": "rss_feed",
       "selectors": {},
-      "dead_content_patterns": [],
+      "dead_content_patterns": [
+        "no jobs found",
+        "feed unavailable"
+      ],
       "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "last_verified": "2026-04-25T20:30:08.569438+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "remote_only_source": true
     },
     {
       "id": "ziprecruiter_orlando_director",
@@ -898,9 +929,10 @@
       "strategy": "html_search_result",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T19:46:21.621020+00:00",
+      "consecutive_empty_runs": 8,
+      "last_llm_heal_ts": "2026-04-26T19:46:17.792888+00:00"
     },
     {
       "id": "cfhla_careers_events",
@@ -911,9 +943,10 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T19:46:40.099879+00:00",
+      "consecutive_empty_runs": 7,
+      "last_llm_heal_ts": "2026-04-26T19:46:27.938847+00:00"
     },
     {
       "id": "visit_orlando_industry_careers",
@@ -924,9 +957,10 @@
       "strategy": "html_list",
       "selectors": {},
       "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "status": "dead",
+      "last_verified": "2026-04-26T19:46:48.311453+00:00",
+      "consecutive_empty_runs": 7,
+      "last_llm_heal_ts": "2026-04-26T19:46:45.540280+00:00"
     },
     {
       "id": "orlando_tech_association_events",
@@ -939,7 +973,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "spectrum_health_careers",
@@ -952,20 +986,24 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "the_muse_remote_director",
       "name": "The Muse \u2013 Remote Director/VP Operations Jobs",
       "category": "jobs",
-      "active_url": "https://www.themuse.com/search?keyword=director+operations+manager&location=Flexible+%2F+Remote&level=Senior+Level",
+      "active_url": "https://www.themuse.com/api/public/jobs?location=Flexible%20%2F%20Remote&category=Operations&category=Project%20Management&category=Executive&level=Senior%20Level&page=1",
       "alternate_urls": [],
-      "strategy": "html_search_result",
+      "strategy": "json_api",
       "selectors": {},
-      "dead_content_patterns": [],
+      "dead_content_patterns": [
+        "\"results\":[]"
+      ],
       "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "last_verified": "2026-04-25T20:30:08.569438+00:00",
+      "consecutive_empty_runs": 3,
+      "cluster": "G-remote-management",
+      "remote_only_source": true
     },
     {
       "id": "legoland_merlin_careers",
@@ -978,7 +1016,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "marriott_orlando_careers",
@@ -991,7 +1029,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "elevance_health_careers",
@@ -1004,7 +1042,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "spectrum_charter_orlando_careers",
@@ -1017,7 +1055,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "deloitte_orlando_careers",
@@ -1030,7 +1068,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-16T12:18:02.915084+00:00",
-      "consecutive_empty_runs": 29,
+      "consecutive_empty_runs": 35,
       "last_llm_heal_ts": "2026-04-17T17:25:13.743681+00:00"
     },
     {
@@ -1044,20 +1082,25 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "unitedhealth_remote_careers",
       "name": "UnitedHealth Group Careers (Remote Director/VP)",
       "category": "jobs",
-      "active_url": "https://careers.unitedhealthgroup.com/search-jobs?k=director+operations+manager&l=Remote&rl=true",
+      "active_url": "https://careers.unitedhealthgroup.com/jobs/feed?k=director+manager&l=Remote",
       "alternate_urls": [],
-      "strategy": "html_search_result",
+      "strategy": "rss_feed",
       "selectors": {},
-      "dead_content_patterns": [],
+      "dead_content_patterns": [
+        "feed unavailable",
+        "no jobs found"
+      ],
       "status": "healthy",
-      "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "last_verified": "2026-04-25T20:30:08.569438+00:00",
+      "consecutive_empty_runs": 3,
+      "cluster": "G-remote-management",
+      "remote_only_source": true
     },
     {
       "id": "orlando_utilities_commission_careers",
@@ -1070,7 +1113,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "remote_ok_executive",
@@ -1083,7 +1126,8 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-16T12:18:02.915084+00:00",
-      "consecutive_empty_runs": 0
+      "consecutive_empty_runs": 0,
+      "remote_only_source": true
     },
     {
       "id": "cfbr_central_florida_business_review",
@@ -1096,7 +1140,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "orlando_city_soccer_careers",
@@ -1109,7 +1153,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "cfec_central_florida_executive_council",
@@ -1122,7 +1166,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 2
+      "consecutive_empty_runs": 8
     },
     {
       "id": "hosp_jw_marriott_grande_lakes",
@@ -1135,7 +1179,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1150,7 +1194,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1165,7 +1209,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1180,7 +1224,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1195,7 +1239,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1210,7 +1254,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1225,7 +1269,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1240,7 +1284,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1255,7 +1299,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1270,7 +1314,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1285,7 +1329,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1300,7 +1344,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
     },
@@ -1315,9 +1359,478 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:32.932767+00:00",
-      "consecutive_empty_runs": 2,
+      "consecutive_empty_runs": 8,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages."
+    },
+    {
+      "id": "remote_wwr_business_exec",
+      "name": "We Work Remotely - Business / Exec Management",
+      "category": "jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-business-exec-management-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 3,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_wwr_management_finance",
+      "name": "We Work Remotely - Management & Finance",
+      "category": "jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_wwr_product",
+      "name": "We Work Remotely - Product",
+      "category": "jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-product-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_wwr_marketing",
+      "name": "We Work Remotely - Marketing",
+      "category": "jobs",
+      "active_url": "https://weworkremotely.com/categories/remote-marketing-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 3,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_ok_director",
+      "name": "RemoteOK - Director Jobs",
+      "category": "jobs",
+      "active_url": "https://remoteok.com/remote-director-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_ok_management",
+      "name": "RemoteOK - Management Jobs",
+      "category": "jobs",
+      "active_url": "https://remoteok.com/remote-management-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "remote_ok_vp",
+      "name": "RemoteOK - VP Jobs",
+      "category": "jobs",
+      "active_url": "https://remoteok.com/remote-vp-jobs.rss",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "no jobs found",
+        "page not found",
+        "feed unavailable"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:29:49.487916+00:00",
+      "consecutive_empty_runs": 3,
+      "cluster": "G-remote-management",
+      "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
+      "remote_only_source": true
+    },
+    {
+      "id": "signal_prnewswire_executive_appointments",
+      "name": "PR Newswire - Executive Appointments / Hires",
+      "category": "news",
+      "active_url": "https://www.prnewswire.com/rss/news-releases-list.rss?qn=appoints+OR+names+OR+hires+OR+promotes",
+      "alternate_urls": [],
+      "strategy": "rss_feed",
+      "selectors": {},
+      "dead_content_patterns": [
+        "feed unavailable",
+        "no results"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:30:32.016921+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "F-signal",
+      "research_notes": "Nationwide remote search via Indeed RSS \u2014 no selectors needed."
+    },
+    {
+      "id": "linkedin_remote_director",
+      "name": "LinkedIn - Remote Director",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=director&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_vp",
+      "name": "LinkedIn - Remote VP / Vice President",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22vice+president%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_chief_of_staff",
+      "name": "LinkedIn - Remote Chief of Staff",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22chief+of+staff%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_head_of",
+      "name": "LinkedIn - Remote Head of (X)",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22head+of%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_director_ops",
+      "name": "LinkedIn - Remote Director of Operations",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22director+of+operations%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_general_manager",
+      "name": "LinkedIn - Remote General Manager",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22general+manager%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_executive_director",
+      "name": "LinkedIn - Remote Executive Director",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22executive+director%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_program_director",
+      "name": "LinkedIn - Remote Program / Project Director",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22program+director%22+OR+%22project+director%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_senior_manager",
+      "name": "LinkedIn - Remote Senior Manager",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22senior+manager%22&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_health_director",
+      "name": "LinkedIn - Remote Healthcare Director",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=director+healthcare&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_remote_nonprofit_exec",
+      "name": "LinkedIn - Remote Nonprofit Executive Director",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=%22executive+director%22+nonprofit&location=United States&start=0&f_WT=2",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
+      "remote_only_source": true
+    },
+    {
+      "id": "linkedin_orlando_leadership",
+      "name": "LinkedIn - Orlando Director / Manager / VP",
+      "category": "jobs",
+      "active_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=director+manager+%22vice+president%22&location=Orlando%2C+FL&start=0",
+      "alternate_urls": [],
+      "strategy": "html_search_result",
+      "selectors": {
+        "item_container": ".base-card",
+        "title": ".base-search-card__title",
+        "location": ".job-search-card__location",
+        "link": "a.base-card__full-link",
+        "date": "time.job-search-card__listdate"
+      },
+      "dead_content_patterns": [
+        "no jobs match your search criteria",
+        "no results found",
+        "page not found"
+      ],
+      "status": "healthy",
+      "last_verified": "2026-04-25T20:40:48.584089+00:00",
+      "consecutive_empty_runs": 0,
+      "cluster": "A-meta-linkedin",
+      "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors."
     }
   ]
 }

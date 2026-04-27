@@ -244,21 +244,47 @@ def should_heal(source: dict) -> bool:
     return True
 
 
+_EMPTY_HEAL_REATTEMPT_DAYS = 3  # don't re-trigger heal from empty-runs more than once per N days
+
+
 def increment_empty_run(source: dict, sources: list[dict]) -> bool:
     """
     Increment consecutive_empty_runs.
-    Returns True when threshold is reached and healing should be triggered.
+    Returns True when healing should be triggered this run.
+
+    Triggers heal on the first run that crosses the threshold. Past threshold,
+    re-trigger only if the last heal attempt was more than _EMPTY_HEAL_REATTEMPT_DAYS
+    ago — this fixes the infinite-loop bug where a stuck source (e.g. one with
+    empty selectors) re-triggered heal (with its 5-second sleep) on every run
+    forever, bloating pipeline runtime without changing state.
     """
     source["consecutive_empty_runs"] = source.get("consecutive_empty_runs", 0) + 1
-    if source["consecutive_empty_runs"] >= CONSECUTIVE_EMPTY_RUNS_THRESHOLD:
-        logger.warning(
-            "Source %s: %d consecutive empty runs — triggering healing.",
-            source["id"], source["consecutive_empty_runs"],
-        )
-        _persist(sources)
-        return True
+    past_threshold = source["consecutive_empty_runs"] >= CONSECUTIVE_EMPTY_RUNS_THRESHOLD
     _persist(sources)
-    return False
+    if not past_threshold:
+        return False
+
+    # Gate re-heal attempts: once a source has been heal-attempted, give it
+    # a cooling-off window before we burn another 5s quick-retry + API call.
+    last_heal_str = source.get("last_llm_heal_ts")
+    if last_heal_str:
+        try:
+            last_heal = datetime.fromisoformat(last_heal_str)
+            if datetime.now(timezone.utc) - last_heal < timedelta(days=_EMPTY_HEAL_REATTEMPT_DAYS):
+                logger.debug(
+                    "Source %s: %d empty runs but heal attempted %s ago — waiting.",
+                    source["id"], source["consecutive_empty_runs"],
+                    str(datetime.now(timezone.utc) - last_heal).split(".")[0],
+                )
+                return False
+        except (ValueError, TypeError):
+            pass  # malformed timestamp — allow heal
+
+    logger.warning(
+        "Source %s: %d consecutive empty runs — triggering healing.",
+        source["id"], source["consecutive_empty_runs"],
+    )
+    return True
 
 
 def reset_empty_run(source: dict, sources: list[dict]) -> None:

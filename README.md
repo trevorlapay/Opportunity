@@ -302,21 +302,31 @@ With `--add`: you pick suggestions by number; selected sources are written to `d
    - Title must match a seniority-level keyword (Manager, Director, VP, Chief, etc.)
    - Title must NOT be primarily cybersecurity (CISO, Security Director, etc.)
    - Location must be Orlando metro, Greater Central Florida, or Remote
-4. Deduplicate against data/seen_items.json (SHA-256 fingerprint)
+4. Deduplicate against data/seen_items.json (SHA-256 fingerprint of `source_id | title | canonical_url`)
 5. If net-new items exist → send HTML digest email
 6. Log run metadata to data/run_log.json
 ```
 
 ### Candidate Profile Filter
 
-**Included seniority levels:**
-Manager, Senior Manager, Director, Senior Director, VP, SVP, EVP, C-Suite (CTO, COO, CEO, Chief of Staff, etc.), Head of, General Manager, Program Manager, Product Manager
+**Philosophy: false positives > false negatives.** The filter errs toward inclusion. You'd rather see one irrelevant role in the digest than miss a real one.
 
-**Excluded (cybersecurity-primary roles):**
-CISO, Cybersecurity Manager, Security Director, Information Security Manager — and any role where the description is dominated by SOC, SIEM, penetration testing, threat intelligence, or incident response
+**Included seniority signals** (50+ keywords; must appear in the title **or** the description/snippet):
+Director, Senior/Sr Director, Associate Director, Executive Director, VP, SVP, EVP, Chief anything (CTO/COO/CEO/CFO/CIO/CHRO/CMO), Head of / Head, Manager, Senior/Sr Manager, Program/Project/General Manager, Operations, Strategy/Strategic/Strategist, Leader/Leadership, Lead / Team Lead, Supervisor, Superintendent, Principal, Administrator, Portfolio, Transformation, Senior, Executive, Partner, People Manager, Business Partner, Product Owner, Scrum Master, Counsel, Founder, Owner, Fellow, Coordinator.
+
+**Excluded titles:**
+Cybersecurity / Information Security / SOC Analyst / Penetration / Threat, Intern, Entry-level, Junior, Clerk, Cashier, Barista, Cook, Housekeeper, Custodian, Janitor, Lifeguard, Server, Bartender, Host(ess), Retail Associate, Sales Associate, Front Desk.
+
+**Excluded descriptions:** roles whose description contains ≥5 cybersecurity-saturation terms (SIEM, SOC, incident response, penetration testing, etc.). Threshold is `description_exclude_threshold` in `filter_config.json`.
 
 **Geography:**
-Orlando Metro (Orange, Seminole, Osceola counties), Greater Central Florida (Lake, Volusia, Brevard), within ~50 miles of Orlando, or fully remote. Roles with no location listed are assumed potentially remote and included.
+Orlando Metro (Orange, Seminole, Osceola counties), Greater Central Florida (Lake, Volusia, Brevard), within ~50 miles of Orlando, Florida statewide, or fully remote. **Jobs** with no location listed are assumed potentially remote and included (err toward inclusion). **News** with no location listed must mention Orlando / Florida / a specific Central-FL city in title or body — otherwise it's dropped. This prevents generic PR-Newswire global press releases (German HIMSS, Beijing auto shows, Texas banks) from flooding the news section.
+
+**Short-term boundary matching:** 2- and 3-letter geography terms like `fl` use word boundaries, so `fl` no longer matches `flexible`, `flow`, or `Flagstaff`. Longer terms like `orlando` use substring matching.
+
+**Remote-only sources bypass geography entirely.** Sources tagged `"remote_only_source": true` in `sources.json` (e.g. RemoteOK by-keyword feeds, We Work Remotely category feeds, LinkedIn `f_WT=2` queries) skip the geography check completely. Every item from those feeds is by definition remote work, so the company's HQ city is irrelevant. A "VP Operations" posting at a Berlin-based company that allows remote work passes — exactly the behaviour we want when the candidate is open to fully remote roles nationwide and worldwide.
+
+**Remote terms (34 patterns)** include the obvious (`remote`, `wfh`, `work from home`) plus the easily-missed (`distributed team`, `100% remote`, `home-based`, `anywhere in`, `us-based remote`, `nationwide remote`, `location flexible`).
 
 ### Scraping Strategies
 
@@ -330,6 +340,14 @@ Orlando Metro (Orange, Seminole, Osceola counties), Greater Central Florida (Lak
 | `json_api` | Generic public JSON endpoints |
 | `sitemap` | Sitemap XML URL pattern matching |
 
+### Deduplication
+
+Each scraped item is identified by a SHA-256 fingerprint of `source_id | title | canonical_url`. The URL is **canonicalised** before fingerprinting (in `scraper.canonical_url()`) — query parameters that aren't job-id-bearing are stripped (`refId`, `trackingId`, `position`, `pageNum`, `utm_*`, `gclid`, `fbclid`, etc.); only an allowlist of job-id parameters is preserved (`jk`, `gh_jid`, `lever-id`, `currentJobId`, `jobid`, `postingid`, `id`).
+
+**Why this matters.** LinkedIn (and most major job boards) regenerate `refId` and `trackingId` on every request. Without canonicalisation the same posting fingerprints differently on every scrape, so deduplication silently fails — the digest re-shows postings the user has already seen. Audit of historical seen_items found 52% of stored items were duplicates of the same underlying posting; the migration in this fix collapsed 218 redundant entries.
+
+Items older than `SEEN_ITEM_RETENTION_DAYS` (default 90) are purged from `seen_items.json` so reposted jobs can resurface after the retention window.
+
 ### Email Digest
 
 An email is sent **only when at least one net-new item is found.** It groups findings into four sections (Job Postings, Career Events, Networking Groups, News) and includes a direct link for each item.
@@ -342,8 +360,16 @@ If nothing new is found across all sources, no email is sent at all.
 
 ## Source Coverage
 
-### Job Postings (17 sources)
-Indeed, LinkedIn, Walt Disney World Careers, Universal Parks & Resorts, NBCUniversal Corporate, AdventHealth, Orlando Health, Lockheed Martin, Siemens, Darden Restaurants, Hilton, Florida Blue, City of Orlando, Orange County Government, State of Florida (People First), Built In, Glassdoor
+### Job Postings (~80 sources)
+**Local Orlando employers** — Walt Disney World Careers, Universal Parks & Resorts, NBCUniversal Corporate, AdventHealth, Orlando Health, Nemours Children's Health, HCA Central Florida, Lockheed Martin, L3Harris, Siemens, Darden Restaurants, Hilton, Florida Blue, City of Orlando, Orange County Government, State of Florida (People First), Glassdoor.
+
+**Specific Orlando hospitality properties** — JW Marriott Orlando Grande Lakes, Ritz-Carlton Orlando Grande Lakes, Gaylord Palms (Marriott), Signia by Hilton Orlando Bonnet Creek, Waldorf Astoria Orlando, Hyatt Regency Grand Cypress, Four Seasons Resort Orlando, Omni Orlando ChampionsGate, Loews Universal Orlando hotels, Rosen Hotels & Resorts, Evermore / Conrad Orlando, Wyndham Grand Bonnet Creek.
+
+**Remote-only feeds** (every item is remote — bypass geography filter):
+- LinkedIn jobs-guest API — Director, VP, Chief of Staff, Head of, Director of Operations, General Manager, Executive Director, Program/Project Director, Senior Manager, Healthcare Director, Nonprofit Executive Director (12 queries, `f_WT=2` remote-only flag)
+- RemoteOK by-keyword RSS — Director, Management, VP, Executive
+- We Work Remotely categorized RSS — Business / Exec Management, Management & Finance, Product, Marketing
+- Built In remote, We Work Remotely management, The Muse Flexible/Remote API, UnitedHealth remote careers RSS
 
 ### Career Events & Expos (6 sources)
 Eventbrite Orlando, CareerSource Central Florida, Orlando Economic Partnership, UCF Career Services, Florida Leads, Meetup.com
@@ -372,6 +398,8 @@ When a source fails (dead URL or zero results for 3 consecutive runs), the self-
 **Persistence.** Every mutation — URL swap, status change, empty-run counter, heal timestamp — is written to `data/sources.json` via `config.save_sources()` immediately. In Docker, `./data` is mounted as a volume, so healed URLs survive container restarts. After one heal, all future runs (and all future containers) use the new URL automatically.
 
 **Token efficiency:** The LLM lookup is intentionally minimal (~80 input tokens per call). It asks one question ("do you know a working URL?") with no web search, no agentic loops. To prevent runaway API spend, each source is subject to a **7-day cooldown** between LLM heal attempts, and no more than 5 LLM calls are made per pipeline run.
+
+**Empty-run throttle:** When a source crosses `consecutive_empty_runs >= 3`, heal is triggered once. After that, heal is only re-attempted every **3 days** — not every run. This prevents sources stuck with empty selectors or silent bot-blocks from paying a 5-second `quick_retry` sleep on every pipeline execution forever.
 
 **Dead vs. skipped:** If the LLM cap or rate limit is hit during a run, the source is left in its current state and retried next run — it is never marked `dead` just because the cap was reached. Only a confirmed "Claude has no replacement" result triggers the permanent `dead` status.
 
