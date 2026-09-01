@@ -14,11 +14,20 @@ Each source has its strategy and CSS selectors / API config defined in sources.j
 The scraper makes no AI API calls — that is reserved for healer.py.
 
 Playwright is optional: if not installed the strategy falls back to requests+BS4.
+
+After a list page is parsed, job items are optionally enriched by fetching the
+posting page and reading its schema.org/JobPosting JSON-LD block (see
+`enrich_with_detail`). That is where company, salary, employment type,
+seniority, and the full description come from — a list card carries almost none
+of it. Enrichment is opt-in per call so healer validation scrapes stay cheap.
 """
 
 import hashlib
+import html as html_lib
 import json
 import logging
+import os
+import re
 import time
 from typing import Any
 from urllib.parse import urljoin, urlparse, parse_qsl, urlencode, urlunparse
@@ -50,6 +59,45 @@ _HEADERS = {
 
 _REQUEST_TIMEOUT = 20  # seconds per individual request
 _MAX_RESULTS_PER_SOURCE = 50  # cap to keep runs fast
+
+# Pagination for html_search_result. Most search endpoints return one page of
+# ~10 results; without paging we collect a fraction of what the source offers
+# and never reach _MAX_RESULTS_PER_SOURCE.
+_MAX_PAGES = int(os.getenv("SCRAPER_MAX_PAGES", "5"))
+
+# Detail enrichment budget. Each enriched item costs one extra HTTP request, so
+# these bound both runtime and how hard we lean on any single site.
+_MAX_DETAIL_FETCHES_PER_SOURCE = int(os.getenv("SCRAPER_MAX_DETAIL_FETCHES", "25"))
+_DETAIL_FETCH_DELAY_SEC = float(os.getenv("SCRAPER_DETAIL_DELAY_SEC", "0.4"))
+_SNIPPET_MAX_CHARS = 600
+
+# Whole-run ceiling on time spent enriching. The per-source cap alone doesn't
+# bound a run: ~90 live sources at 25 fetches each would blow through
+# scheduler.RUN_TIMEOUT_SECONDS and get the run killed mid-flight, losing
+# everything. With a budget, enrichment degrades to list-level data instead.
+_ENRICHMENT_TIME_BUDGET_SEC = float(os.getenv("SCRAPER_ENRICH_BUDGET_SEC", "1200"))
+_enrichment_started_at: float | None = None
+
+
+def begin_run() -> None:
+    """Start the per-run enrichment clock. Call once at pipeline start."""
+    global _enrichment_started_at
+    _enrichment_started_at = time.monotonic()
+
+
+def _enrichment_time_left() -> float:
+    """Seconds of enrichment budget remaining (infinite if no run started)."""
+    if _enrichment_started_at is None:
+        return float("inf")
+    return _ENRICHMENT_TIME_BUDGET_SEC - (time.monotonic() - _enrichment_started_at)
+
+# Tags that end a line of text when flattening HTML. Inline tags are
+# deliberately excluded — see _strip_html.
+_BLOCK_TAGS = (
+    "p", "div", "section", "article", "header", "footer", "aside",
+    "ul", "ol", "li", "dl", "dt", "dd", "table", "tr", "td", "th",
+    "h1", "h2", "h3", "h4", "h5", "h6", "blockquote", "pre",
+)
 
 
 # Tracking parameters that change every request and must be stripped before
@@ -110,9 +158,21 @@ def canonical_url(url: str) -> str:
 
 
 class ScrapeResult:
-    """Lightweight container for a single discovered item."""
+    """Container for a single discovered item.
 
-    __slots__ = ("source_id", "category", "title", "url", "location", "date", "snippet")
+    `title`/`url` come from the list card. Everything from `company` onward is
+    usually only available on the posting page and is filled in by
+    `enrich_with_detail`; each defaults to "" so an un-enriched item is still
+    valid and the email template can skip empty fields.
+    """
+
+    __slots__ = (
+        "source_id", "category", "title", "url", "location", "date", "snippet",
+        "company", "salary", "employment_type", "seniority", "industry", "description",
+        # Set by evaluator.py after dedup. Must live in __slots__ or the
+        # assignment raises AttributeError.
+        "evaluation",
+    )
 
     def __init__(
         self,
@@ -123,6 +183,12 @@ class ScrapeResult:
         location: str = "",
         date: str = "",
         snippet: str = "",
+        company: str = "",
+        salary: str = "",
+        employment_type: str = "",
+        seniority: str = "",
+        industry: str = "",
+        description: str = "",
     ):
         self.source_id = source_id
         self.category = category
@@ -131,6 +197,13 @@ class ScrapeResult:
         self.location = location.strip()
         self.date = date.strip()
         self.snippet = snippet.strip()
+        self.company = company.strip()
+        self.salary = salary.strip()
+        self.employment_type = employment_type.strip()
+        self.seniority = seniority.strip()
+        self.industry = industry.strip()
+        self.description = description.strip()
+        self.evaluation = {}
 
     @property
     def fingerprint(self) -> str:
@@ -150,6 +223,13 @@ class ScrapeResult:
             "location": self.location,
             "date": self.date,
             "snippet": self.snippet,
+            "company": self.company,
+            "salary": self.salary,
+            "employment_type": self.employment_type,
+            "seniority": self.seniority,
+            "industry": self.industry,
+            "description": self.description,
+            "evaluation": self.evaluation,
         }
 
 
@@ -172,10 +252,15 @@ def check_url_health(url: str) -> tuple[bool, int]:
 
 # ── Strategy dispatchers ───────────────────────────────────────────────────────
 
-def scrape_source(source: dict) -> list[ScrapeResult]:
+def scrape_source(source: dict, enrich: bool = False) -> list[ScrapeResult]:
     """
     Main entry point — dispatch to the correct strategy.
     Returns a (possibly empty) list of ScrapeResult objects.
+
+    `enrich=True` additionally fetches each job posting page for company,
+    salary, seniority, and description. It is off by default so healer
+    validation scrapes (which only care whether a source yields anything)
+    don't pay for a detail fetch per item.
     """
     strategy = source.get("strategy", "html_list")
     url = source["active_url"]
@@ -200,10 +285,30 @@ def scrape_source(source: dict) -> list[ScrapeResult]:
             len(results),
             strategy,
         )
-        return results
     except Exception as exc:
         logger.error("Scrape error on source %s: %s", source["id"], exc, exc_info=True)
         return []
+
+    if enrich and results and source.get("category") == "jobs":
+        try:
+            enrich_with_detail(results, source)
+        except Exception as exc:
+            # Enrichment is additive — a failure here must never cost us the
+            # items we already scraped successfully.
+            logger.error("Detail enrichment failed for %s: %s", source["id"], exc)
+
+    # Single-employer sources (a company's own careers page, a Workday tenant)
+    # never print the employer on the card because it is the whole site. Let
+    # sources.json state it once rather than leaving every item anonymous.
+    # Applied last so it is a genuine fallback: a name the posting itself
+    # states wins over the one we configured.
+    default_company = str(source.get("company", "")).strip()
+    if default_company:
+        for item in results:
+            if not item.company:
+                item.company = default_company
+
+    return results
 
 
 def _fetch_html(url: str) -> BeautifulSoup | None:
@@ -222,6 +327,43 @@ def _resolve_link(href: str, base_url: str) -> str:
     if href.startswith("http"):
         return href
     return urljoin(base_url, href)
+
+
+def _strip_html(raw: str) -> str:
+    """Turn an HTML fragment into readable plain text, keeping line structure.
+
+    Must run BEFORE truncation. Feeds commonly open with a logo <img> whose
+    src is a long CDN URL; truncating first spends the whole character budget
+    on markup and leaves the reader a fragment of a URL instead of the job.
+
+    Block boundaries are preserved as newlines rather than collapsed to
+    spaces, because field-extraction patterns (see _LOCATION_IN_BODY_RE) rely
+    on them to know where one labelled line ends and the next begins.
+    """
+    if not raw:
+        return ""
+    soup = BeautifulSoup(raw, "html.parser")
+    # Break on block boundaries only. A blanket separator="\n" also splits on
+    # inline tags, which job feeds sprinkle over individual words — that turns
+    # a sentence into one word per line.
+    for tag in soup.find_all("br"):
+        tag.replace_with("\n")
+    for tag in soup.find_all(_BLOCK_TAGS):
+        tag.insert_after("\n")
+    text = html_lib.unescape(soup.get_text())
+    # Collapse runs of horizontal whitespace (incl. non-breaking spaces) but
+    # keep the newlines we just established.
+    lines = (re.sub(r"[^\S\n]+", " ", line).strip() for line in text.splitlines())
+    return "\n".join(line for line in lines if line).strip()
+
+
+def _clip(text: str, limit: int = _SNIPPET_MAX_CHARS) -> str:
+    """Flatten to one line and truncate on a word boundary, for display."""
+    text = re.sub(r"\s+", " ", text).strip()
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rsplit(" ", 1)[0].rstrip(" ,.;:-")
+    return cut + "…"
 
 
 def _check_dead_content(html: str, patterns: list[str]) -> bool:
@@ -245,6 +387,8 @@ def _extract_items_from_soup(
     location_sel = sel.get("location", "")
     link_sel = sel.get("link", "a")
     date_sel = sel.get("date", "")
+    company_sel = sel.get("company", "")
+    snippet_sel = sel.get("snippet", "")
 
     if not container_sel:
         return []
@@ -272,6 +416,16 @@ def _extract_items_from_soup(
         date_el = container.select_one(date_sel) if date_sel else None
         date = date_el.get_text(strip=True) if date_el else ""
 
+        # Company — present on most job cards (LinkedIn puts it in
+        # .base-search-card__subtitle) and the single most useful field after
+        # the title. Cheap to read here; the detail fetch can still override it.
+        company_el = container.select_one(company_sel) if company_sel else None
+        company = company_el.get_text(strip=True) if company_el else ""
+
+        # Optional card-level teaser, if the source exposes one.
+        snippet_el = container.select_one(snippet_sel) if snippet_sel else None
+        snippet = _clip(_strip_html(snippet_el.decode_contents())) if snippet_el else ""
+
         results.append(
             ScrapeResult(
                 source_id=source["id"],
@@ -280,6 +434,8 @@ def _extract_items_from_soup(
                 url=url,
                 location=location,
                 date=date,
+                snippet=snippet,
+                company=company,
             )
         )
 
@@ -299,14 +455,143 @@ def _scrape_html_list(source: dict, url: str) -> list[ScrapeResult]:
     return _extract_items_from_soup(soup, source, url)
 
 
+_PAGINATION_PARAMS = ("start", "offset", "page", "from", "pageNum")
+
+
+def _with_query_param(url: str, key: str, value: int) -> str:
+    """Return `url` with `key` set to `value`, preserving everything else."""
+    parts = urlparse(url)
+    params = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True)
+              if k.lower() != key.lower()]
+    params.append((key, str(value)))
+    return urlunparse((
+        parts.scheme, parts.netloc, parts.path, parts.params,
+        urlencode(params), parts.fragment,
+    ))
+
+
+def _detect_pagination(source: dict, url: str) -> tuple[str, int, int] | None:
+    """Work out how to page this source: (param, start_value, step).
+
+    Explicit config wins:
+        "pagination": {"param": "start", "step": 10, "start": 0}
+    Otherwise infer from a paging param already present in active_url — search
+    URLs almost always carry one (LinkedIn's guest endpoint ships `start=0`).
+    Returns None when there is nothing to page on.
+    """
+    cfg = source.get("pagination") or {}
+    if cfg.get("param"):
+        return cfg["param"], int(cfg.get("start", 0)), int(cfg.get("step", 10))
+
+    existing = dict(parse_qsl(urlparse(url).query, keep_blank_values=True))
+    for key in existing:
+        if key.lower() in (p.lower() for p in _PAGINATION_PARAMS):
+            try:
+                start = int(existing[key] or 0)
+            except ValueError:
+                start = 0
+            # `page`/`pageNum` count pages; the others count items.
+            step = 1 if key.lower() in ("page", "pagenum") else 0
+            return key, start, step
+    return None
+
+
 def _scrape_html_search_result(source: dict, url: str) -> list[ScrapeResult]:
-    # Same as html_list for now; pagination is a v2 enhancement
-    return _scrape_html_list(source, url)
+    """Paginated search results.
+
+    Search endpoints typically return ~10 items per page. Reading only the
+    first page collects a fraction of what the source offers and never gets
+    near _MAX_RESULTS_PER_SOURCE, so walk pages until one adds nothing new.
+    """
+    first_page = _scrape_html_list(source, url)
+    plan = _detect_pagination(source, url)
+    if not first_page or plan is None or _MAX_PAGES <= 1:
+        return first_page
+
+    param, start, step = plan
+    # An item-offset source with no configured step: infer it from page one,
+    # which is exactly the source's own page size.
+    if step == 0:
+        step = len(first_page) or 10
+
+    collected = list(first_page)
+    seen = {r.fingerprint for r in collected}
+
+    for page_no in range(1, _MAX_PAGES):
+        if len(collected) >= _MAX_RESULTS_PER_SOURCE:
+            break
+        page_url = _with_query_param(url, param, start + page_no * step)
+        try:
+            page_items = _scrape_html_list(source, page_url)
+        except Exception as exc:
+            logger.warning("Pagination stopped for %s at page %d: %s",
+                           source["id"], page_no, exc)
+            break
+
+        fresh = [r for r in page_items if r.fingerprint not in seen]
+        if not fresh:
+            # Empty page, or the site is echoing page one — either way, done.
+            break
+        seen.update(r.fingerprint for r in fresh)
+        collected.extend(fresh)
+
+    if len(collected) > len(first_page):
+        logger.info("Source %-30s → paginated %d → %d items",
+                    source["id"], len(first_page), len(collected))
+    return collected[:_MAX_RESULTS_PER_SOURCE]
+
+
+# Job feeds routinely state the location in the body rather than a field. The
+# value runs to the end of its line — _strip_html keeps block breaks as
+# newlines precisely so this stops before the next labelled field.
+_LOCATION_IN_BODY_RE = re.compile(
+    r"^\s*(?:headquarters|location|based in|office)\s*[:\-]\s*(.{2,80}?)\s*$",
+    re.IGNORECASE | re.MULTILINE,
+)
+# "Acme Corp: Senior Director of Operations" — company prefix on the title.
+_COMPANY_PREFIX_RE = re.compile(r"^\s*([^:]{2,60}?)\s*:\s+(.{3,})$")
+
+
+def _rss_location_and_company(title: str, body: str) -> tuple[str, str]:
+    """Pull (location, company) out of an RSS entry.
+
+    RSS gives us no structured place or employer, but job feeds put both in
+    predictable spots: the location in a "Headquarters: …" line in the body,
+    and the company as a "Company: Role" prefix on the title.
+
+    The title is deliberately returned unmodified even when a company prefix
+    is found — it feeds the fingerprint, and rewriting it would make every
+    already-seen posting look new and blast one enormous duplicate digest.
+    The template suppresses the company line when the title already opens
+    with it.
+    """
+    location = ""
+    match = _LOCATION_IN_BODY_RE.search(body)
+    if match:
+        location = match.group(1).strip(" .,;")
+
+    company = ""
+    prefix = _COMPANY_PREFIX_RE.match(title)
+    if prefix:
+        company = prefix.group(1).strip()
+
+    return location, company
 
 
 def _scrape_rss_feed(source: dict, url: str) -> list[ScrapeResult]:
+    # Fetch ourselves rather than letting feedparser do it: feedparser sends no
+    # browser User-Agent (some feeds reject that) and turns an HTTP error page
+    # into an opaque "malformed feed" instead of a status we can act on.
     try:
-        feed = feedparser.parse(url)
+        resp = requests.get(url, headers=_HEADERS, timeout=_REQUEST_TIMEOUT, allow_redirects=True)
+        if resp.status_code >= 400:
+            logger.warning("RSS fetch for %s returned HTTP %s — feed may be retired.",
+                           source["id"], resp.status_code)
+            return []
+        feed = feedparser.parse(resp.content)
+    except requests.RequestException as exc:
+        logger.warning("RSS fetch error for %s: %s", source["id"], exc)
+        return []
     except Exception as exc:
         logger.warning("RSS parse error for %s: %s", source["id"], exc)
         return []
@@ -319,14 +604,15 @@ def _scrape_rss_feed(source: dict, url: str) -> list[ScrapeResult]:
     for entry in feed.entries[:_MAX_RESULTS_PER_SOURCE]:
         title = getattr(entry, "title", "").strip()
         link = getattr(entry, "link", "").strip()
-        summary = getattr(entry, "summary", "").strip()[:300]
         published = getattr(entry, "published", "").strip()
 
-        # Attempt to extract a location from tags or content
-        location = ""
-        tags = getattr(entry, "tags", [])
-        if tags:
-            location = ", ".join(t.get("term", "") for t in tags if t.get("term"))[:100]
+        # Strip markup BEFORE clipping — see _strip_html.
+        body = _strip_html(getattr(entry, "summary", ""))
+        location, company = _rss_location_and_company(title, body)
+
+        # NOTE: entry.tags are feed *categories* ("Management and Finance"),
+        # not places. Writing them into `location` showed users a category as
+        # a location and fed the geography filter nonsense, so they stay out.
 
         if title and link:
             results.append(
@@ -337,7 +623,9 @@ def _scrape_rss_feed(source: dict, url: str) -> list[ScrapeResult]:
                     url=link,
                     location=location,
                     date=published,
-                    snippet=summary,
+                    snippet=_clip(body),
+                    company=company,
+                    description=body,
                 )
             )
 
@@ -371,24 +659,37 @@ def _scrape_json_api(source: dict, url: str) -> list[ScrapeResult]:
     title_key = sel.get("title_key", "title")
     url_key = sel.get("url_key", "url")
     location_key = sel.get("location_key", "location")
+    company_key = sel.get("company_key", "company")
+    date_key = sel.get("date_key", "date")
+    description_key = sel.get("description_key", "description")
+
+    def field(item: dict, key: str) -> str:
+        value = item.get(key, "")
+        if isinstance(value, dict):  # e.g. {"name": "Acme"} for company
+            value = value.get("name") or value.get("label") or ""
+        return str(value or "").strip()
 
     results: list[ScrapeResult] = []
     for item in data[:_MAX_RESULTS_PER_SOURCE]:
         if not isinstance(item, dict):
             continue
-        title = str(item.get(title_key, "")).strip()
-        link = str(item.get(url_key, "")).strip()
-        location = str(item.get(location_key, "")).strip()
-        if title:
-            results.append(
-                ScrapeResult(
-                    source_id=source["id"],
-                    category=source["category"],
-                    title=title,
-                    url=link,
-                    location=location,
-                )
+        title = field(item, title_key)
+        if not title:
+            continue
+        description = _strip_html(field(item, description_key))
+        results.append(
+            ScrapeResult(
+                source_id=source["id"],
+                category=source["category"],
+                title=title,
+                url=field(item, url_key),
+                location=field(item, location_key),
+                date=field(item, date_key),
+                snippet=_clip(description),
+                company=field(item, company_key),
+                description=description,
             )
+        )
     return results
 
 
@@ -661,3 +962,286 @@ def _workday_via_playwright(
     # Use the first captured response (usually the initial page load query)
     data = captured_data[0]
     return _parse_workday_postings(data, source, base_domain, portal_url)
+
+
+# ── Job detail enrichment (schema.org JobPosting) ─────────────────────────────
+#
+# A list card carries a title, a link, and if we're lucky a location. Everything
+# a reader needs to actually triage a role — employer, pay, seniority, what the
+# job is — lives on the posting page. Nearly every major board and ATS
+# (LinkedIn, Greenhouse, Lever, Indeed, most Workday tenants) publishes that as
+# a schema.org/JobPosting JSON-LD block, so one generic parser covers the bulk
+# of sources without any per-source selector configuration.
+
+_EMPLOYMENT_TYPE_LABELS = {
+    "FULL_TIME": "Full-time",
+    "PART_TIME": "Part-time",
+    "CONTRACTOR": "Contract",
+    "TEMPORARY": "Temporary",
+    "INTERN": "Internship",
+    "VOLUNTEER": "Volunteer",
+    "PER_DIEM": "Per diem",
+    "OTHER": "Other",
+}
+
+_SALARY_PERIOD_LABELS = {
+    "YEAR": "yr", "MONTH": "mo", "WEEK": "wk", "DAY": "day", "HOUR": "hr",
+}
+
+
+def _as_text(value: Any) -> str:
+    """Flatten a JSON-LD value (string / number / list / nested object) to text."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, list):
+        parts = [_as_text(v) for v in value]
+        return ", ".join(p for p in parts if p)
+    if isinstance(value, dict):
+        for key in ("name", "value", "credentialCategory", "label", "title"):
+            if key in value:
+                return _as_text(value[key])
+    return ""
+
+
+def _iter_json_ld(soup: BeautifulSoup):
+    """Yield every JSON-LD object on the page, flattening @graph containers."""
+    for tag in soup.find_all("script", attrs={"type": "application/ld+json"}):
+        raw = tag.string or tag.get_text() or ""
+        if not raw.strip():
+            continue
+        try:
+            data = json.loads(raw)
+        except (ValueError, TypeError):
+            continue  # a malformed block on one page must not abort the rest
+        stack = [data]
+        while stack:
+            node = stack.pop()
+            if isinstance(node, list):
+                stack.extend(node)
+            elif isinstance(node, dict):
+                if "@graph" in node:
+                    stack.append(node["@graph"])
+                yield node
+
+
+def _find_job_posting(soup: BeautifulSoup) -> dict | None:
+    for node in _iter_json_ld(soup):
+        node_type = node.get("@type", "")
+        types = node_type if isinstance(node_type, list) else [node_type]
+        if any(str(t).lower() == "jobposting" for t in types):
+            return node
+    return None
+
+
+def _format_jsonld_location(job: dict) -> str:
+    if str(job.get("jobLocationType", "")).upper() == "TELECOMMUTE":
+        return "Remote"
+
+    locations = job.get("jobLocation")
+    if isinstance(locations, dict):
+        locations = [locations]
+    if not isinstance(locations, list):
+        return ""
+
+    rendered: list[str] = []
+    for place in locations:
+        if not isinstance(place, dict):
+            continue
+        address = place.get("address")
+        if isinstance(address, str):
+            rendered.append(address.strip())
+            continue
+        if not isinstance(address, dict):
+            continue
+        parts = [
+            address.get("addressLocality"),
+            address.get("addressRegion"),
+            # Country only when it adds information beyond a US state.
+            address.get("addressCountry") if not address.get("addressRegion") else None,
+        ]
+        line = ", ".join(_as_text(p) for p in parts if _as_text(p))
+        if line:
+            rendered.append(line)
+    # Preserve order while dropping repeats (multi-site postings repeat a city).
+    return "; ".join(dict.fromkeys(rendered))[:150]
+
+
+def _format_jsonld_salary(job: dict) -> str:
+    base = job.get("baseSalary")
+    if not isinstance(base, dict):
+        return ""
+    currency = _as_text(base.get("currency")) or _as_text(base.get("salaryCurrency"))
+    value = base.get("value")
+
+    low = high = unit = ""
+    if isinstance(value, dict):
+        low = _as_text(value.get("minValue"))
+        high = _as_text(value.get("maxValue"))
+        unit = _as_text(value.get("unitText"))
+        if not low and not high:
+            low = _as_text(value.get("value"))
+    else:
+        low = _as_text(value)
+
+    def money(amount: str) -> str:
+        try:
+            return f"{float(amount):,.0f}"
+        except (TypeError, ValueError):
+            return amount
+
+    if low and high and low != high:
+        amount = f"{money(low)}–{money(high)}"
+    elif low or high:
+        amount = money(low or high)
+    else:
+        return ""
+
+    period = _SALARY_PERIOD_LABELS.get(unit.upper(), unit.lower())
+    return " ".join(p for p in (currency, amount) if p) + (f" / {period}" if period else "")
+
+
+def _criteria_from_html(soup: BeautifulSoup) -> dict[str, str]:
+    """Read LinkedIn-style "job criteria" pairs (Seniority level, Job function…).
+
+    JSON-LD has no seniority field, but LinkedIn renders it in the page body,
+    and it is the single field the profile filter cares about most.
+    """
+    criteria: dict[str, str] = {}
+    for item in soup.select(".description__job-criteria-item"):
+        label_el = item.select_one(".description__job-criteria-subheader")
+        value_el = item.select_one(".description__job-criteria-text")
+        if label_el and value_el:
+            label = label_el.get_text(strip=True).rstrip(":").lower()
+            value = value_el.get_text(strip=True)
+            if label and value:
+                criteria[label] = value
+    return criteria
+
+
+def fetch_job_detail(url: str, session: requests.Session | None = None) -> dict:
+    """Fetch one posting page and return whatever detail it exposes.
+
+    Returns an empty dict on any failure — enrichment is strictly additive and
+    a blocked or moved posting must never cost us the list-level item.
+    """
+    getter = session or requests
+    try:
+        resp = getter.get(url, headers=_HEADERS, timeout=_REQUEST_TIMEOUT, allow_redirects=True)
+        if resp.status_code >= 400:
+            logger.debug("Detail fetch %s → HTTP %s", url, resp.status_code)
+            return {}
+        soup = BeautifulSoup(resp.text, "html.parser")
+    except requests.RequestException as exc:
+        logger.debug("Detail fetch failed for %s: %s", url, exc)
+        return {}
+    except Exception as exc:
+        logger.debug("Detail parse failed for %s: %s", url, exc)
+        return {}
+
+    detail: dict[str, str] = {}
+    job = _find_job_posting(soup)
+
+    if job:
+        detail["company"] = _as_text(job.get("hiringOrganization"))
+        detail["industry"] = _as_text(job.get("industry"))
+        detail["location"] = _format_jsonld_location(job)
+        detail["salary"] = _format_jsonld_salary(job)
+        detail["date"] = _as_text(job.get("datePosted"))[:10]
+
+        emp = _as_text(job.get("employmentType"))
+        detail["employment_type"] = ", ".join(
+            _EMPLOYMENT_TYPE_LABELS.get(part.strip().upper(), part.strip().title())
+            for part in emp.split(",") if part.strip()
+        )
+        # description is HTML inside a JSON string — unescape, then strip tags.
+        detail["description"] = _strip_html(html_lib.unescape(_as_text(job.get("description"))))
+
+    criteria = _criteria_from_html(soup)
+    if criteria.get("seniority level"):
+        detail["seniority"] = criteria["seniority level"]
+    if not detail.get("employment_type") and criteria.get("employment type"):
+        detail["employment_type"] = criteria["employment type"]
+    if not detail.get("industry") and criteria.get("industries"):
+        detail["industry"] = criteria["industries"]
+
+    if not detail.get("description"):
+        # Common description containers, then the meta description as a floor.
+        for sel in (".show-more-less-html__markup", "[class*='job-description']",
+                    "#job-description", "article"):
+            el = soup.select_one(sel)
+            if el:
+                text = _strip_html(el.decode_contents())
+                if len(text) > 120:
+                    detail["description"] = text
+                    break
+        else:
+            meta = soup.find("meta", attrs={"name": "description"}) or \
+                   soup.find("meta", attrs={"property": "og:description"})
+            if meta and meta.get("content"):
+                detail["description"] = _strip_html(meta["content"])
+
+    return {k: v for k, v in detail.items() if v}
+
+
+def enrich_with_detail(results: list[ScrapeResult], source: dict) -> None:
+    """Fill in posting-page detail on `results`, in place.
+
+    Only fields the list page left empty are overwritten, except location and
+    date: JSON-LD gives a structured city/state and an ISO date, both of which
+    beat a card's free text and its "2 weeks ago".
+    """
+    if _enrichment_time_left() <= 0:
+        logger.warning(
+            "Source %-30s → skipping detail enrichment (run-wide %.0fs budget spent); "
+            "items keep their list-level fields.",
+            source["id"], _ENRICHMENT_TIME_BUDGET_SEC,
+        )
+        return
+
+    budget = min(len(results), _MAX_DETAIL_FETCHES_PER_SOURCE)
+    if budget <= 0:
+        return
+    if len(results) > budget:
+        logger.info(
+            "Source %-30s → enriching first %d of %d items (per-source cap)",
+            source["id"], budget, len(results),
+        )
+
+    enriched = 0
+    with requests.Session() as session:
+        for index, item in enumerate(results[:budget]):
+            if not item.url.startswith("http"):
+                continue
+            if _enrichment_time_left() <= 0:
+                logger.warning(
+                    "Source %-30s → detail enrichment cut short at %d/%d "
+                    "(run-wide budget spent).", source["id"], enriched, budget,
+                )
+                break
+            if index:
+                time.sleep(_DETAIL_FETCH_DELAY_SEC)  # be a polite client
+
+            detail = fetch_job_detail(item.url, session=session)
+            if not detail:
+                continue
+
+            for field in ("company", "salary", "employment_type", "seniority",
+                          "industry", "description"):
+                if detail.get(field) and not getattr(item, field):
+                    setattr(item, field, detail[field])
+
+            # Structured beats free-text, so these override rather than fill.
+            if detail.get("location"):
+                item.location = detail["location"]
+            if detail.get("date"):
+                item.date = detail["date"]
+            if item.description and not item.snippet:
+                item.snippet = _clip(item.description)
+            enriched += 1
+
+    logger.info("Source %-30s → detail enriched %d/%d items",
+                source["id"], enriched, budget)

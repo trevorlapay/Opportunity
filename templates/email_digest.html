@@ -105,7 +105,150 @@
     font-size: 15px;
     font-weight: 700;
     color: #16213e;
+    margin-bottom: 4px;
+  }
+  .item-company {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f3460;
+    margin-bottom: 8px;
+  }
+
+  /* ── Fact chips (salary, employment type, seniority, industry) ─────── */
+  .item-facts { margin: 8px 0 2px; }
+  .item-chip {
+    display: inline-block;
+    background: #eef1f7;
+    color: #374151;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin: 0 6px 5px 0;
+  }
+  .item-chip.salary {
+    background: #e7f6ec;
+    color: #1b6b3a;
+    border: 1px solid #bfe6cd;
+  }
+  .item-chip.seniority {
+    background: #eae6f7;
+    color: #4c3a86;
+  }
+  .item-chip.ease-high   { background: #e7f6ec; color: #1b6b3a; }
+  .item-chip.ease-medium { background: #fdf3e0; color: #8a5a12; }
+  .item-chip.ease-low    { background: #fbeaea; color: #8c2f2f; }
+
+  /* ── Evaluator verdict lines ─────────────────────────────── */
+  .verdict {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.55;
+    margin-top: 8px;
+    padding-left: 10px;
+    border-left: 3px solid #cfd8e8;
+  }
+  .verdict.catch { border-left-color: #e9b949; }
+  .verdict-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #6b7280;
+    margin-bottom: 1px;
+  }
+  .signals {
+    font-size: 11px;
+    color: #9ca3af;
+    white-space: nowrap;
+  }
+
+  /* ── Degraded-run notice ─────────────────────────────────── */
+  .notice {
+    background: #fdf3e0;
+    border: 1px solid #f0d9a8;
+    color: #7a5210;
+    font-size: 13px;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+  }
+
+  /* ── Watchlist ───────────────────────────────────────────── */
+  .watchlist-section {
+    margin-top: 40px;
+    padding-top: 8px;
+    border-top: 3px double #d5dbe6;
+  }
+  .watchlist-note {
+    font-size: 12px;
+    color: #6b7280;
+    font-style: italic;
+    margin: -6px 0 16px;
+  }
+  .industry-read {
+    background: #f4f6f9;
+    border-left: 3px solid #0f3460;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 18px;
+  }
+
+  /* ── Closing sections ────────────────────────────────────── */
+  .closing {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 3px double #d5dbe6;
+  }
+  .closing-block { margin-bottom: 22px; }
+  .closing-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #0f3460;
     margin-bottom: 6px;
+  }
+  .closing-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
+  }
+  .act-on {
+    background: #f8f9fc;
+    border: 1px solid #e8ecf4;
+    border-left: 4px solid #e94560;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+  }
+  .act-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #16213e;
+    margin-bottom: 8px;
+  }
+  .act-warning {
+    font-size: 12px;
+    color: #8a5a12;
+    background: #fdf3e0;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+  }
+  .first-move {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #16213e;
+  }
+  .pattern-flag .closing-body {
+    font-size: 15px;
+    font-weight: 600;
+    color: #16213e;
   }
   .item-meta {
     font-size: 13px;
@@ -176,8 +319,8 @@
     <div class="wordmark"><span>Opp</span>ortunity</div>
     <div class="tagline">Career Intelligence Digest</div>
     <div class="summary">
-      We found <strong>{{ total }} new item{{ 's' if total != 1 else '' }}</strong>
-      across <strong>{{ by_category|length }} categor{{ 'ies' if by_category|length != 1 else 'y' }}</strong>.
+      <strong>{{ total }} match{{ 'es' if total != 1 else '' }}</strong>
+      {%- if watchlist %}, plus <strong>{{ watchlist|length }}</strong> on the watchlist{% endif %}.
     </div>
     <div class="run-ts">Generated {{ run_ts_str if run_ts_str else date_str }}</div>
   </div>
@@ -185,26 +328,74 @@
   <!-- ── Body ────────────────────────────────────────────── -->
   <div class="body">
 
-    {% if by_category.get('jobs') %}
-    <div class="category-section">
-      <div class="category-heading">
-        <span class="icon">💼</span>
-        New Job Postings
-        <span class="count">{{ category_counts.get('jobs', 0) }}</span>
-      </div>
-      {% for item in by_category['jobs'] %}
-      {% set d = item if item is mapping else item.to_dict() %}
+    {% if eval_stats and eval_stats.get('degraded') %}
+    <div class="notice">
+      Scoring was unavailable this run, so the items below are unscored and
+      unranked. Treat them as raw scrape output.
+    </div>
+    {% endif %}
+
+    {#- One posting card. Used by both lists so they cannot drift apart. -#}
+    {% macro item_card(d, watchlist_mode=False) %}
+      {% set ev = d.get('evaluation') or {} %}
       <div class="item-card">
         <div class="item-title">{{ d.get('title', 'Untitled Role') }}</div>
+        {# Feeds like WeWorkRemotely already prefix the title with the employer;
+           repeating it on its own line reads as a mistake. #}
+        {% if d.get('company') and not d.get('title', '').startswith(d['company']) %}
+        <div class="item-company">{{ d['company'] }}</div>
+        {% endif %}
+
+        {% if d.get('salary') or d.get('seniority') or d.get('employment_type') or d.get('industry') %}
+        <div class="item-facts">
+          {% if d.get('salary') %}<span class="item-chip salary">{{ d['salary'] }}</span>{% endif %}
+          {% if d.get('seniority') %}<span class="item-chip seniority">{{ d['seniority'] }}</span>{% endif %}
+          {% if d.get('employment_type') %}<span class="item-chip">{{ d['employment_type'] }}</span>{% endif %}
+          {% if d.get('industry') %}<span class="item-chip">{{ d['industry'] }}</span>{% endif %}
+        </div>
+        {% endif %}
+
         {% if d.get('location') %}
         <div class="item-meta"><strong>Location:</strong> {{ d['location'] }}</div>
         {% endif %}
         {% if d.get('date') %}
         <div class="item-meta"><strong>Posted:</strong> {{ d['date'] }}</div>
         {% endif %}
-        {% if d.get('snippet') %}
+
+        {#- The evaluator's read is the point of the digest. The raw snippet is
+            only shown for an item that never got scored. -#}
+        {% if ev.get('why_it_fits') %}
+        <div class="verdict"><span class="verdict-label">Why it fits</span>
+          {{ ev['why_it_fits'] }}
+          {%- if ev.get('signals') %}
+          <span class="signals">signals {{ ev['signals']|join(', ') }}</span>
+          {%- endif %}
+        </div>
+        {% endif %}
+        {% if ev.get('the_catch') %}
+        <div class="verdict catch"><span class="verdict-label">The catch</span>
+          {{ ev['the_catch'] }}</div>
+        {% endif %}
+        {% if watchlist_mode and ev.get('signal_read') %}
+        <div class="verdict"><span class="verdict-label">Signal</span>
+          {{ ev['signal_read'] }}</div>
+        {% endif %}
+        {% if ev.get('ease_of_entry') or ev.get('who_to_call') %}
+        <div class="item-facts">
+          {% if ev.get('ease_of_entry') %}
+          <span class="item-chip ease-{{ ev['ease_of_entry']|lower }}">
+            Entry: {{ ev['ease_of_entry'] }}{% if ev.get('ease_reason') %} &middot; {{ ev['ease_reason'] }}{% endif %}
+          </span>
+          {% endif %}
+          {% if ev.get('who_to_call') %}
+          <span class="item-chip">Call: {{ ev['who_to_call'] }}</span>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% if ev.get('unscored') and d.get('snippet') %}
         <div class="item-snippet">{{ d['snippet'] | striptags }}</div>
         {% endif %}
+
         <span class="item-source-tag">{{ d.get('source_id', '').replace('_', ' ') }}</span>
         <br />
         {% if d.get('url') %}
@@ -213,6 +404,17 @@
         </a>
         {% endif %}
       </div>
+    {% endmacro %}
+
+    {% if by_category.get('jobs') %}
+    <div class="category-section">
+      <div class="category-heading">
+        <span class="icon">🎯</span>
+        The Main List
+        <span class="count">{{ category_counts.get('jobs', 0) }}</span>
+      </div>
+      {% for item in by_category['jobs'] %}
+      {{ item_card(item if item is mapping else item.to_dict()) }}
       {% endfor %}
     </div>
     {% endif %}
@@ -310,10 +512,93 @@
     </div>
     {% endif %}
 
+    {#- Section 6. Deliberately last, visually separated, and never merged into
+        the counts above: this is market intelligence, not a shortlist. -#}
+    {% if watchlist %}
+    <div class="category-section watchlist-section">
+      <div class="category-heading">
+        <span class="icon">🛡️</span>
+        Watchlist &mdash; Infosec &amp; Data Center
+        <span class="count">{{ watchlist|length }}</span>
+      </div>
+      <div class="watchlist-note">
+        Market intelligence, not a shortlist. These are diverted here rather than
+        dropped, and never count toward the main list.
+      </div>
+      {#- The brief calls this read the actual point of the watchlist. -#}
+      {% if summary and summary.get('industry_read') %}
+      <div class="industry-read">
+        <span class="verdict-label">The industry read</span>
+        {{ summary['industry_read'] }}
+      </div>
+      {% endif %}
+      {% for item in watchlist %}
+      {{ item_card(item if item is mapping else item.to_dict(), watchlist_mode=True) }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {#- Closing sections, in the order the brief ends on. -#}
+    {% if summary and (summary.get('what_changed') or summary.get('act_on') or summary.get('pattern_flag')) %}
+    <div class="closing">
+
+      {% if summary.get('what_changed') %}
+      <div class="closing-block">
+        <div class="closing-heading">What changed since last run</div>
+        <div class="closing-body">{{ summary['what_changed'] }}</div>
+      </div>
+      {% endif %}
+
+      {% if summary.get('act_on') %}
+      {% set act = summary['act_on'] %}
+      <div class="closing-block act-on">
+        <div class="closing-heading">Act on this, this week</div>
+        <div class="act-title">
+          {{ act['title'] }}{% if act.get('organization') %} &middot; {{ act['organization'] }}{% endif %}
+        </div>
+        {% if act.get('from_watchlist') %}
+        <div class="act-warning">
+          Picked from the watchlist rather than the main list, which the brief
+          treats as an exception. The reason is below.
+        </div>
+        {% endif %}
+        {% if act.get('why') %}
+        <div class="closing-body">{{ act['why'] }}</div>
+        {% endif %}
+        {% if act.get('first_move') %}
+        <div class="first-move">
+          <span class="verdict-label">First move</span>{{ act['first_move'] }}
+        </div>
+        {% endif %}
+        {% if act.get('url') %}
+        <a class="item-link" href="{{ act['url'] }}" target="_blank" rel="noopener noreferrer">
+          Open the posting &rarr;
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if summary.get('pattern_flag') %}
+      <div class="closing-block pattern-flag">
+        <div class="closing-heading">Pattern flag</div>
+        <div class="closing-body">{{ summary['pattern_flag'] }}</div>
+      </div>
+      {% endif %}
+
+    </div>
+    {% endif %}
+
   </div><!-- /.body -->
 
   <!-- ── Footer ──────────────────────────────────────────── -->
   <div class="footer">
+    {% if eval_stats and eval_stats.get('rejected') %}
+    {{ eval_stats['rejected'] }} further posting{{ 's' if eval_stats['rejected'] != 1 else '' }}
+    reviewed and did not meet the match test.<br />
+    {% endif %}
+    {% if eval_stats and eval_stats.get('skipped') %}
+    {{ eval_stats['skipped'] }} exceeded this run's scoring cap and were not reviewed.<br />
+    {% endif %}
     <strong>Powered by Project Opportunity</strong><br />
     Run completed {{ run_ts_str if run_ts_str else date_str }}<br />
     You are receiving this because new items were found.

@@ -1,7 +1,9 @@
 services:
   opportunity:
     build: .
-    restart: always
+    # Single-run pipeline: don't restart on clean exit, only on a crash.
+    # Use cron / systemd / a host scheduler / `docker compose run` to re-trigger.
+    restart: on-failure
     env_file: .env
     environment:
       - TZ=America/New_York

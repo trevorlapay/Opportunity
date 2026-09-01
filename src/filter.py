@@ -8,12 +8,47 @@ Edit USER_PREFS.md and re-run apply-prefs to change filtering behaviour.
 
 import json
 import logging
+import os
 import re
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 _CONFIG_FILE = Path(__file__).resolve().parent.parent / "data" / "filter_config.json"
+
+# When evaluator.py is running it decides inclusion by reading the posting, so
+# this module steps back to a cheap coarse gate: geography, plus titles that are
+# obviously wrong. Keeping the title-INCLUDE gate on would defeat the brief's
+# core instruction that titles are the worst available signal here, and would
+# drop the postings the evaluator exists to catch (a role that never says
+# "Chief of Staff" but is one). Title EXCLUDES stay on either way: they are
+# cheap, high-precision, and keep evaluator cost down.
+_EVALUATOR_ENABLED = os.getenv("EVALUATOR_ENABLED", "1").strip().lower() not in ("0", "false", "no")
+
+# Floor set of hourly / entry-level titles, applied ONLY when the evaluator is
+# enabled and the title-include gate is therefore off.
+#
+# Why this is in code rather than filter_config.json: the generated config
+# mirrors USER_PREFS, and the current brief's hard excludes are all senior-level
+# mismatches (banking VP, preconstruction). It says nothing about hourly roles,
+# so apply-prefs emits no pattern for them — correctly, since they were never
+# the problem when a seniority keyword was required. With that requirement
+# lifted, every hourly posting from a hospital or theme park careers page would
+# otherwise reach the model. These are pure cost: the evaluator rejects all of
+# them, so paying to have it read them buys nothing.
+_ENTRY_LEVEL_FLOOR: tuple[str, ...] = (
+    r"\bcashier\b", r"\bbarista\b", r"\bbartender\b", r"\bserver\b", r"\bwaits?(taff|er|ress)\b",
+    r"\bhost(ess)?\b", r"\bbusser\b", r"\bdishwasher\b", r"\bline cook\b", r"\bprep cook\b",
+    r"\bhousekeep(er|ing)\b", r"\bcustodian\b", r"\bjanitor(ial)?\b", r"\bgroundskeeper\b",
+    r"\blifeguard\b", r"\bvalet\b", r"\bbell(hop|man)\b", r"\bconcierge\b",
+    r"\bsales associate\b", r"\bretail associate\b", r"\bstock(er|room)\b", r"\bwarehouse associate\b",
+    r"\bcrew member\b", r"\bteam member\b", r"\battendant\b", r"\bcast member\b",
+    r"\bdriver\b", r"\btechnician\b", r"\bmechanic\b", r"\bmaintenance worker\b",
+    r"\breceptionist\b", r"\bdata entry\b", r"\bscheduler\b",
+    r"\bnurse\b", r"\brn\b", r"\bcna\b", r"\bmedical assistant\b", r"\bphlebotom",
+    r"\b(intern|internship|apprentice|trainee)\b", r"\bentry.level\b", r"\bpart.time\b",
+    r"\bseasonal\b", r"\bhourly\b", r"\bassistant\s+(manager|supervisor)\b",
+)
 
 
 def _load_config() -> dict:
@@ -68,6 +103,17 @@ def _term_matches(text: str, term: str) -> bool:
     return term in text
 
 
+# A title carrying no real word — "R10230535-2", "Req 88231" — tells us
+# nothing, and is the case the snippet fallback exists to rescue.
+_REAL_WORD_RE = re.compile(r"[A-Za-z]{4,}")
+
+
+def _title_is_uninformative(title: str) -> bool:
+    """True when a title is a bare requisition code rather than a role name."""
+    words = _REAL_WORD_RE.findall(title)
+    return len(words) < 2
+
+
 def _is_geography_match(
     location: str,
     title: str = "",
@@ -76,20 +122,30 @@ def _is_geography_match(
 ) -> bool:
     """Return True if the item appears to be in the target area or is remote.
 
+    Matching is scoped to `location` and `title`. The description is
+    deliberately NOT searched: it mentions a city or the word "remote" in
+    passing on almost every posting ("our Florida office", "remote work
+    options available"), which would make this function return True for
+    everything and silently disable geography filtering. The snippet is
+    consulted only when there is no location at all — the case it was meant
+    to cover.
+
     The "no location → treat as remote" fallback applies ONLY to jobs,
     where many ATS feeds legitimately omit the location field on remote
     roles. For news articles, no-location defaults to False — otherwise
     every global PR Newswire item with no location field passes through
     and the digest turns into a firehose of irrelevant press releases.
     """
-    combined = " ".join([location, title, snippet]).lower()
+    has_location = bool(location.strip())
+    combined = " ".join([location, title] if has_location else [title, snippet]).lower()
+
     if any(_term_matches(combined, term) for term in REMOTE_TERMS):
         return True
     if any(_term_matches(combined, term) for term in GEOGRAPHY_INCLUDE_TERMS):
         return True
     # Jobs: no location listed → treat as potentially remote (err toward inclusion).
     # News / other: no location AND no geography mention → drop.
-    if category == "jobs" and not location.strip():
+    if category == "jobs" and not has_location:
         return True
     return False
 
@@ -123,23 +179,34 @@ def apply_profile_filter(results: list, sources: list | None = None) -> list:
         }
 
     accepted: list[ScrapeResult] = []
+    entry_level_dropped = 0
     for item in results:
-        title    = item.title    or ""
-        location = item.location or ""
-        snippet  = item.snippet  or ""
-        category = item.category or "jobs"
+        title     = item.title    or ""
+        location  = item.location or ""
+        snippet   = item.snippet  or ""
+        category  = item.category or "jobs"
+        seniority = getattr(item, "seniority", "") or ""
+        # Prefer the full description for the saturation check; fall back to
+        # the snippet for sources that only ever produce one.
+        body      = getattr(item, "description", "") or snippet
         is_remote_only = item.source_id in remote_only_ids
 
-        # ── 1. Jobs: title OR snippet must show a seniority keyword ──────────
-        # Err toward inclusion: if the title is terse ("R10230535-2") but the
-        # snippet contains "Senior Director", accept it. Many ATS feeds put
-        # the real title in the description, not the card title.
-        if category == "jobs" and TITLE_INCLUDE_PATTERNS:
-            if not (
-                _matches_any(title, TITLE_INCLUDE_PATTERNS)
-                or _matches_any(snippet, TITLE_INCLUDE_PATTERNS)
-            ):
-                logger.debug("EXCLUDED (no seniority keyword in title/snippet): %s", title)
+        # ── 1. Jobs: the role level must show a seniority keyword ────────────
+        # Checked against the title and the structured `seniority` field the
+        # posting page gives us ("Mid-Senior level").
+        #
+        # The description is deliberately NOT a general fallback. The include
+        # list holds common words — "senior", "lead", "operations", "partner",
+        # "strategy" — that appear in nearly every job description, so matching
+        # against it would admit essentially everything and turn this gate into
+        # a no-op. It is consulted only for the case it was written for: a
+        # title that is a bare requisition code and says nothing at all.
+        if category == "jobs" and TITLE_INCLUDE_PATTERNS and not _EVALUATOR_ENABLED:
+            level_text = f"{title} {seniority}"
+            if _title_is_uninformative(title):
+                level_text += f" {snippet}"
+            if not _matches_any(level_text, TITLE_INCLUDE_PATTERNS):
+                logger.debug("EXCLUDED (no seniority keyword): %s", title)
                 continue
 
         # ── 2. Title-level exclusion ──────────────────────────────────────────
@@ -147,9 +214,22 @@ def apply_profile_filter(results: list, sources: list | None = None) -> list:
             logger.debug("EXCLUDED (excluded title): %s", title)
             continue
 
+        # ── 2b. Entry-level floor (evaluator mode only) ──────────────────────
+        # With the include gate off, this is the only thing standing between a
+        # theme-park careers page and a model call per hourly posting.
+        if category == "jobs" and _EVALUATOR_ENABLED and _matches_any(title, _ENTRY_LEVEL_FLOOR):
+            entry_level_dropped += 1
+            logger.debug("EXCLUDED (entry-level floor): %s", title)
+            continue
+
         # ── 3. Description saturation exclusion ───────────────────────────────
-        if DESCRIPTION_EXCLUDE_TERMS:
-            hits = _cybersec_description_hit_count(snippet)
+        # Skipped while the evaluator runs. These terms are all information
+        # security, and the brief says infosec roles are diverted to the
+        # Section 6 watchlist, NOT dropped. Killing them here would leave the
+        # watchlist permanently empty, because nothing downstream would ever
+        # see a security posting to route.
+        if DESCRIPTION_EXCLUDE_TERMS and not _EVALUATOR_ENABLED:
+            hits = _cybersec_description_hit_count(body)
             if hits >= DESCRIPTION_EXCLUDE_THRESHOLD:
                 logger.debug("EXCLUDED (description saturation, %d hits): %s", hits, title)
                 continue
@@ -173,4 +253,7 @@ def apply_profile_filter(results: list, sources: list | None = None) -> list:
         len(accepted),
         100 * len(accepted) / len(results) if results else 0,
     )
+    if entry_level_dropped:
+        logger.info("Filter: %d entry-level/hourly titles dropped before scoring.",
+                    entry_level_dropped)
     return accepted

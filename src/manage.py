@@ -12,6 +12,7 @@ Commands:
   apply-prefs       Read USER_PREFS.md and regenerate data/filter_config.json
   research          Ask Claude to suggest new sources and auto-add them
                     to sources.json (duplicates are skipped)
+  log-outreach      Record a conversation you initiated
   build-sources     First-time setup: apply-prefs → research → add all → validate
 
 Usage:
@@ -303,7 +304,17 @@ def cmd_validate_sources(args) -> None:
 
 
 def cmd_test_run(args) -> None:
-    """Run a single scrape + filter + dedup pass without sending email."""
+    """Run a single scrape + filter + dedup pass. Sends nothing unless --send.
+
+    Scraping is the expensive-in-*time* step (network I/O, no tokens);
+    evaluation is the expensive-in-*money* step (real API calls). Without
+    --send this stops after the free part and prints counts, matching the
+    command's name. --send continues past that point into evaluation and
+    (if anything passes) the send — reusing the SAME scrape rather than
+    discarding it, which is the whole reason this flag exists: the plain
+    preview has no way to hand its results to a later process, since nothing
+    about it is persisted to disk.
+    """
     # Load .env manually so we don't need all vars set
     from dotenv import load_dotenv
     load_dotenv(ENV_FILE)
@@ -311,7 +322,7 @@ def cmd_test_run(args) -> None:
     import config
     from scraper import scrape_source
     from filter import apply_profile_filter
-    from deduplicator import get_new_items
+    from deduplicator import find_new
 
     sources = config.load_sources()
     category_filter = args.category  # optional: "jobs", "events", etc.
@@ -320,16 +331,23 @@ def cmd_test_run(args) -> None:
     for source in sources:
         if category_filter and source.get("category") != category_filter:
             continue
-        if source.get("status") == "DEGRADED":
-            print(f"  [SKIP] {source['id']} (DEGRADED)")
+        # Match the pipeline: skip only dead sources. Degraded ones are still
+        # scraped, so a dry run that skipped them would misreport coverage.
+        if str(source.get("status", "")).lower() == "dead":
+            print(f"  [SKIP] {source['id']} (dead)")
             continue
         print(f"  Scraping {source['id']} …", end=" ", flush=True)
-        results = scrape_source(source)
+        results = scrape_source(source, enrich=True)
         print(f"{len(results)} items")
         all_raw.extend(results)
 
     filtered = apply_profile_filter(all_raw, sources)
-    new_items = get_new_items(filtered)
+    # find_new(), not get_new_items()/mark_seen(): nothing is marked seen here.
+    # If --send later processes only some of these (evaluator's per-run cap),
+    # deduplicator.mark_seen() below persists only what was actually judged —
+    # same rule main.py's real pipeline follows, for the same reason: an
+    # item nobody looked at must stay a candidate for next time, not vanish.
+    new_items = find_new(filtered)
 
     print(f"\nDry run complete:")
     print(f"  Raw items:    {len(all_raw)}")
@@ -341,6 +359,65 @@ def cmd_test_run(args) -> None:
         for item in new_items:
             d = item.to_dict()
             print(f"  [{d['category']}] {d['title']} | {d['location']} | {d['url']}")
+
+    if not getattr(args, "send", False):
+        return
+    if not new_items:
+        print("\n--send requested, but there's nothing new to evaluate.")
+        return
+
+    print(f"\n{'=' * 60}")
+    print(f"--send: now calling the Anthropic API to evaluate {len(new_items)} item(s).")
+    print("This is the point where tokens actually get spent — everything above was free.")
+    print(f"{'=' * 60}\n")
+
+    import evaluator
+    import synthesis
+    import emailer
+    import main as pipeline  # reuse its run_log helpers, not duplicate them
+
+    from deduplicator import mark_seen
+
+    run_start = datetime.now(timezone.utc)
+    main_list, watchlist, eval_stats, processed = evaluator.evaluate(new_items)
+    mark_seen(processed)
+
+    summary = {}
+    try:
+        summary = synthesis.summarize(
+            main_list, watchlist, eval_stats,
+            last_run_iso=pipeline._previous_run_timestamp(),
+        )
+    except Exception as exc:
+        print(f"  (synthesis failed, continuing without it: {exc})")
+
+    email_sent = False
+    if main_list or watchlist:
+        to_dicts = lambda items: [i.to_dict() if hasattr(i, "to_dict") else i for i in items]
+        email_sent = emailer.send_digest(
+            to_dicts(main_list), run_start,
+            watchlist=to_dicts(watchlist), eval_stats=eval_stats, summary=summary,
+        )
+        print(f"\nEmail sent: {email_sent}")
+    else:
+        print(f"\n{eval_stats['evaluated']} item(s) evaluated, none passed the match test. No email sent.")
+
+    # Record this as a real run so run_log.json / the pattern flag / future
+    # "since last run" math stay accurate — a manual --send run is still a run.
+    pipeline._append_run_log({
+        "timestamp": run_start.isoformat(),
+        "source": "test-run --send",
+        "raw_items_found": len(all_raw),
+        "new_items_after_filter": len(filtered),
+        "new_items_after_dedup": len(new_items),
+        "evaluated": eval_stats["evaluated"],
+        "main_list": eval_stats["main"],
+        "watchlist": eval_stats["watchlist"],
+        "rejected_by_evaluator": eval_stats["rejected"],
+        "evaluator_degraded": eval_stats["degraded"],
+        "evaluator_skipped": eval_stats.get("skipped", 0),
+        "email_sent": email_sent,
+    })
 
 
 # ── Candidate profile — loaded from USER_PREFS.md ─────────────────────────────
@@ -541,77 +618,126 @@ SOURCES ALREADY MONITORED (do not duplicate these; suggest ADJACENT or MISSING o
 {existing_summary}
 
 TASK:
-Exhaustively enumerate every source that could surface a matching opportunity.
-Do NOT stop at 12 — if the candidate's region has 40 relevant employers, suggest 40.
-Think like a headhunter who knows the region intimately.
+Enumerate sources that will surface opportunities matching this candidate. The
+brief defines five search tracks in its Section 3. Cover every one of them.
+A track with no sources is a track that returns nothing.
 
-Work through this taxonomy and suggest sources in EVERY bucket that applies to the
-candidate's region and role targets. Name SPECIFIC properties, not just parent brands
-(e.g. "JW Marriott Orlando Grande Lakes" and "Ritz-Carlton Orlando Grande Lakes",
-not just "Marriott"). Include the actual ATS career page for each.
+Judge a source by the roles it actually produces, not by employer size. A single
+hotel property's careers page posts housekeepers and banquet managers, and will
+essentially never post a Chief of Staff. That is a bad source here no matter how
+many people the property employs. An employer belongs in this list when it has a
+corporate, executive, or strategic function that posts senior operating roles.
 
-  A. META-AGGREGATORS (highest leverage — one source, many employers):
-     - Google Jobs via SerpAPI or similar
-     - JSearch (LinkedIn + Indeed + Glassdoor + ZipRecruiter normalised)
-     - Adzuna public API
-     - The Muse API, USAJobs API, RemoteOK, We Work Remotely
-     - LinkedIn job RSS via third-party feeds
-     - Indeed publisher RSS variants
+GENERATE THE TRACKS IN THIS EXACT ORDER, AND RESPECT THE COUNT CAP ON EACH ONE.
+Tracks C, D, and E are the ones a headhunter's first pass usually skips, so they
+come first here on purpose: if you run out of output budget, it must happen
+inside Track A, not before you have covered everything else.
 
-  B. MAJOR LOCAL EMPLOYERS — enumerate by industry cluster. For the candidate's region
-     (use the Geography section of USER_PREFS), list every employer with 500+ local
-     headcount. Prefer Workday / Greenhouse / Lever / SmartRecruiters / Ashby / Workable
-     ATS endpoints over scraping corporate career pages — they return stable JSON.
-     Clusters to cover (add/remove based on region):
-       • Hospitality & lodging — name EVERY large hotel/resort property individually
-         (flagship hotels, convention hotels, destination resorts). Generic brand
-         career pages are INSUFFICIENT; also add the property-specific posting page
-         where one exists.
-       • Theme parks, attractions, entertainment venues, professional sports teams
-       • Healthcare systems, hospitals, specialty-care networks, insurers, MCOs
-       • Defense, aerospace, modeling & simulation, government contractors
-       • Technology employers (SaaS, gaming, ad-tech, fintech) with local offices
-       • Higher ed — universities, colleges, research institutes
-       • State/county/city government + utility authorities + transit/airport authorities
-       • Professional services — Big 4, mid-tier consulting, regional law firms
-       • Retail, restaurant, and consumer-brand HQs headquartered in the region
-       • Financial services — regional banks, wealth managers, insurance HQs
-       • Major non-profits and foundations
+  TRACK C: FRACTIONAL AND INTERIM EXECUTIVE (prefix: c_) — target 10-15 sources
+    Bolster, Continuum, Go Fractional, Fractional Jobs, Graphite, Catalant,
+    Business Talent Group, Chief of Staff Network, Toptal executive, Lauber
+    Business Partners and comparable regional interim-leadership practices, SIM
+    and other regional interim networks.
 
-  C. EXECUTIVE SEARCH & FRACTIONAL / BOARD ROLES:
-     - Named exec-search firms' current-searches / "open assignments" pages filtered
-       for the region (Heidrick, Russell Reynolds, Spencer Stuart, Korn Ferry,
-       Egon Zehnder, DHR, and regional boutiques)
-     - Board-seat and fractional platforms (BoardProspects, Bolster, Catalant,
-       ExecuNet, Chief.com events)
+  TRACK D: BOARD AND ADVISORY SEATS (prefix: d_) — target 8-12 sources
+    BoardAssist, Nonprofit Board Match, BoardProspects, LinkedIn board postings,
+    startup advisory board calls, foundation advisory committees, Orlando and
+    Central Florida nonprofit board openings, health system community boards,
+    arts and education boards. Prefer boards with a real committee structure
+    over ceremonial ones.
 
-  D. LOCAL / REGIONAL JOB BOARDS & ASSOCIATIONS:
-     - Regional chamber of commerce job boards
-     - Industry association job boards (e.g. hotel & lodging association,
-       hospital association, CIO council, CFO council)
-     - Economic-development agency hiring pages
+  TRACK E: CONSULTING RFPs AND SPEAKING (prefix: e_) — target 10-15 sources
+    RFPs: foundation and nonprofit procurement pages, GrantStation, Instrumentl,
+    state and municipal solicitation portals, health system and university
+    procurement, targeting organizational assessment, strategic planning,
+    organizational design, change management, and AI readiness.
+    Speaking and facilitation: Sessionize, PaperCall, and CFPs for AI and org
+    design, nonprofit technology (NTEN NTC), healthcare innovation, HR and
+    people ops (HR Transform, Culture First), Chief of Staff Association
+    events, SXSW, regional business and university events, TEDx network.
 
-  E. EVENTS & NETWORKING (candidate may passively learn of roles here):
-     - Eventbrite / Meetup filtered for leadership, career, networking, industry
-     - Local chapters of national associations (ACG, CHRO forums, CFO forums)
-     - Chamber of commerce signature events
-     - University alumni career nights
+  WATCHLIST SOURCES: INFOSEC AND DATA CENTER (prefix: watch_) — target 10-15
+    The brief's Section 6 keeps a separate market-intelligence list, so these
+    are wanted. Target the OPERATING layer, not engineering: chief-of-staff and
+    business-operations roles inside CISO and CTO offices, and COO or business
+    operations roles at data center, colocation, and AI infrastructure
+    companies. Loudoun County (Ashburn, Sterling) is the densest data center
+    market in the world and belongs here rather than in Track A.
 
-  F. SIGNAL SOURCES (roles not yet posted — proactive hunting):
-     - Local business journal feeds (bizjournals, Orlando Inno, Axios Local)
-     - Growth/expansion announcements (new HQ, new office, recent funding)
-     - Executive-departure press releases and SEC 8-K filings implying backfills
-     - M&A announcements implying org restructuring
-     - Major construction / development projects hiring leadership
+  SIGNAL SOURCES: ROLES NOT YET POSTED (prefix: signal_) — target 6-10 sources
+    Regional business journals (bizjournals, Orlando Inno, Axios Local DC).
+    Growth, funding, new-HQ, and expansion announcements. Executive departure
+    announcements implying a backfill. Post-merger and restructuring
+    announcements. The brief's first match-test signal is a leader with a
+    mandate and no infrastructure, and these announcements are where that
+    shows up before a posting exists.
 
-  G. REMOTE-SPECIFIC BOARDS for executive/director roles:
-     - FlexJobs (paid but high quality), We Work Remotely, RemoteOK executive feed,
-       Himalayas, JustRemote, Working Nomads, Remote.co exec
+  BONUS VECTOR: NORDIC AND POLISH (prefix: nordic_) — target 5-8 sources
+    The brief calls this underused and almost nobody searches it. US
+    operations, US expansion, and US-facing leadership roles at Danish,
+    Swedish, Norwegian, and Polish organizations: Novo Nordisk Foundation and
+    its US grantees, Lego, Maersk, Orsted, Danish-American Chamber of
+    Commerce, Nordic Innovation House, EU-funded health and climate
+    initiatives with US arms.
+
+  TRACK B: NONPROFIT AND PHILANTHROPIC (prefix: b_) — target 15-20 sources
+    Sector boards: Bridgespan, Koya Partners and Diversified Search, Talent
+    Citizen, Chronicle of Philanthropy, Philanthropy News Digest, Work for
+    Good, Foundation List, NTEN community, Idealist (senior filter only).
+    Priority per the brief: GRANTEE organizations and portfolio companies of
+    the Gates, Rockefeller, Skoll, and MacArthur foundations, not only the
+    foundations themselves. Name specific grantees where you know them.
+    Health equity, global health delivery, and education redesign
+    organizations. Nonprofits hiring a first COO or Chief of Staff.
+
+  TRACK A: EMPLOYED ROLES, FOR-PROFIT (prefix: a_) — target 35-45 sources,
+  SPLIT ROUGHLY EVENLY BETWEEN ORLANDO AND DC METRO. This track goes last and
+  has the most headroom to enumerate individual employers, but the cap still
+  applies: stop at the target rather than exhausting every employer you know.
+    - Company career pages directly. The brief rates these above aggregators.
+      Prefer the ATS endpoint (Workday, Greenhouse, Lever, SmartRecruiters,
+      Ashby, Workable) over the marketing careers page.
+    - Startup and tech boards: Wellfound, Y Combinator work-at-a-startup,
+      Built In (regional editions), Otta.
+    - Orlando and Central Florida employers with real corporate functions:
+      theme park and entertainment parent companies (not individual parks),
+      health systems, defense and simulation, higher education, utilities and
+      authorities, professional services, regional HQs.
+    - DC metro employers: mission-driven tech, health policy and health systems,
+      AI policy organizations, foundations, national associations and membership
+      organizations, universities and academic medical centers, federal
+      contractors with civilian missions, and Tysons and Reston HQ companies.
+    - Meta-aggregators where a senior filter is possible: Google Jobs via
+      SerpAPI, JSearch, Adzuna, The Muse, USAJobs.
+
+If you are approaching your output budget, finish the track you are on and
+move to the next rather than exhausting the current one. Every track above
+having at least a few entries beats one track having fifty.
+
+GEOGRAPHY. Three zones, all in scope:
+  1. Orlando and Central Florida: Orange, Seminole, Osceola, Lake counties.
+  2. Remote (US).
+  3. Washington DC metro, meaning the full DMV and not just the District.
+     Northern Virginia (Arlington, Alexandria, Falls Church, Fairfax, Tysons,
+     McLean, Vienna, Reston, Herndon, Loudoun, Prince William) and suburban
+     Maryland (Montgomery and Prince George's counties). Postings frequently
+     name only the suburb, so build searches on jurisdiction names rather than
+     on the phrase "Washington DC".
+  Tracks C, D, and E are location-flexible; do not constrain them by zone.
+
+DO NOT SUGGEST sources whose output is dominated by roles the brief hard-excludes:
+individual hotel and restaurant properties, retail and gym locations, construction
+and AE firms, financial services branch or lending roles, and any board whose
+postings are hourly or entry-level. Adding these is the failure mode being fixed:
+the previous configuration returned 614 items of which roughly 5 were relevant.
 
 For EACH suggestion produce:
-  id         — unique snake_case identifier, NO hyphens/spaces; prefix per cluster
-               (hosp_*, health_*, defense_*, tech_*, edu_*, gov_*, search_*, signal_*,
-               meta_*, remote_*, events_*, board_*)
+  id         — unique snake_case identifier, NO hyphens/spaces. Prefix by TRACK,
+               matching the track list above exactly: a_ b_ c_ d_ e_ watch_
+               signal_ nordic_ (e.g. "a_adventhealth_careers", "watch_equinix",
+               "c_bolster"). Do not invent other prefixes — a source's track is
+               how the pipeline understands what it is, and a per-employer or
+               per-cluster prefix instead of the track prefix breaks that.
   name       — human display name including the specific property if applicable
   category   — one of: jobs | events | networking | news
   url        — the MOST SPECIFIC, direct URL to the listings/feed/API endpoint.
@@ -633,17 +759,23 @@ For EACH suggestion produce:
                  "endpoint": "/wday/cxs/TENANT/SITE/jobs",
                  "search_text": "director manager", "limit": 50,
                  "locations": []}}
-  cluster    — which taxonomy letter above (A-G) and the named sub-cluster.
-               Example: "B-hospitality" or "F-signal".
+  cluster    — the track and sub-cluster. Example: "A-orlando-health",
+               "B-foundation-grantee", "D-board", "watch-datacenter".
+  company    — REQUIRED for a single-employer source (a company's own careers
+               page or ATS tenant). The employer name as a reader should see it,
+               e.g. "AdventHealth". Omit for aggregators and multi-employer
+               boards. Without it every posting from that source is anonymous.
   notes      — 1-2 sentences: why this fits the candidate; flag URL/tenant
                uncertainty; explain any educated guess in selectors or api_config.
 
 HARD REQUIREMENTS:
-- Cover every major employer ≥ 500 local headcount the candidate could plausibly
-  target — do NOT omit any because it "seems obvious". Obvious is good.
-- Name specific hotel properties, specific hospital campuses, specific government
-  authorities. Do not collapse a city's entire hospitality sector into one entry.
+- Every one of the five tracks must be represented. Tracks C, D, and E are the
+  ones most often skipped, and skipping them is a failure.
+- Cover both Orlando and the DC metro for Track A. A source list that only
+  covers Florida silently drops a third of the search.
 - Prefer ATS endpoints (Workday, Greenhouse, Lever) over corporate career pages.
+- Where an ATS supports a keyword or level filter, target senior operating roles
+  in the URL rather than pulling the employer's entire req list.
 - Suggest meta-aggregators (Category A) even if the candidate might need an API key
   — the pipeline operator will decide whether to wire them up.
 - If a source is already in the existing list but its URL looks stale or generic,
@@ -659,12 +791,15 @@ OUTPUT FORMAT — THIS IS A HARD REQUIREMENT:
   the array with `]` rather than leaving an object half-written.
 
 Schema: [{{"id": "...", "name": "...", "category": "...", "url": "...",
-           "strategy": "...", "cluster": "...", "notes": "...",
+           "strategy": "...", "cluster": "...", "notes": "...", "company": "...",
            "selectors": {{}} | {{"item_container":"...","title":"...","link":"...","location":"...","date":"..."}},
            "api_config": {{}} | {{"base_url":"...","endpoint":"...","search_text":"...","limit":50,"locations":[]}}}}]"""
 
     # Larger budget: the taxonomy produces dozens of suggestions.
-    raw, stop_reason = _llm_call(client, prompt, "research", max_tokens=32768)
+    # 48k gives headroom over the ~33k a full 7-track, capped run needs; the
+    # per-track caps in the prompt are what actually prevent truncation now —
+    # this ceiling is a backstop, not the primary control.
+    raw, stop_reason = _llm_call(client, prompt, "research", max_tokens=48000)
     start = raw.find("[")
     if start < 0:
         print("ERROR: Claude did not return a JSON array (no `[` in response).")
@@ -761,6 +896,12 @@ def _add_sources(suggestions: list[dict], sources: list[dict]) -> list[str]:
         # JSON API suggestions from landing with empty configs.
         if strategy in ("workday_api", "json_api") and s.get("api_config"):
             new_entry["api_config"] = s["api_config"]
+        # Single-employer sources (a company's own careers page or ATS tenant)
+        # never print the employer on the card, because it is the whole site.
+        # scraper.py uses this as the fallback company for every item, so
+        # dropping it here would leave those postings anonymous.
+        if s.get("company"):
+            new_entry["company"] = str(s["company"]).strip()
         # Preserve taxonomy cluster + research notes for coverage reporting.
         if s.get("cluster"):
             new_entry["cluster"] = s["cluster"]
@@ -967,6 +1108,16 @@ def cmd_build_sources(args) -> None:
 
 # ── CLI routing ────────────────────────────────────────────────────────────────
 
+def cmd_log_outreach(args) -> None:
+    """Record a conversation you initiated, for the digest's pattern flag."""
+    import synthesis
+
+    entry = synthesis.log_outreach(args.who, args.note or "")
+    total = len(synthesis._load_outreach())
+    print(f"  Logged: {entry['who']}" + (f" - {entry['note']}" if entry["note"] else ""))
+    print(f"  {total} conversation(s) recorded in total.")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Project Opportunity — Management CLI",
@@ -1004,6 +1155,13 @@ def main() -> None:
     p_test = sub.add_parser("test-run", help="Dry-run scrape without sending email")
     p_test.add_argument("--category", help="Only scrape this category (jobs/events/news/networking)")
     p_test.add_argument("--verbose", "-v", action="store_true", help="Print all net-new items")
+    p_test.add_argument(
+        "--send", action="store_true",
+        help="After finding net-new items, also evaluate them against USER_PREFS.md "
+             "and send the digest if anything passes. Costs API tokens (evaluator + "
+             "synthesis calls). Without this flag, test-run only previews counts and "
+             "never calls the model or sends anything.",
+    )
 
     sub.add_parser(
         "apply-prefs",
@@ -1014,6 +1172,13 @@ def main() -> None:
         "research",
         help="Ask Claude to suggest new sources and auto-add them to sources.json",
     )
+
+    p_out = sub.add_parser(
+        "log-outreach",
+        help="Record a conversation you initiated (feeds the digest pattern flag)",
+    )
+    p_out.add_argument("who", help="Person or organization you contacted")
+    p_out.add_argument("--note", default="", help="Optional context")
 
     sub.add_parser(
         "build-sources",
@@ -1032,6 +1197,7 @@ def main() -> None:
         "test-run": cmd_test_run,
         "apply-prefs": cmd_apply_prefs,
         "research": cmd_research,
+        "log-outreach": cmd_log_outreach,
         "build-sources": cmd_build_sources,
     }
     commands[args.command](args)

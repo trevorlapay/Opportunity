@@ -7,11 +7,22 @@ Flow when a source is broken:
   3. LLM lookup   — single, token-light Claude call: "Do you know a current
                     URL for this source?"  No web search, no agentic loops.
                     If Claude knows one → validate by scraping → swap in.
-                    If Claude doesn't know → mark source "dead" (never retry).
+  4. Final scrape — before writing anything off, scrape the current URL once
+                    more.  If it returns items the source was never broken.
 
-"Dead" sources stay in sources.json for auditability but are permanently
-skipped by the pipeline.  The only way to revive one is a manual
-`update-source <id> status healthy` via the management CLI.
+Status ladder: healthy → degraded → dead.
+
+A failed heal moves a source to "degraded", not straight to "dead".  Degraded
+sources are still scraped every run — they are suspect, not gone — and only
+after DEAD_AFTER_FAILED_HEALS separate failed heals does one become "dead".
+This matters: the LLM lookup is asked to recall a URL from memory with no web
+search, so "Claude doesn't know one" is the common answer for an obscure job
+board and is weak evidence that the source is actually broken.  Treating it as
+proof of death retired the majority of the source list.
+
+"Dead" sources are skipped by the pipeline but stay in sources.json for
+auditability, and are auto-revived after DEAD_SOURCE_AUTO_REVIVE_DAYS.  They
+can also be revived manually with `update-source <id> status healthy`.
 """
 
 import json
@@ -27,6 +38,23 @@ from scraper import check_url_health, scrape_source
 logger = logging.getLogger(__name__)
 
 CONSECUTIVE_EMPTY_RUNS_THRESHOLD = 3
+
+# How many separate failed heal attempts a source survives before it is
+# considered dead. Until then it sits at "degraded" and keeps being scraped.
+DEAD_AFTER_FAILED_HEALS = 3
+
+
+def _status(source: dict) -> str:
+    """Normalised status. Older records used the spelling "DEGRADED"."""
+    return str(source.get("status", "healthy")).strip().lower()
+
+
+def is_dead(source: dict) -> bool:
+    """True when a source is retired and the pipeline should skip it.
+
+    Degraded sources are NOT dead — they are still scraped every run.
+    """
+    return _status(source) == "dead"
 
 # Sources marked "dead" are auto-revived after this many days so the pipeline
 # gets a fresh chance at them. This prevents the permanent-trap failure mode
@@ -101,7 +129,8 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
 
     Returns the (possibly mutated) source dict.
     On success: source["status"] == "healthy", active_url updated.
-    On failure: source["status"] == "dead"  — skipped by pipeline forever.
+    On failure: source["status"] becomes "degraded" (still scraped), or
+    "dead" once heal_failures reaches DEAD_AFTER_FAILED_HEALS.
     """
     source_id = source["id"]
     logger.warning("Self-healing triggered for source: %s", source_id)
@@ -112,6 +141,7 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
             source["status"] = "healthy"
             source["last_verified"] = _now()
             source["consecutive_empty_runs"] = 0
+            source["heal_failures"] = 0
             _persist(sources)
             logger.info("Source %s recovered on quick retry.", source_id)
             return source
@@ -128,6 +158,7 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
             source["status"] = "healthy"
             source["last_verified"] = _now()
             source["consecutive_empty_runs"] = 0
+            source["heal_failures"] = 0
             _persist(sources)
             logger.info("Source %s recovered via alternate URL: %s", source_id, recovered_url)
             return source
@@ -148,6 +179,7 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
             source["status"] = "healthy"
             source["last_verified"] = _now()
             source["consecutive_empty_runs"] = 0
+            source["heal_failures"] = 0
             _persist(sources)
             logger.info("Source %s healed via LLM suggestion: %s", source_id, new_url)
             return source
@@ -161,15 +193,57 @@ def heal_source(source: dict, sources: list[dict]) -> dict:
             )
             return source
 
-        # Step 4 — LLM ran and found nothing: mark dead, do not retry
-        source["status"] = "dead"
+        # Step 4 — Nothing worked so far. Before writing the source off, scrape
+        # the current URL one more time. should_heal() decides via HEAD, which
+        # plenty of sites reject or answer differently from a real GET, so a
+        # source can reach this point while still returning items perfectly well.
+        try:
+            still_works = scrape_source(source)
+        except Exception:
+            still_works = []
+
+        if still_works:
+            source["status"] = "healthy"
+            source["last_verified"] = _now()
+            source["consecutive_empty_runs"] = 0
+            source["heal_failures"] = 0
+            _persist(sources)
+            logger.info(
+                "Source %s failed its health check but still returns %d items — "
+                "keeping it healthy.",
+                source_id, len(still_works),
+            )
+            return source
+
+        # Step 5 — Confirmed unproductive. Demote one step rather than killing
+        # outright: the LLM having no replacement URL to offer is weak evidence
+        # that a source is gone, and treating it as proof retires sources that
+        # were only temporarily unreachable.
+        try:
+            # sources.json is hand-editable via manage.py update-source, so
+            # don't assume this is already an int.
+            failures = int(source.get("heal_failures") or 0) + 1
+        except (TypeError, ValueError):
+            failures = 1
+        source["heal_failures"] = failures
         source["last_verified"] = _now()
-        _persist(sources)
-        logger.error(
-            "Source %s marked dead — URL is broken and LLM knows no replacement. "
-            "Permanently skipped. Use manage.py update-source to revive manually.",
-            source_id,
-        )
+
+        if failures < DEAD_AFTER_FAILED_HEALS:
+            source["status"] = "degraded"
+            _persist(sources)
+            logger.warning(
+                "Source %s degraded (failed heal %d of %d) — still scraped each "
+                "run; will be marked dead only if it keeps failing.",
+                source_id, failures, DEAD_AFTER_FAILED_HEALS,
+            )
+        else:
+            source["status"] = "dead"
+            _persist(sources)
+            logger.error(
+                "Source %s marked dead after %d failed heals — skipped until the "
+                "%d-day auto-revive, or revive now with manage.py update-source.",
+                source_id, failures, DEAD_SOURCE_AUTO_REVIVE_DAYS,
+            )
 
     except Exception as exc:
         logger.error(
@@ -190,7 +264,7 @@ def maybe_auto_revive(source: dict, sources: list[dict]) -> bool:
     went dead because of a one-off scrape failure, temporary bot block, or
     since-fixed selector bug gets another shot every two weeks.
     """
-    if source.get("status") != "dead":
+    if _status(source) != "dead":
         return False
     last = source.get("last_verified", "")
     try:
@@ -202,6 +276,7 @@ def maybe_auto_revive(source: dict, sources: list[dict]) -> bool:
 
     source["status"] = "healthy"
     source["consecutive_empty_runs"] = 0
+    source["heal_failures"] = 0  # a revived source starts with a clean slate
     source.pop("last_llm_heal_ts", None)  # reset cooldown so heal can re-try
     _persist(sources)
     logger.info(
@@ -217,12 +292,14 @@ def should_heal(source: dict) -> bool:
 
     Heals on: connection failure (0), URL not found (404), server errors (5xx).
     Skips on:
-      - "dead" or "DEGRADED" status (already permanently failed)
+      - "dead" status (already retired; waits for the auto-revive window)
       - 401/403/429 (bot-blocking — URL is fine, just rejecting us)
       - workday_api strategy (portal URL != API endpoint; use empty-run counter)
+
+    Degraded sources ARE healed: degraded means "suspect", and the whole point
+    of the intermediate state is to keep trying to bring one back.
     """
-    status = source.get("status", "healthy")
-    if status in ("dead", "DEGRADED"):
+    if _status(source) == "dead":
         return False
 
     if source.get("strategy") == "workday_api":

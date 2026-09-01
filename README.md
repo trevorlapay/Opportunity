@@ -1,6 +1,6 @@
 # Project Opportunity
 
-A self-healing, containerized Python application that monitors the Orlando, FL area (and remote equivalents) for career opportunities, professional events, networking groups, and relevant news — filtered for a mid-career management candidate. Runs every 6 hours and delivers a rich HTML email digest only when new findings are detected.
+A self-healing, containerized Python application that monitors the Orlando, FL area (and remote equivalents) for career opportunities, professional events, networking groups, and relevant news — filtered for a mid-career management candidate. **Runs once on startup** and delivers a rich HTML email digest only when new findings are detected, then exits. Drive cadence with cron / systemd / a Docker scheduler / a CI scheduled trigger as you prefer.
 
 ---
 
@@ -19,7 +19,7 @@ py -3.11 src/manage.py setup
 # 4. Generate filter + sources from USER_PREFS.md, then validate everything
 py -3.11 src/manage.py build-sources
 
-# 5. Start the scheduler (runs immediately, then every 6 hours)
+# 5. Run the pipeline once (exits when complete; wrap in cron/systemd for cadence)
 py -3.11 src/main.py
 ```
 
@@ -84,7 +84,7 @@ py -3.11 src/main.py
 docker compose up --build
 ```
 
-The pipeline fires **immediately on startup**, then repeats every 6 hours. If zero new items are found, no email is sent.
+The pipeline runs **once on startup** and exits. If zero new items are found, no email is sent. To re-run on a schedule, use cron, systemd timers, a Docker scheduler, or a CI scheduled trigger — e.g. cron-style `0 */6 * * * docker compose run --rm opportunity`.
 
 ---
 
@@ -125,7 +125,7 @@ py -3.11 src/manage.py validate-sources
 # Dry run — scrapes everything, no email sent
 py -3.11 src/manage.py test-run --verbose
 
-# Start the scheduler (runs now, then every 6 hours)
+# Run the pipeline once (exits when complete)
 py -3.11 src/main.py
 ```
 
@@ -289,7 +289,7 @@ With `--add`: you pick suggestions by number; selected sources are written to `d
 
 ## How It Works
 
-### Pipeline (per run, every 6 hours)
+### Pipeline (per run — single-shot)
 
 ```
 1. Load sources from data/sources.json
@@ -515,7 +515,7 @@ opportunity/
 │   ├── filter.py            # Candidate profile filtering (reads filter_config.json)
 │   ├── deduplicator.py      # SHA-256 fingerprinting & state management
 │   ├── emailer.py           # HTML digest email via Gmail SMTP
-│   ├── scheduler.py         # Run-on-startup + 6-hour scheduler
+│   ├── scheduler.py         # Single-run launcher with 45-minute timeout
 │   ├── config.py            # Environment variable loading
 │   └── manage.py            # Management CLI (apply-prefs, research, test-run, etc.)
 ├── data/                    # Persistent volume (mounted in Docker)

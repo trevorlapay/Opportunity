@@ -1,23 +1,22 @@
 """
-scheduler.py — 6-hour cron-style scheduler.
+scheduler.py — single-run launcher.
 
-Runs the pipeline immediately on startup, then once every 6 hours.
-A 45-minute wall-clock timeout aborts any run that runs too long.
+Runs the pipeline once on startup and exits. A 45-minute wall-clock timeout
+aborts the run if it hangs. To re-run on a schedule, drive this from cron,
+systemd, Docker's `restart` policy, or a CI scheduled trigger.
 """
 
 import logging
 import signal
-import time
 from datetime import datetime, timezone
 
 logger = logging.getLogger(__name__)
 
-RUN_INTERVAL_SECONDS = 6 * 3600     # 6 hours
-RUN_TIMEOUT_SECONDS  = 45 * 60      # 45 minutes
+RUN_TIMEOUT_SECONDS = 45 * 60       # 45 minutes
 
 
 class RunTimeoutError(Exception):
-    """Raised when a single pipeline run exceeds RUN_TIMEOUT_SECONDS."""
+    """Raised when the pipeline run exceeds RUN_TIMEOUT_SECONDS."""
 
 
 def _timeout_handler(signum, frame):
@@ -26,18 +25,14 @@ def _timeout_handler(signum, frame):
 
 def run_forever(pipeline_fn) -> None:
     """
-    Execute pipeline_fn immediately, then once every 6 hours.
-    Catches all exceptions so the scheduler never dies.
+    Run pipeline_fn once with a 45-minute timeout, then return.
+
+    Name kept for backward-compatibility with main.py's import; behaviour
+    is now single-shot. Wrap this process in cron/systemd/etc. for cadence.
     """
-    logger.info("Scheduler starting — running pipeline immediately on startup.")
-
-    # First run: immediate, no delay
+    logger.info("Scheduler starting — single run on startup.")
     _execute_with_timeout(pipeline_fn)
-
-    while True:
-        logger.info("Next run in 6 hours.")
-        time.sleep(RUN_INTERVAL_SECONDS)
-        _execute_with_timeout(pipeline_fn)
+    logger.info("Single-run mode: exiting after pipeline completion.")
 
 
 def _execute_with_timeout(pipeline_fn) -> None:
@@ -54,7 +49,7 @@ def _execute_with_timeout(pipeline_fn) -> None:
         pipeline_fn()
         logger.info("Pipeline run completed.")
     except RunTimeoutError:
-        logger.warning("Pipeline run ABORTED — exceeded 45-minute timeout. Will resume next hour.")
+        logger.warning("Pipeline run ABORTED — exceeded 45-minute timeout.")
     except Exception as exc:
         logger.error("Pipeline run ERROR: %s", exc, exc_info=True)
     finally:

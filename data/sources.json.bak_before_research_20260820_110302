@@ -20,12 +20,11 @@
         "no results",
         "page not found"
       ],
-      "status": "degraded",
-      "last_verified": "2026-09-01T16:34:54.137260+00:00",
-      "consecutive_empty_runs": 4,
+      "status": "healthy",
+      "last_verified": "2026-04-24T13:21:01.808392+00:00",
+      "consecutive_empty_runs": 2,
       "research_notes": "Indeed shut down their public RSS endpoint in 2024. Keeping for posterity; replaced with LinkedIn guest API + RSS aggregators.",
-      "heal_failures": 2,
-      "last_llm_heal_ts": "2026-09-01T16:34:49.846885+00:00"
+      "heal_failures": 0
     },
     {
       "id": "linkedin_jobs",
@@ -79,7 +78,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:18:03.581377+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 0,
       "company": "Walt Disney World"
     },
     {
@@ -106,12 +105,11 @@
         "no results",
         "page not found"
       ],
-      "status": "degraded",
-      "last_verified": "2026-09-01T16:36:14.750889+00:00",
-      "consecutive_empty_runs": 4,
+      "status": "healthy",
+      "last_verified": "2026-04-24T16:28:47.719810+00:00",
+      "consecutive_empty_runs": 2,
       "company": "Universal Parks & Resorts",
-      "heal_failures": 2,
-      "last_llm_heal_ts": "2026-09-01T16:36:05.233580+00:00"
+      "heal_failures": 0
     },
     {
       "id": "nbcuniversal_careers",
@@ -136,12 +134,11 @@
         "no results",
         "page not found"
       ],
-      "status": "degraded",
-      "last_verified": "2026-09-01T16:36:53.018576+00:00",
-      "consecutive_empty_runs": 4,
+      "status": "healthy",
+      "last_verified": "2026-04-24T16:29:31.915395+00:00",
+      "consecutive_empty_runs": 2,
       "company": "NBCUniversal",
-      "heal_failures": 2,
-      "last_llm_heal_ts": "2026-09-01T16:36:38.532718+00:00"
+      "heal_failures": 0
     },
     {
       "id": "adventhealth_careers",
@@ -165,12 +162,11 @@
         "no results",
         "page not found"
       ],
-      "status": "degraded",
-      "last_verified": "2026-09-01T16:37:27.109740+00:00",
-      "consecutive_empty_runs": 4,
+      "status": "healthy",
+      "last_verified": "2026-04-24T16:30:11.424483+00:00",
+      "consecutive_empty_runs": 2,
       "company": "AdventHealth",
-      "heal_failures": 2,
-      "last_llm_heal_ts": "2026-09-01T16:37:11.734713+00:00"
+      "heal_failures": 0
     },
     {
       "id": "orlando_health_careers",
@@ -194,12 +190,11 @@
         "no results",
         "page not found"
       ],
-      "status": "degraded",
-      "last_verified": "2026-09-01T16:38:14.994119+00:00",
-      "consecutive_empty_runs": 4,
+      "status": "healthy",
+      "last_verified": "2026-04-24T16:30:42.203387+00:00",
+      "consecutive_empty_runs": 2,
       "company": "Orlando Health",
-      "heal_failures": 2,
-      "last_llm_heal_ts": "2026-09-01T16:37:59.410070+00:00"
+      "heal_failures": 0
     },
     {
       "id": "lockheed_martin_careers",
@@ -223,7 +218,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-19T17:27:33.050895+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Lockheed Martin",
       "heal_failures": 1,
       "last_llm_heal_ts": "2026-08-19T17:27:28.926417+00:00"
@@ -248,7 +243,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T13:21:42.795268+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Siemens",
       "heal_failures": 0
     },
@@ -272,7 +267,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-19T17:27:44.919397+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Darden Restaurants",
       "heal_failures": 2,
       "last_llm_heal_ts": "2026-08-19T17:27:41.001589+00:00"
@@ -297,7 +292,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-19T17:27:55.774924+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Hilton",
       "heal_failures": 2,
       "last_llm_heal_ts": "2026-08-19T17:27:51.287738+00:00"
@@ -322,7 +317,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T13:22:07.341388+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Florida Blue",
       "heal_failures": 0
     },
@@ -348,7 +343,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-19T17:28:08.582452+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 2,
       "last_llm_heal_ts": "2026-08-19T17:28:03.715632+00:00"
     },
@@ -372,7 +367,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T13:22:18.055119+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -397,7 +392,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T13:22:49.181765+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -415,7 +410,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-19T17:28:22.371505+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "remote_only_source": true,
       "heal_failures": 2,
@@ -441,7 +436,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T19:31:55.093233+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -468,7 +463,7 @@
       ],
       "status": "degraded",
       "last_verified": "2026-08-09T18:21:42.327951+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 1,
       "last_llm_heal_ts": "2026-08-09T18:21:38.579018+00:00"
     },
@@ -493,7 +488,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:23:05.448066+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -517,7 +512,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T19:32:20.949471+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -563,7 +558,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T13:23:15.436394+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -587,7 +582,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T19:32:34.367567+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -610,7 +605,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T16:00:27.485249+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -633,7 +628,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T16:00:37.463220+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -656,7 +651,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:44:10.458382+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -678,7 +673,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T16:00:53.255484+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -701,7 +696,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:44:20.225047+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -724,7 +719,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T16:01:04.960678+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -749,7 +744,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:44:30.344049+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -768,7 +763,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:44:39.984418+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -791,7 +786,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-26T13:38:50.059569+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -810,7 +805,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-24T16:01:22.247382+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -833,7 +828,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-26T13:39:00.426020+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -864,7 +859,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T13:39:20.066463+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "SeaWorld Parks & Entertainment",
       "heal_failures": 0
     },
@@ -879,7 +874,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T13:39:32.543126+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Nemours Children's Health",
       "heal_failures": 0
     },
@@ -894,7 +889,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T19:46:00.299878+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "GuideWell",
       "heal_failures": 0
     },
@@ -909,7 +904,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T19:46:09.324091+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "HCA Healthcare",
       "heal_failures": 0
     },
@@ -924,7 +919,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-25T20:30:08.569438+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "research_notes": "FlexJobs requires login and aggressive bot evasion. Remove or replace with RemoteOK/WWR/Remotive feeds (all added).",
       "remote_only_source": true,
       "heal_failures": 0
@@ -958,7 +953,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T19:46:21.621020+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -972,7 +967,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T19:46:40.099879+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Central Florida Hotel & Lodging Association",
       "heal_failures": 0
     },
@@ -987,7 +982,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-26T19:46:48.311453+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Visit Orlando",
       "heal_failures": 0
     },
@@ -1002,7 +997,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T13:21:34.970992+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -1016,7 +1011,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T13:21:54.116013+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -1032,7 +1027,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-27T13:22:04.473317+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "remote_only_source": true,
       "heal_failures": 0
@@ -1048,7 +1043,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T13:22:14.090774+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Merlin Entertainments",
       "heal_failures": 0
     },
@@ -1063,7 +1058,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T13:22:38.528990+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Marriott International",
       "heal_failures": 0
     },
@@ -1078,7 +1073,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T19:27:47.929225+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Elevance Health",
       "heal_failures": 0
     },
@@ -1093,7 +1088,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T19:27:58.194160+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Charter Communications",
       "heal_failures": 0
     },
@@ -1108,7 +1103,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T19:28:15.910079+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Deloitte",
       "heal_failures": 0
     },
@@ -1123,7 +1118,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-27T19:28:26.636597+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "L3Harris Technologies",
       "heal_failures": 0
     },
@@ -1141,7 +1136,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-27T19:28:36.582546+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "remote_only_source": true,
       "company": "UnitedHealth Group",
@@ -1158,7 +1153,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T13:21:37.321432+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Orlando Utilities Commission",
       "heal_failures": 0
     },
@@ -1173,7 +1168,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-16T12:18:02.915084+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "remote_only_source": true
     },
     {
@@ -1187,7 +1182,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T13:21:47.107284+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -1201,7 +1196,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T13:21:56.724426+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "company": "Orlando City Soccer Club",
       "heal_failures": 0
     },
@@ -1216,7 +1211,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T13:22:07.299940+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "heal_failures": 0
     },
     {
@@ -1230,7 +1225,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T13:22:20.495921+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1246,7 +1241,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T19:25:41.682425+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1262,7 +1257,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T19:25:55.592567+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1278,7 +1273,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T19:26:12.235546+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1294,7 +1289,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T19:26:31.572789+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1310,7 +1305,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-28T19:26:42.604031+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1326,7 +1321,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T01:29:04.461411+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1342,7 +1337,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T01:29:12.635556+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1358,7 +1353,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T01:29:22.634540+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1374,7 +1369,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T01:29:34.437914+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1390,7 +1385,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T01:29:48.144682+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1406,7 +1401,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T13:21:38.707954+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1422,7 +1417,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-04-29T13:21:52.132946+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "B-hospitality",
       "research_notes": "Specific Orlando hotel/resort property \u2014 500+ local headcount; leadership roles posted independently of generic brand-level careers pages.",
       "heal_failures": 0
@@ -1442,7 +1437,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-29T13:22:00.558741+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
       "remote_only_source": true,
@@ -1503,7 +1498,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-29T13:22:10.930139+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
       "remote_only_source": true,
@@ -1524,7 +1519,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:29:49.487916+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
       "remote_only_source": true
@@ -1544,7 +1539,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:29:49.487916+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
       "remote_only_source": true
@@ -1564,7 +1559,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-29T13:22:23.071955+00:00",
-      "consecutive_empty_runs": 4,
+      "consecutive_empty_runs": 2,
       "cluster": "G-remote-management",
       "research_notes": "Remote-only management role aggregator. RSS strategy = no selectors needed.",
       "remote_only_source": true,
@@ -1637,7 +1632,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:40:48.584089+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 0,
       "cluster": "A-meta-linkedin",
       "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
       "remote_only_source": true
@@ -1664,7 +1659,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:40:48.584089+00:00",
-      "consecutive_empty_runs": 1,
+      "consecutive_empty_runs": 0,
       "cluster": "A-meta-linkedin",
       "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
       "remote_only_source": true
@@ -1799,7 +1794,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:40:48.584089+00:00",
-      "consecutive_empty_runs": 0,
+      "consecutive_empty_runs": 2,
       "cluster": "A-meta-linkedin",
       "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
       "remote_only_source": true
@@ -1826,7 +1821,7 @@
       ],
       "status": "healthy",
       "last_verified": "2026-04-25T20:40:48.584089+00:00",
-      "consecutive_empty_runs": 0,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-linkedin",
       "research_notes": "LinkedIn jobs-guest API \u2014 undocumented but stable. Returns HTML cards parseable with the configured selectors.",
       "remote_only_source": true
@@ -1922,7 +1917,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://serpapi.com",
         "endpoint": "/search.json?engine=google_jobs",
@@ -1948,7 +1943,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://jsearch.p.rapidapi.com",
         "endpoint": "/search",
@@ -1973,7 +1968,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://api.adzuna.com/v1/api/jobs/us",
         "endpoint": "/search/1",
@@ -1998,7 +1993,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://data.usajobs.gov",
         "endpoint": "/api/search",
@@ -2191,7 +2186,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "Indeed RSS for DC metro. Existing Indeed feed is Orlando-only. Radius 25 captures NoVA and MD suburbs."
     },
@@ -2206,7 +2201,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "More targeted than existing Indeed feed which uses generic manager/director/VP terms. This targets match-test language."
     },
@@ -2227,7 +2222,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "Wellfound is called out in Track A. Startup chief-of-staff roles. Also search VP Operations and Head of Strategy."
     },
@@ -2248,7 +2243,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "Called out in Track A. YC companies often fit the 'leader with mandate, no infrastructure' test. Filter to operations role type."
     },
@@ -2269,7 +2264,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "Called out in Track A. Otta curates growth-stage companies. Requires playwright due to SPA rendering. High-quality startup and scale-up roles."
     },
@@ -2311,7 +2306,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "A-meta-aggregator",
       "research_notes": "DC tech employer coverage. Not in existing feeds. Built In DC has strong coverage of mission-driven tech."
     },
@@ -2326,7 +2321,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://himalayas.app",
         "endpoint": "/api/jobs",
@@ -2354,7 +2349,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "G-remote",
       "research_notes": "Remote exec board not in existing feeds. Smaller volume but curated quality."
     },
@@ -2375,7 +2370,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "G-remote",
       "research_notes": "Curated remote executive roles. Small volume, high relevance when matches appear."
     },
@@ -2390,7 +2385,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "G-remote",
       "research_notes": "Has RSS feed at /jobs/rss. Management category captures COO, VP Ops, CoS type roles."
     },
@@ -2411,7 +2406,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Premier board for senior nonprofit roles. COO, ED, Chief of Staff at major grantee organizations. Not in existing feeds."
     },
@@ -2432,7 +2427,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Filter to executive level. Massive nonprofit board; without senior filter, returns hundreds of irrelevant roles."
     },
@@ -2453,7 +2448,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Smaller board but curated for mission-driven orgs."
     },
@@ -2474,7 +2469,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Candid's job board. Good for foundation-adjacent and grantee org roles."
     },
@@ -2495,7 +2490,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Senior nonprofit leadership roles. Often has first-COO and scaling-org postings."
     },
@@ -2516,7 +2511,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Specifically targets foundation and foundation-funded organization roles."
     },
@@ -2537,7 +2532,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B source. Nonprofit tech community. Operations and leadership roles at tech-forward nonprofits."
     },
@@ -2558,7 +2553,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Track B source. Premier nonprofit/mission-driven exec search firm. Open searches page lists active mandates."
     },
@@ -2579,7 +2574,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Track B source. Nonprofit and social impact exec search. Active searches page. Small volume, high relevance."
     },
@@ -2600,7 +2595,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Top-tier exec search. Open roles page sometimes lists COO, Chief of Staff, and transformation mandates."
     },
@@ -2621,7 +2616,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Top-tier exec search. Current searches page. Focus on COO, Chief of Staff, transformation roles."
     },
@@ -2642,7 +2637,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Top-tier exec search. Board and C-suite mandates. Strong in nonprofit and healthcare sectors."
     },
@@ -2663,7 +2658,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Major exec search firm. Covers healthcare, tech, nonprofit sectors. Open searches page."
     },
@@ -2684,7 +2679,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Top-tier search. Known for transformation and organizational effectiveness mandates."
     },
@@ -2705,7 +2700,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Mid-market exec search. Good for the 300-1500 employee sweet spot. Active in DC and Florida."
     },
@@ -2726,7 +2721,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-executive-search",
       "research_notes": "Mid-market retained search specializing in COO, Chief of Staff, and operations leadership at growth companies."
     },
@@ -2747,7 +2742,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Premier fractional exec platform. COO, CoS, interim ED roles. Requires profile creation."
     },
@@ -2768,7 +2763,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Fractional COO, VP Ops roles. Growth-stage companies."
     },
@@ -2789,7 +2784,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Fractional COO and Chief of Staff placements."
     },
@@ -2810,7 +2805,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Aggregates fractional executive openings across platforms."
     },
@@ -2831,7 +2826,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Expert marketplace. Org design, strategy execution consulting engagements."
     },
@@ -2852,7 +2847,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Enterprise consulting projects. Org transformation, strategy execution, interim leadership."
     },
@@ -2873,7 +2868,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. High-end interim and project-based exec engagements. Strategy, operations, transformation."
     },
@@ -2894,7 +2889,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Dedicated CoS community and job board. Both fractional and full-time CoS roles."
     },
@@ -2915,7 +2910,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Track C source. Toptal's operations consulting vertical. Selective but high-value engagements."
     },
@@ -2936,7 +2931,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-fractional",
       "research_notes": "Senior executive community and job board. Full-time and interim/fractional roles at director+ level."
     },
@@ -2957,7 +2952,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-board",
       "research_notes": "Track D source. Nonprofit board placements. Matches governance and operating skill set."
     },
@@ -2978,7 +2973,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-board",
       "research_notes": "Track D source. Both nonprofit and corporate board seats. Can filter by skill set."
     },
@@ -2999,7 +2994,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-board",
       "research_notes": "Track D source. Regional board matching programs. Central Florida focus."
     },
@@ -3014,7 +3009,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "C-board",
       "research_notes": "Executive women's community. Board placement program and peer advisory. Orlando and DC chapters."
     },
@@ -3057,7 +3052,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-higher-ed",
       "research_notes": "Track A Orlando employer. ~2000 employees. Private creative university. VP/Director operations roles."
     },
@@ -3078,7 +3073,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-higher-ed",
       "research_notes": "Major Orlando employer. 13,000+ employees. Chief of Staff, AVP, VP roles in administration. Workday ATS."
     },
@@ -3115,7 +3110,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://rollins.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/rollins/Rollins/jobs",
@@ -3137,7 +3132,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://valenciacollege.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/valenciacollege/ValenciaCollege/jobs",
@@ -3165,7 +3160,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-higher-ed",
       "research_notes": "Private university near Orlando. VP and director admin roles."
     },
@@ -3180,7 +3175,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://adventhealth.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/adventhealth/adventhealth/jobs",
@@ -3204,7 +3199,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://nemours.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/nemours/Nemours_Careers/jobs",
@@ -3228,7 +3223,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://orlandohealth.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/orlandohealth/Orlando_Health/jobs",
@@ -3256,7 +3251,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "GuideWell is FL Blue parent. Jacksonville HQ but Orlando operations. Health innovation and AI investment arm (GuideWell Innovation)."
     },
@@ -3277,7 +3272,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Major hospital system with several Orlando-area facilities (Osceola Regional, Central Florida Regional). VP and director roles."
     },
@@ -3292,7 +3287,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Massive health system employer. Remote VP and Director roles. Optum division often has strategy-to-execution mandates."
     },
@@ -3307,7 +3302,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://elevancehealth.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/elevancehealth/ANT/jobs",
@@ -3335,7 +3330,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Major MCO. Remote-friendly. Strategy and operations leadership roles at scale."
     },
@@ -3356,7 +3351,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Major Orlando defense employer. 3000+ local headcount. Director/VP operations and strategy roles in simulation and training."
     },
@@ -3377,7 +3372,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Already partially monitored. Adding targeted CoS/ops search. Major Orlando defense employer. 5000+ local."
     },
@@ -3398,7 +3393,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Major defense employer with Orlando simulation/training presence. Director/VP operations roles."
     },
@@ -3419,7 +3414,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Defense contractor with Orlando operations. Simulation and electronic systems division."
     },
@@ -3440,7 +3435,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "GDIT has Orlando presence. Director operations and program leadership roles."
     },
@@ -3461,7 +3456,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Simulation and training company. Orlando is a major site. VP and director operations roles."
     },
@@ -3482,7 +3477,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Reston-HQ defense/IT contractor. 45,000+ employees. Civilian mission side has strategy-to-execution roles."
     },
@@ -3503,7 +3498,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "McLean HQ. Major consulting/contractor. Strategy-to-execution and transformation roles on civilian side."
     },
@@ -3524,7 +3519,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Reston HQ. Federal IT and professional services. COO and strategy roles on transformation programs."
     },
@@ -3539,7 +3534,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://mantech.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/mantech/External/jobs",
@@ -3567,7 +3562,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Herndon-based national security IT company. Grew rapidly via acquisitions; may have transformation mandates."
     },
@@ -3588,7 +3583,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-defense",
       "research_notes": "Bethesda HQ. Corporate strategy and operations director+ roles. Already monitored for Orlando; adding DC."
     },
@@ -3609,7 +3604,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "EA Tiburon is a major Orlando game studio. ~1000 local. Director/VP operations and studio leadership roles."
     },
@@ -3630,7 +3625,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Orlando studio presence. Director operations, studio management, strategy roles."
     },
@@ -3651,7 +3646,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Microsoft has Orlando operations (simulation, mixed reality). Director/VP strategy and ops roles."
     },
@@ -3672,7 +3667,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Google DC office. Policy, operations, strategy roles. CoS roles common in Google's org structure."
     },
@@ -3693,7 +3688,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Amazon HQ2 in Arlington. Massive hiring. CoS and operations director roles across AWS and corporate."
     },
@@ -3714,7 +3709,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Meta DC office. Policy and operations leadership. CoS roles exist in their org structure."
     },
@@ -3729,7 +3724,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://jobs.apple.com",
         "endpoint": "/api/role/search",
@@ -3759,7 +3754,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Salesforce has DC office and strong remote culture. CoS and transformation roles at scale."
     },
@@ -3780,7 +3775,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "McLean HQ. Tech-forward bank but CoS and strategy-operations roles are distinct from banking VP roles. Worth monitoring for match-test language."
     },
@@ -3795,7 +3790,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://maxar.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/maxar/MAXAR/jobs",
@@ -3823,7 +3818,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "DC office. Business operations and CoS roles. AI/data company with government and commercial clients."
     },
@@ -3838,7 +3833,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://boards-api.greenhouse.io",
         "endpoint": "/v1/boards/cloudflare/jobs",
@@ -3888,7 +3883,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Cybersecurity. Section 6 watchlist for CISO-office roles; main list for corporate operations/strategy."
     },
@@ -3903,7 +3898,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://boards-api.greenhouse.io",
         "endpoint": "/v1/boards/zscaler/jobs",
@@ -3925,7 +3920,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://boards-api.greenhouse.io",
         "endpoint": "/v1/boards/datadog/jobs",
@@ -3947,7 +3942,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://boards-api.greenhouse.io",
         "endpoint": "/v1/boards/hashicorp/jobs",
@@ -3975,7 +3970,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Enterprise SaaS. Orlando and DC offices. CoS and business operations roles at scale."
     },
@@ -3996,7 +3991,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Already partially monitored. Siemens Energy has distinct ATS from Siemens AG. Orlando is a major energy hub."
     },
@@ -4017,7 +4012,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-professional-services",
       "research_notes": "Already partially monitored for Orlando. Adding DC-specific search. Rosslyn HQ. Human capital and strategy consulting leadership."
     },
@@ -4038,7 +4033,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-professional-services",
       "research_notes": "Accenture Federal Services in Arlington. Transformation and org design leadership on federal programs."
     },
@@ -4059,7 +4054,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-professional-services",
       "research_notes": "DC office. Engagement manager, operations, and CoS roles at McKinsey and McKinsey.org."
     },
@@ -4080,7 +4075,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-professional-services",
       "research_notes": "DC office. Internal operations, transformation, and CoS roles (not client-facing consulting)."
     },
@@ -4101,7 +4096,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Largest DC-area county. 12,000+ employees. Director and deputy director roles in administration."
     },
@@ -4122,7 +4117,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Arlington County. Director and deputy director-level roles."
     },
@@ -4143,7 +4138,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Montgomery County MD. Director and chief of staff roles in county government."
     },
@@ -4164,7 +4159,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "District of Columbia government. Director and chief of staff roles across agencies."
     },
@@ -4185,7 +4180,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Loudoun County VA. Fast-growing county, director-level roles. Note: data center industry roles go to watchlist."
     },
@@ -4206,7 +4201,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Prince William County VA. Director-level government roles."
     },
@@ -4227,7 +4222,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Orlando International Airport authority. 1000+ employees. Director ops and strategy roles."
     },
@@ -4248,7 +4243,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Toll road authority. Director and VP roles in operations and administration."
     },
@@ -4269,7 +4264,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Orlando transit authority. Director-level operations and strategy roles."
     },
@@ -4290,7 +4285,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Seminole County FL. Director-level roles. Lake Mary corridor employer."
     },
@@ -4311,7 +4306,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Osceola County FL. Director-level roles. Kissimmee/Celebration area."
     },
@@ -4332,7 +4327,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Lake County FL. Part of Central Florida zone per prefs."
     },
@@ -4353,7 +4348,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "Operates Dulles and Reagan airports and Dulles Corridor Metrorail. Director-level operations roles."
     },
@@ -4374,7 +4369,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-government",
       "research_notes": "DC transit authority. 13,000+ employees. Director and VP-level transformation roles."
     },
@@ -4389,7 +4384,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://universalparks.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/universalparks/Universal_Creative/jobs",
@@ -4411,7 +4406,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://universalparks.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/universalparks/UDX_Careers/jobs",
@@ -4439,7 +4434,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "Already monitored for director/manager. Adding targeted CoS and strategy search. Disney corporate, not just parks."
     },
@@ -4460,7 +4455,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "Disney Entertainment segment and ESPN. Strategy and operations leadership at Lake Buena Vista."
     },
@@ -4475,7 +4470,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://seaworldentertainment.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/seaworldentertainment/SeaWorld/jobs",
@@ -4505,7 +4500,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "Already partially monitored. LEGOLAND Winter Haven. Director and VP operations roles. Nordic connection (LEGO/Merlin)."
     },
@@ -4526,7 +4521,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "NBA franchise. VP and director operations, strategy roles. DeVos family owned. Community impact board opportunities."
     },
@@ -4547,7 +4542,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "Already partially monitored via club site. Teamwork Online is the actual ATS for sports teams."
     },
@@ -4568,7 +4563,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Florida HQ (Plantation but remote-friendly). Growth-stage e-commerce. CoS and operations leadership."
     },
@@ -4589,7 +4584,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-entertainment",
       "research_notes": "Entertainment and consumer brand. Orlando operations. Director and VP operations roles."
     },
@@ -4604,7 +4599,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://igt.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/igt/Careers/jobs",
@@ -4634,7 +4629,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-professional-services",
       "research_notes": "Staffing/professional services. Orlando presence. Director ops and strategy roles."
     },
@@ -4655,7 +4650,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Major DC-area employer. Arlington presence. CoS, strategy, and operations leadership."
     },
@@ -4670,7 +4665,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://boards-api.greenhouse.io",
         "endpoint": "/v1/boards/fanatics/jobs",
@@ -4720,7 +4715,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B priority target. Foundation itself plus grantee network intelligence."
     },
@@ -4741,7 +4736,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B priority target. Social entrepreneurship. Small team but portfolio org network is large."
     },
@@ -4762,7 +4757,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Track B priority target. COO, VP Operations, Director roles. Grantee network is a secondary signal source."
     },
@@ -4783,7 +4778,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Major foundation. NYC-based but some roles are remote. VP Operations, CoS type roles."
     },
@@ -4804,7 +4799,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Global health delivery org. Gates/Skoll grantee. COO, VP Operations, transformation roles. Remote-friendly."
     },
@@ -4825,7 +4820,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Global health grantee org. Scaling phase. COO, VP Operations, Chief of Staff type mandates."
     },
@@ -4846,7 +4841,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "DC-based global development nonprofit. Health and education focus. VP Operations and strategy roles."
     },
@@ -4861,7 +4856,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://urban.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/urban/Urban_Careers/jobs",
@@ -4883,7 +4878,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://brookings.wd5.myworkdayjobs.com",
         "endpoint": "/wday/cxs/brookings/Brookings_Careers/jobs",
@@ -4911,7 +4906,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Policy research org. Arlington office. Director operations and strategy roles."
     },
@@ -4932,7 +4927,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "DC-based. Leadership and policy org. VP Operations, Director, CoS roles. Often has first-time operations hires for programs."
     },
@@ -4953,7 +4948,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "DC think tank/policy org. Education, tech, health policy programs. COO and VP Operations roles."
     },
@@ -4974,7 +4969,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "DC global development think tank. VP Operations, Director roles. Small org, first-COO potential."
     },
@@ -4989,7 +4984,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://americanredcross.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/americanredcross/American_Red_Cross_Careers/jobs",
@@ -5019,7 +5014,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "DC HQ. VP Operations, COO, Director transformation roles. Climate/conservation mission."
     },
@@ -5056,7 +5051,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://georgetown.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/georgetown/Georgetown_Careers/jobs",
@@ -5084,7 +5079,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-higher-ed",
       "research_notes": "Major DC university. VP, Director, CoS roles in administration."
     },
@@ -5099,7 +5094,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://american.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/american/AU/jobs",
@@ -5121,7 +5116,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://howard.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/howard/Howard/jobs",
@@ -5149,7 +5144,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-higher-ed",
       "research_notes": "Fairfax VA. Fast-growing university. VP, Director, CoS roles in administration and centers."
     },
@@ -5170,7 +5165,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Major NoVA health system. 18,000+ employees. VP Operations, Director Strategy, transformation roles."
     },
@@ -5191,7 +5186,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Major DC-area health system. 30,000+ employees. VP Operations, CoS, Director transformation."
     },
@@ -5212,7 +5207,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "JHU has major DC presence (SAIS, APL, Bloomberg School). VP Ops, Director, CoS roles."
     },
@@ -5227,7 +5222,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "api_config": {
         "base_url": "https://childrensnational.wd1.myworkdayjobs.com",
         "endpoint": "/wday/cxs/childrensnational/CNMC/jobs",
@@ -5255,7 +5250,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-healthcare",
       "research_notes": "Kaiser Mid-Atlantic region. VP Ops, Director, CoS roles in health system operations."
     },
@@ -5276,7 +5271,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Nordic angle per prefs. Danish pharma. US operations leadership. VP, Director strategy and ops."
     },
@@ -5297,7 +5292,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-nonprofit",
       "research_notes": "Nordic angle. World's largest foundation by endowment. US grantee operations roles. Danish language advantage."
     },
@@ -5318,7 +5313,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Nordic angle. Danish company with US operations. VP and Director operations/strategy roles."
     },
@@ -5339,7 +5334,7 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Nordic angle. Danish shipping/logistics. US operations leadership. VP and Director roles."
     },
@@ -5360,2230 +5355,9 @@
       "dead_content_patterns": [],
       "status": "healthy",
       "last_verified": "2026-08-19T15:07:38.722696+00:00",
-      "consecutive_empty_runs": 3,
+      "consecutive_empty_runs": 1,
       "cluster": "B-tech",
       "research_notes": "Nordic angle. Danish green energy. US expansion and operations leadership. Climate/mission alignment."
-    },
-    {
-      "id": "c_fractional_jobs",
-      "name": "Fractional Jobs Board",
-      "category": "jobs",
-      "active_url": "https://www.fractionaljobs.io/jobs?category=operations",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3.job-title",
-        "link": "a.job-link",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "C-fractional-interim",
-      "research_notes": "Filtered to operations category. Surfaces fractional COO, CoS, and VP Ops engagements."
-    },
-    {
-      "id": "c_lauber",
-      "name": "Lauber Business Partners - Interim Leadership",
-      "category": "jobs",
-      "active_url": "https://www.lauber-partners.com/interim-management/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.position",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "C-fractional-interim",
-      "research_notes": "Regional interim leadership firm. Surfaces COO/VP Ops interim engagements at mid-market companies."
-    },
-    {
-      "id": "c_sim_southeast",
-      "name": "SIM (Society for Information Management) - Interim/Exec Network",
-      "category": "networking",
-      "active_url": "https://www.simnet.org/page/CareerCenter",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "a.job-title",
-        "link": "a.job-title",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "C-fractional-interim",
-      "research_notes": "Regional CIO/CTO network with interim exec job board. CoS-to-CISO background maps to this community."
-    },
-    {
-      "id": "c_execunet",
-      "name": "ExecuNet - Executive Job Board",
-      "category": "jobs",
-      "active_url": "https://www.execunet.com/executive-jobs?keywords=chief+of+staff+OR+COO+OR+VP+operations&location=",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-result",
-        "title": "h3.job-title",
-        "link": "a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "C-fractional-interim",
-      "research_notes": "Senior exec board with fractional and interim listings. Targets VP+ scope."
-    },
-    {
-      "id": "c_interim_exec_assoc",
-      "name": "Interim Executive Association (IEA) - Member Opportunities",
-      "category": "jobs",
-      "active_url": "https://interimexecs.com/interim-executive-jobs/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-item",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "C-fractional-interim",
-      "research_notes": "Dedicated interim C-suite marketplace. COO and CoS interim roles at mid-market and PE-backed firms."
-    },
-    {
-      "id": "d_heart_of_fl_united_way",
-      "name": "Heart of Florida United Way - Board & Committee Openings",
-      "category": "networking",
-      "active_url": "https://www.hfuw.org/about/board-of-directors/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.content",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board-orlando",
-      "research_notes": "Major Central FL nonprofit with real committee structure. Operations/governance gap is common board need."
-    },
-    {
-      "id": "d_orlando_philharmonic_board",
-      "name": "Orlando Philharmonic - Board and Advisory Opportunities",
-      "category": "networking",
-      "active_url": "https://www.orlandophil.org/about/board-of-directors/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.board-member",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board-orlando-arts",
-      "research_notes": "Mid-size arts org with active committees. Operations expertise is a frequent board gap in arts orgs."
-    },
-    {
-      "id": "d_linkedin_board",
-      "name": "LinkedIn - Board of Directors / Advisory Board Openings",
-      "category": "jobs",
-      "active_url": "https://www.linkedin.com/jobs/search/?keywords=%22board+of+directors%22+OR+%22advisory+board%22+OR+%22board+member%22&location=United+States&f_TPR=r604800",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "li.jobs-search-results__list-item",
-        "title": "a.job-card-list__title",
-        "link": "a.job-card-list__title",
-        "location": "span.job-card-container__metadata-item",
-        "date": "time"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board",
-      "research_notes": "LinkedIn board postings are sparse but real. Weekly filter catches new ones. Supplement with manual network outreach."
-    },
-    {
-      "id": "d_taproot_foundation",
-      "name": "Taproot Foundation - Pro Bono Board & Advisory Opportunities",
-      "category": "jobs",
-      "active_url": "https://www.taprootfoundation.org/volunteer",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.opportunity",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board",
-      "research_notes": "Pro bono advisory and board matching for nonprofits. Surfaces orgs needing operational governance help."
-    },
-    {
-      "id": "d_cfcf_board_bank",
-      "name": "Central Florida Community Foundation - Board Bank",
-      "category": "networking",
-      "active_url": "https://cffound.org/nonprofits/board-development/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.content-block",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board-orlando",
-      "research_notes": "Community foundation's board matching program for Central FL nonprofits. Direct pipeline to local boards seeking operating skills."
-    },
-    {
-      "id": "d_dcbar_nonprofit_board",
-      "name": "DC Bar Pro Bono - Nonprofit Board Matching",
-      "category": "networking",
-      "active_url": "https://www.dcbar.org/pro-bono/free-legal-help/board-matching",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.board-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "D-board-dc",
-      "research_notes": "DC-area nonprofit board matching for professionals. Good pipeline if she relocates to DMV in 2027."
-    },
-    {
-      "id": "e_sessionize",
-      "name": "Sessionize - Open CFPs (AI, Org Design, Leadership)",
-      "category": "events",
-      "active_url": "https://sessionize.com/app/speaker/cfps/open",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.cfp-item",
-        "title": "h3.cfp-title",
-        "link": "a",
-        "location": "span.location",
-        "date": "span.deadline"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "Largest CFP aggregator. Filter for AI, leadership, org design, nonprofit tech. Her TEDx and ECHO background maps directly."
-    },
-    {
-      "id": "e_papercall",
-      "name": "PaperCall - Open CFPs",
-      "category": "events",
-      "active_url": "https://www.papercall.io/cfps?keywords=leadership+OR+operations+OR+AI+OR+nonprofit+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.event-card",
-        "title": "h3.event-title",
-        "link": "a",
-        "location": "span.location",
-        "date": "span.deadline"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "Open call-for-papers platform. Filtered for leadership and transformation topics. Location-agnostic."
-    },
-    {
-      "id": "e_sxsw_panelpicker",
-      "name": "SXSW PanelPicker - CFP for Speaking Sessions",
-      "category": "events",
-      "active_url": "https://panelpicker.sxsw.com/",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.proposal",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "SXSW CFP opens annually mid-year. AI, org transformation, and health innovation tracks are strong fits."
-    },
-    {
-      "id": "e_tedx_organizer_network",
-      "name": "TEDx Event Finder - Seeking Speakers",
-      "category": "events",
-      "active_url": "https://www.ted.com/tedx/events?type=seeking_speakers",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.event-result",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "She was COO of TEDxABQ. TEDx events seeking speakers are a warm channel given her network credentials."
-    },
-    {
-      "id": "e_florida_procurement",
-      "name": "Florida Vendor Information Portal (VIP) - State RFPs",
-      "category": "jobs",
-      "active_url": "https://vendor.myfloridamarketplace.com/search/bids?searchTerms=organizational+assessment+OR+strategic+planning+OR+change+management+OR+AI+readiness",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "tr.bid-row",
-        "title": "td.bid-title a",
-        "link": "td.bid-title a",
-        "location": "",
-        "date": "td.bid-date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp",
-      "research_notes": "State of Florida solicitations. Org assessment and strategic planning RFPs for state agencies and health systems."
-    },
-    {
-      "id": "e_sam_gov_rfp",
-      "name": "SAM.gov - Federal Contract Opportunities (Org Design / Change Mgmt)",
-      "category": "jobs",
-      "active_url": "https://sam.gov/search/?index=opp&q=%22organizational+design%22+OR+%22change+management%22+OR+%22strategic+planning%22+OR+%22AI+readiness%22&sort=-modifiedDate&page=1",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opportunity-result",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp",
-      "research_notes": "Federal procurement portal. Surfaces org assessment and transformation RFPs from civilian agencies. DC-relevant."
-    },
-    {
-      "id": "e_orange_county_procurement",
-      "name": "Orange County FL Procurement - RFPs",
-      "category": "jobs",
-      "active_url": "https://www.ocfl.net/OpenGovernment/ProcurementBidsProposals.aspx",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "tr.solicitation-row",
-        "title": "td a",
-        "link": "td a",
-        "location": "",
-        "date": "td.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp-orlando",
-      "research_notes": "Local government RFPs in core Orlando geography. Org assessment and strategic planning solicitations surface here."
-    },
-    {
-      "id": "e_grantstation",
-      "name": "GrantStation - Funding and RFP Alerts",
-      "category": "jobs",
-      "active_url": "https://grantstation.com/funder-opportunities",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opportunity-card",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": "span.deadline"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp",
-      "research_notes": "Foundation and nonprofit RFP aggregator. Surfaces organizational capacity-building and assessment engagements."
-    },
-    {
-      "id": "e_instrumentl",
-      "name": "Instrumentl - Grant and RFP Finder",
-      "category": "jobs",
-      "active_url": "https://www.instrumentl.com/grants",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.grant-card",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": "span.deadline"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp",
-      "research_notes": "Grant and consulting RFP discovery platform. Filter for organizational development and capacity building."
-    },
-    {
-      "id": "e_cos_assoc_events",
-      "name": "Chief of Staff Association - Events and CFPs",
-      "category": "events",
-      "active_url": "https://www.chiefofstaff.org/events",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.event-card",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "Industry association events. Speaking and facilitation opportunities among CoS practitioners. Direct network fit."
-    },
-    {
-      "id": "e_nten_ntc_cfp",
-      "name": "NTEN NTC - Call for Proposals",
-      "category": "events",
-      "active_url": "https://www.nten.org/ntc/call-for-proposals/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.cfp-content",
-        "title": "h2",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-speaking",
-      "research_notes": "Nonprofit technology conference CFP. Her Project ECHO scaling and AI org-readiness topics are strong fits."
-    },
-    {
-      "id": "e_dc_procurement",
-      "name": "DC Office of Contracting and Procurement - Solicitations",
-      "category": "jobs",
-      "active_url": "https://ocp.dc.gov/page/ocp-solicitations",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "tr",
-        "title": "td a",
-        "link": "td a",
-        "location": "",
-        "date": "td"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp-dc",
-      "research_notes": "District of Columbia government RFPs. Org assessment, strategic planning, and change management solicitations for DC agencies."
-    },
-    {
-      "id": "e_fairfax_county_procurement",
-      "name": "Fairfax County Procurement - Active Solicitations",
-      "category": "jobs",
-      "active_url": "https://www.fairfaxcounty.gov/cregister/",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "tr.solicitation",
-        "title": "td a",
-        "link": "td a",
-        "location": "",
-        "date": "td.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "E-rfp-dc",
-      "research_notes": "Largest jurisdiction in Northern VA. Org development and strategic planning RFPs for county agencies."
-    },
-    {
-      "id": "watch_equinix_careers",
-      "name": "Equinix Careers - Business Ops / CoS / Strategy Roles",
-      "category": "jobs",
-      "active_url": "https://equinix.wd1.myworkdayjobs.com/wday/cxs/equinix/External/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "api_config": {
-        "base_url": "https://equinix.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/equinix/External/jobs",
-        "search_text": "chief of staff OR business operations OR strategy OR transformation",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "Equinix",
-      "cluster": "watch-datacenter",
-      "research_notes": "Former employer. Watchlist for CoS, business ops, and strategy roles inside CISO/CTO office. Industry benchmark."
-    },
-    {
-      "id": "watch_digitalrealty",
-      "name": "Digital Realty Careers - Business Ops / Strategy",
-      "category": "jobs",
-      "active_url": "https://digitalrealty.wd5.myworkdayjobs.com/wday/cxs/digitalrealty/Digital_Realty/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://digitalrealty.wd5.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/digitalrealty/Digital_Realty/jobs",
-        "search_text": "chief of staff OR business operations OR strategy OR director",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "Digital Realty",
-      "cluster": "watch-datacenter",
-      "research_notes": "Major data center REIT. CoS and business ops roles in security and infrastructure orgs. Tenant ID may need verification."
-    },
-    {
-      "id": "watch_coreweave",
-      "name": "CoreWeave Careers - Business Ops / Strategy",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/coreweave?q=chief+of+staff+OR+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "CoreWeave",
-      "cluster": "watch-datacenter-ai",
-      "research_notes": "AI infrastructure hyperscaler in rapid growth. Operating-layer roles at AI data center companies are the watchlist's leading edge."
-    },
-    {
-      "id": "watch_qts_realty",
-      "name": "QTS Realty (Blackstone) Careers - Business Ops",
-      "category": "jobs",
-      "active_url": "https://www.qtsdatacenters.com/company/careers",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "QTS Realty",
-      "cluster": "watch-datacenter",
-      "research_notes": "Major Ashburn/Loudoun data center operator. Business ops and strategy roles at Blackstone portfolio company."
-    },
-    {
-      "id": "watch_crowdstrike",
-      "name": "CrowdStrike Careers - CoS / Business Ops in Security Org",
-      "category": "jobs",
-      "active_url": "https://crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "api_config": {
-        "base_url": "https://crowdstrike.wd5.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/crowdstrike/crowdstrikecareers/jobs",
-        "search_text": "chief of staff OR business operations OR strategy OR transformation",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "CrowdStrike",
-      "cluster": "watch-infosec",
-      "research_notes": "Leading cybersecurity firm. CoS-to-CISO and business ops roles inside security orgs are the direct watch target."
-    },
-    {
-      "id": "watch_paloalto_networks",
-      "name": "Palo Alto Networks Careers - CoS / Biz Ops",
-      "category": "jobs",
-      "active_url": "https://jobs.paloaltonetworks.com/en/jobs/?search=chief+of+staff+OR+business+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.job-tile",
-        "title": "h2 a",
-        "link": "h2 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Palo Alto Networks",
-      "cluster": "watch-infosec",
-      "research_notes": "Top cybersecurity vendor. Operating-layer roles in CISO and CTO offices are the target."
-    },
-    {
-      "id": "watch_zscaler",
-      "name": "Zscaler Careers - Business Ops / CoS",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/zscaler?q=chief+of+staff+OR+business+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Zscaler",
-      "cluster": "watch-infosec",
-      "research_notes": "Cloud security leader. CoS and biz ops roles in security org leadership layer."
-    },
-    {
-      "id": "watch_cyrusone",
-      "name": "CyrusOne (KKR/GIP) Careers - Business Ops",
-      "category": "jobs",
-      "active_url": "https://www.cyrusone.com/careers",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "CyrusOne",
-      "cluster": "watch-datacenter",
-      "research_notes": "Major data center operator with Ashburn presence. Business ops and strategy roles at PE-owned infrastructure company."
-    },
-    {
-      "id": "watch_vantage_datacenters",
-      "name": "Vantage Data Centers Careers - Business Ops",
-      "category": "jobs",
-      "active_url": "https://vantage.wd12.myworkdayjobs.com/wday/cxs/vantage/VantageCareers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://vantage.wd12.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/vantage/VantageCareers/jobs",
-        "search_text": "chief of staff OR business operations OR strategy OR director",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "Vantage Data Centers",
-      "cluster": "watch-datacenter",
-      "research_notes": "Hyperscale data center developer with Ashburn campus. Rapid growth means operating-layer roles emerge. Tenant ID needs verification."
-    },
-    {
-      "id": "watch_switch_datacenters",
-      "name": "Switch (DigitalBridge) Careers - Business Ops",
-      "category": "jobs",
-      "active_url": "https://www.switch.com/careers",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-item",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Switch",
-      "cluster": "watch-datacenter",
-      "research_notes": "Data center operator. Operating-layer roles at infrastructure companies scaling for AI demand."
-    },
-    {
-      "id": "watch_databank",
-      "name": "DataBank Careers - Business Ops / Strategy",
-      "category": "jobs",
-      "active_url": "https://www.databank.com/careers/",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "DataBank",
-      "cluster": "watch-datacenter",
-      "research_notes": "Mid-market data center operator (DigitalBridge portfolio). Scaling companies often need first CoS/biz ops hire."
-    },
-    {
-      "id": "watch_fortinet",
-      "name": "Fortinet Careers - Business Ops / CoS in Security",
-      "category": "jobs",
-      "active_url": "https://edel.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/requisitions?keyword=chief+of+staff+OR+business+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Fortinet",
-      "cluster": "watch-infosec",
-      "research_notes": "Major cybersecurity vendor. Biz ops and CoS roles inside security org leadership. Oracle Cloud ATS."
-    },
-    {
-      "id": "watch_applied_digital",
-      "name": "Applied Digital Careers - AI Infrastructure Ops",
-      "category": "jobs",
-      "active_url": "https://www.applieddigital.com/careers",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Applied Digital",
-      "cluster": "watch-datacenter-ai",
-      "research_notes": "AI data center company in rapid scaling. Operating-layer roles at AI infra companies are the emerging signal."
-    },
-    {
-      "id": "signal_objtl_bizjournals",
-      "name": "Orlando Business Journal - Growth & Executive News",
-      "category": "news",
-      "active_url": "https://www.bizjournals.com/orlando/news",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-orlando",
-      "research_notes": "Executive departures, new HQ announcements, funding rounds in Central FL. Signals roles before they post."
-    },
-    {
-      "id": "signal_dc_bizjournals",
-      "name": "Washington Business Journal - Growth & Executive News",
-      "category": "news",
-      "active_url": "https://www.bizjournals.com/washington/news",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-dc",
-      "research_notes": "DC metro exec moves, funding, expansions. Leader-with-mandate signals before postings exist."
-    },
-    {
-      "id": "signal_axios_local_dc",
-      "name": "Axios Local DC - Business & Growth News",
-      "category": "news",
-      "active_url": "https://www.axios.com/local/washington-dc",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "article",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": "time"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-dc",
-      "research_notes": "Short-form DC business news. Funding, expansion, and leadership change announcements."
-    },
-    {
-      "id": "signal_orlando_inno",
-      "name": "Orlando Inno (Bizjournals) - Startup & Growth News",
-      "category": "news",
-      "active_url": "https://www.bizjournals.com/orlando/inno",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-orlando",
-      "research_notes": "Orlando startup funding, new HQs, and scaling announcements. Early signals for first CoS/COO hires."
-    },
-    {
-      "id": "signal_crunchbase_orlando",
-      "name": "Crunchbase - Central FL & DC Funding Rounds",
-      "category": "news",
-      "active_url": "https://www.crunchbase.com/discover/funding_rounds?location_identifiers=orlando-florida,washington-dc&funding_date_after=last_30_days",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "grid-row",
-        "title": "field-formatter a",
-        "link": "field-formatter a",
-        "location": "field-formatter.location",
-        "date": "field-formatter.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-funding",
-      "research_notes": "Recent funding rounds signal scaling companies that will need operating infrastructure. Post-Series A/B is the sweet spot."
-    },
-    {
-      "id": "signal_prnewswire_exec_changes",
-      "name": "PR Newswire - Executive Changes & New Hires (Orlando + DC)",
-      "category": "news",
-      "active_url": "https://www.prnewswire.com/news-releases/news-releases-list/?keyword=CEO+appointed+OR+new+chief+OR+executive+hire&daterange=last7days&industry=technology,healthcare",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-exec-changes",
-      "research_notes": "New CEO or C-suite appointments signal incoming CoS/operating-layer hires. National scope, filter by sector."
-    },
-    {
-      "id": "signal_techcrunch_dc_fl",
-      "name": "TechCrunch - Funding & Growth News",
-      "category": "news",
-      "active_url": "https://techcrunch.com/feed/",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "cluster": "signal-funding",
-      "research_notes": "National funding news filtered for mid-size AI, health tech, edtech raises. Signals scaling-phase companies."
-    },
-    {
-      "id": "signal_dc_inno",
-      "name": "DC Inno (Bizjournals) - Startup & Growth News",
-      "category": "news",
-      "active_url": "https://www.bizjournals.com/washington/inno",
-      "alternate_urls": [],
-      "strategy": "rss_feed",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "signal-dc",
-      "research_notes": "DC metro startup ecosystem news. Post-funding and expansion announcements for mission-driven tech companies."
-    },
-    {
-      "id": "nordic_danish_american_chamber",
-      "name": "Danish-American Chamber of Commerce - Jobs & Events",
-      "category": "jobs",
-      "active_url": "https://www.daccny.com/job-board",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-item",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "nordic-danish",
-      "research_notes": "US expansion roles at Danish companies. Native Danish plus US exec experience is the rare pairing the brief highlights."
-    },
-    {
-      "id": "nordic_novo_nordisk_us",
-      "name": "Novo Nordisk US Careers - Strategy & Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://novonordisk.wd1.myworkdayjobs.com/wday/cxs/novonordisk/Careers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://novonordisk.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/novonordisk/Careers/jobs",
-        "search_text": "chief of staff OR strategy OR operations OR transformation",
-        "limit": 20,
-        "locations": [
-          "United States"
-        ]
-      },
-      "company": "Novo Nordisk",
-      "cluster": "nordic-danish",
-      "research_notes": "Massive Danish pharma with US HQ. Strategy and ops leadership roles at a scaling US operation. Tenant ID may need verification."
-    },
-    {
-      "id": "nordic_lego_us",
-      "name": "LEGO Group US Careers - Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.lego.com/en-us/careers/search?keywords=director+OR+VP+OR+chief+of+staff+OR+operations&location=United+States",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "LEGO Group",
-      "cluster": "nordic-danish",
-      "research_notes": "Danish company with US operations. Strategy and ops roles at a mission-driven consumer brand."
-    },
-    {
-      "id": "nordic_orsted_us",
-      "name": "Orsted US Careers - Business Operations / Strategy",
-      "category": "jobs",
-      "active_url": "https://orsted.com/en/careers/open-positions?country=US&search=chief+of+staff+OR+operations+OR+strategy+OR+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-result",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Orsted",
-      "cluster": "nordic-danish",
-      "research_notes": "Danish green energy company with US HQ. Scaling US operation with mission-driven profile. Cultural bridge is the differentiator."
-    },
-    {
-      "id": "nordic_maersk_us",
-      "name": "Maersk US Careers - Business Operations / Strategy",
-      "category": "jobs",
-      "active_url": "https://www.maersk.com/careers/job-search?keywords=chief+of+staff+OR+director+operations+OR+strategy&country=US",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Maersk",
-      "cluster": "nordic-danish",
-      "research_notes": "Danish logistics giant with major US operations. Strategy and ops leadership roles. Danish language and cultural fluency is rare."
-    },
-    {
-      "id": "nordic_nordic_innovation_house",
-      "name": "Nordic Innovation House - US Job & Partnership Opportunities",
-      "category": "networking",
-      "active_url": "https://nordicinnovationhouse.com/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.post-item",
-        "title": "h3",
-        "link": "a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "nordic-network",
-      "research_notes": "Hub for Nordic companies expanding to US. Events and partnerships surface US-facing leadership roles at Nordic companies."
-    },
-    {
-      "id": "nordic_swea_usa",
-      "name": "SWEA / Scandinavian Chambers - US Nordic Business Network",
-      "category": "networking",
-      "active_url": "https://www.sacc-usa.org/career",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "nordic-network",
-      "research_notes": "Swedish-American Chambers have the most active US Nordic job board. Covers Danish and Norwegian companies too."
-    },
-    {
-      "id": "nordic_vestas_us",
-      "name": "Vestas US Careers - Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://careers.vestas.com/search/?q=director+OR+chief+of+staff+OR+operations&locationsearch=United+States",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "tr.data-row",
-        "title": "td.colTitle a",
-        "link": "td.colTitle a",
-        "location": "td.colLocation",
-        "date": "td.colDate"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "company": "Vestas",
-      "cluster": "nordic-danish",
-      "research_notes": "Danish wind energy company with major US presence. Operations leadership at a climate-mission Danish employer."
-    },
-    {
-      "id": "b_bridgespan",
-      "name": "Bridgespan Job Board - Senior Nonprofit Leadership",
-      "category": "jobs",
-      "active_url": "https://www.bridgespan.org/jobs/nonprofit-jobs?search=chief+of+staff+OR+COO+OR+VP+operations+OR+executive+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-leadership",
-      "research_notes": "Premier nonprofit leadership board. Surfaces COO, CoS, and ED roles at organizations outgrowing informal culture."
-    },
-    {
-      "id": "b_koya_diversified",
-      "name": "Koya Partners / Diversified Search Group - Open Searches",
-      "category": "jobs",
-      "active_url": "https://diversifiedsearchgroup.com/our-searches/?practice=nonprofit-and-social-enterprise",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.search-item",
-        "title": "h3",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-search",
-      "research_notes": "Retained search firm for nonprofit C-suite. Active searches for ED, COO, VP roles at mission-driven orgs."
-    },
-    {
-      "id": "b_chronicle_philanthropy",
-      "name": "Chronicle of Philanthropy - Jobs",
-      "category": "jobs",
-      "active_url": "https://jobs.philanthropy.com/jobs/?keywords=chief+of+staff+OR+COO+OR+VP+operations+OR+executive+director&sort=date",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.job-result",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Philanthropy sector job board. Surfaces foundation and grantee leadership roles."
-    },
-    {
-      "id": "b_pnd_candid",
-      "name": "Philanthropy News Digest (Candid) - Jobs",
-      "category": "jobs",
-      "active_url": "https://philanthropynewsdigest.org/jobs?keywords=chief+of+staff+OR+COO+OR+VP+operations+OR+executive+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Candid's nonprofit job board. Foundation and grantee leadership roles in health, education, equity."
-    },
-    {
-      "id": "b_idealist_senior",
-      "name": "Idealist - Senior Leadership (DC + Orlando + Remote)",
-      "category": "jobs",
-      "active_url": "https://www.idealist.org/en/jobs?q=chief+of+staff+OR+COO+OR+executive+director+OR+VP+operations&locationType=REMOTE_OR_ONSITE&experienceLevel=SENIOR",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.listing-card",
-        "title": "a.listing-card__title",
-        "link": "a.listing-card__title",
-        "location": "span.listing-card__location",
-        "date": "span.listing-card__date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Senior filter only. Without the filter, Idealist is dominated by coordinator-level roles that are hard excludes."
-    },
-    {
-      "id": "b_workforgood",
-      "name": "Work for Good - Nonprofit Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://www.workforgood.org/jobs/?keywords=chief+of+staff+OR+COO+OR+VP+operations+OR+executive+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Nonprofit job board focused on impact roles. Senior operations and leadership filter."
-    },
-    {
-      "id": "b_foundation_list",
-      "name": "Foundation List - Jobs at Foundations and Grantees",
-      "category": "jobs",
-      "active_url": "https://www.foundationlist.org/job-listings/?keywords=chief+of+staff+OR+COO+OR+VP+operations+OR+executive+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Foundation-specific job board. Grantee orgs hiring first COO or CoS surface here."
-    },
-    {
-      "id": "b_nten_community",
-      "name": "NTEN Community Job Board",
-      "category": "jobs",
-      "active_url": "https://community.nten.org/careers/openings?keywords=director+OR+VP+OR+chief+of+staff+OR+COO",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-posting",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Nonprofit technology community. Tech-adjacent leadership roles at nonprofits adopting new systems."
-    },
-    {
-      "id": "b_teach_for_all",
-      "name": "Teach For All Careers - Education Redesign Network",
-      "category": "jobs",
-      "active_url": "https://teachforall.org/careers",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Teach For All",
-      "cluster": "B-foundation-grantee-education",
-      "research_notes": "Multi-foundation grantee in education redesign. Global network scaling model mirrors her Project ECHO experience."
-    },
-    {
-      "id": "b_new_profit",
-      "name": "New Profit Careers - Venture Philanthropy",
-      "category": "jobs",
-      "active_url": "https://www.newprofit.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.career-item",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "New Profit",
-      "cluster": "B-foundation-grantee",
-      "research_notes": "Venture philanthropy fund. Portfolio orgs are exactly the scaling nonprofits needing first COO/CoS hires."
-    },
-    {
-      "id": "b_echoing_green",
-      "name": "Echoing Green - Careers & Fellow Org Jobs",
-      "category": "jobs",
-      "active_url": "https://echoinggreen.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.career-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Echoing Green",
-      "cluster": "B-foundation-grantee",
-      "research_notes": "Social enterprise accelerator. Fellow organizations are founder-led nonprofits outgrowing informal ops, the exact match-test signal."
-    },
-    {
-      "id": "b_council_on_foundations",
-      "name": "Council on Foundations - Career Center",
-      "category": "jobs",
-      "active_url": "https://careers.cof.org/jobs?keywords=chief+of+staff+OR+COO+OR+VP+operations+OR+director",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.job-result",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-jobs",
-      "research_notes": "Foundation sector career center. COO and VP Ops roles at foundations and their operating affiliates."
-    },
-    {
-      "id": "b_devex",
-      "name": "Devex - International Development Leadership Jobs",
-      "category": "jobs",
-      "active_url": "https://www.devex.com/jobs/search?query=chief+of+staff+OR+COO+OR+VP+operations&filter%5Bcountry%5D%5B%5D=US",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-item",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "B-nonprofit-intl-dev",
-      "research_notes": "Global development job board. US-based leadership roles at international health and education orgs. Project ECHO background is relevant."
-    },
-    {
-      "id": "b_cure_violence",
-      "name": "Cure Violence Global Careers",
-      "category": "jobs",
-      "active_url": "https://cvg.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Cure Violence Global",
-      "cluster": "B-foundation-grantee-health",
-      "research_notes": "Multi-foundation grantee (Skoll awardee). Public health org using the ECHO-like hub-and-spoke scaling model."
-    },
-    {
-      "id": "b_room_to_read",
-      "name": "Room to Read Careers",
-      "category": "jobs",
-      "active_url": "https://www.roomtoread.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-item",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Room to Read",
-      "cluster": "B-foundation-grantee-education",
-      "research_notes": "Skoll and Gates grantee in education. Global ops infrastructure is the constant scaling challenge."
-    },
-    {
-      "id": "a_adventhealth_cos",
-      "name": "AdventHealth Careers - CoS / Strategy / VP Ops (Orlando)",
-      "category": "jobs",
-      "active_url": "https://adventhealth.wd5.myworkdayjobs.com/wday/cxs/adventhealth/adventhealth/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://adventhealth.wd5.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/adventhealth/adventhealth/jobs",
-        "search_text": "chief of staff OR strategy OR transformation OR VP operations",
-        "limit": 30,
-        "locations": [
-          "Orlando"
-        ]
-      },
-      "company": "AdventHealth",
-      "cluster": "A-orlando-health",
-      "research_notes": "Existing source has generic keyword search. This targets CoS/strategy/transformation roles specifically. Major Orlando health system."
-    },
-    {
-      "id": "a_universal_destinations",
-      "name": "Universal Destinations & Experiences - Corporate Strategy/Ops",
-      "category": "jobs",
-      "active_url": "https://universalparks.wd1.myworkdayjobs.com/wday/cxs/universalparks/UDX_Careers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://universalparks.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/universalparks/UDX_Careers/jobs",
-        "search_text": "chief of staff OR strategy OR VP operations OR transformation OR director",
-        "limit": 30,
-        "locations": []
-      },
-      "company": "Universal Destinations & Experiences",
-      "cluster": "A-orlando-entertainment",
-      "research_notes": "Corporate strategy and operations roles at parent company level, not park ops. UDX tenant is the corporate site."
-    },
-    {
-      "id": "a_disney_corporate",
-      "name": "Walt Disney Company - Corporate Strategy & Operations Roles",
-      "category": "jobs",
-      "active_url": "https://jobs.disneycareers.com/search-jobs/chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation/391-corporate/1",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.job-tile",
-        "title": "h2 a",
-        "link": "h2 a",
-        "location": "span.job-location",
-        "date": "span.job-date-posted"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "The Walt Disney Company",
-      "cluster": "A-orlando-entertainment",
-      "research_notes": "Corporate segment filter (not parks ops). Strategy, CoS, and transformation roles at parent company level."
-    },
-    {
-      "id": "a_ucf_leadership",
-      "name": "UCF Careers - VP / AVP / Director Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://ucf.wd1.myworkdayjobs.com/wday/cxs/ucf/careers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "api_config": {
-        "base_url": "https://ucf.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/ucf/careers/jobs",
-        "search_text": "chief of staff OR VP operations OR strategy OR transformation OR director",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "University of Central Florida",
-      "cluster": "A-orlando-education",
-      "research_notes": "Largest FL university. AVP and director-level strategy and operations roles in academic administration."
-    },
-    {
-      "id": "a_rollins_college",
-      "name": "Rollins College Careers - Senior Administration (Winter Park)",
-      "category": "jobs",
-      "active_url": "https://rollins.wd5.myworkdayjobs.com/wday/cxs/rollins/Rollins/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://rollins.wd5.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/rollins/Rollins/jobs",
-        "search_text": "director OR VP OR chief of staff OR operations",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "Rollins College",
-      "cluster": "A-orlando-education",
-      "research_notes": "Selective college in Winter Park. Small enough that VP/CoS roles are the operating layer. Workday ATS."
-    },
-    {
-      "id": "a_siemens_energy_orlando",
-      "name": "Siemens Energy Careers - Orlando Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://jobs.siemens-energy.com/en_US/jobs?keywords=chief+of+staff+OR+strategy+OR+VP+operations+OR+transformation&location=Orlando",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Siemens Energy",
-      "cluster": "A-orlando-industrial",
-      "research_notes": "Major Orlando employer with European HQ. Strategy and transformation roles at energy transition company."
-    },
-    {
-      "id": "a_orlando_econ_partnership",
-      "name": "Orlando Economic Partnership - Member Company Careers Aggregator",
-      "category": "jobs",
-      "active_url": "https://www.orlando.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-orlando-aggregator",
-      "research_notes": "Regional partnership aggregates careers from member companies. Surfaces senior roles at Orlando corporate HQs not individually tracked."
-    },
-    {
-      "id": "a_ea_tiburon",
-      "name": "Electronic Arts (EA) Careers - Orlando/Tiburon Studio",
-      "category": "jobs",
-      "active_url": "https://ea.gr8people.com/jobs?keywords=chief+of+staff+OR+director+operations+OR+strategy+OR+VP&location=Orlando",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Electronic Arts",
-      "cluster": "A-orlando-entertainment",
-      "research_notes": "Major game studio in Orlando. Studio-level CoS and operations leadership roles at creative organization."
-    },
-    {
-      "id": "a_darden_restaurants",
-      "name": "Darden Restaurants Corporate Careers - Orlando HQ",
-      "category": "jobs",
-      "active_url": "https://jobs.darden.com/search/?q=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation&locations=corporate",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "tr.data-row",
-        "title": "td.colTitle a",
-        "link": "td.colTitle a",
-        "location": "td.colLocation",
-        "date": "td.colDate"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Darden Restaurants",
-      "cluster": "A-orlando-corporate-hq",
-      "research_notes": "Orlando-HQ Fortune 500. Corporate strategy and ops roles (not restaurant GM). Filter to corporate location."
-    },
-    {
-      "id": "a_chewy_remote",
-      "name": "Chewy Careers - Remote/Florida Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://careers.chewy.com/us/en/search-results?keywords=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Chewy",
-      "cluster": "A-orlando-tech",
-      "research_notes": "FL-based e-commerce company. Corporate strategy and operations roles. Remote-friendly."
-    },
-    {
-      "id": "a_fanatics_orlando",
-      "name": "Fanatics Careers - Orlando/Remote Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/fanatics?q=chief+of+staff+OR+director+operations+OR+VP+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Fanatics",
-      "cluster": "A-orlando-tech",
-      "research_notes": "Sports tech with Orlando presence. Rapid growth; scaling-phase company likely needing operating infrastructure."
-    },
-    {
-      "id": "a_amazon_hq2_arlington",
-      "name": "Amazon/AWS Careers - Arlington HQ2 Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.amazon.jobs/en/search?base_query=chief+of+staff+OR+head+of+operations+OR+head+of+strategy&loc_query=Arlington%2C+VA",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-tile",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location-and-id",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Amazon",
-      "cluster": "A-dc-tech",
-      "research_notes": "HQ2 in Arlington VA. CoS and strategy roles at scale; DC zone employer."
-    },
-    {
-      "id": "a_google_dc",
-      "name": "Google Careers - DC Metro Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.google.com/about/careers/applications/jobs/results?q=chief+of+staff+OR+strategy+OR+head+of+operations&location=Washington%2C+DC",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.lLd3Je",
-        "title": "h3.QJPWVe",
-        "link": "a",
-        "location": "span.r0wTof",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "company": "Google",
-      "cluster": "A-dc-tech",
-      "research_notes": "DC-area office. CoS and strategy/ops roles at tech company with policy and AI focus in DC."
-    },
-    {
-      "id": "a_meta_dc",
-      "name": "Meta Careers - DC Metro Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.metacareers.com/jobs?q=chief+of+staff+OR+director+operations+OR+head+of+strategy&location=Washington%2C+DC",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "a.job-title",
-        "link": "a.job-title",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Meta",
-      "cluster": "A-dc-tech",
-      "research_notes": "DC policy and operations office. Strategy and CoS roles."
-    },
-    {
-      "id": "a_leidos_reston",
-      "name": "Leidos Careers - Reston/DC Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://careers.leidos.com/search/jobs?q=chief+of+staff+OR+director+strategy+OR+VP+operations&l=Reston%2C+VA",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "li.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Leidos",
-      "cluster": "A-dc-contractor",
-      "research_notes": "Reston-HQ federal contractor with civilian missions. Strategy and ops leadership at large DC employer."
-    },
-    {
-      "id": "a_booz_allen",
-      "name": "Booz Allen Hamilton Careers - DC Metro Strategy & Transformation",
-      "category": "jobs",
-      "active_url": "https://careers.boozallen.com/jobs/search?keywords=chief+of+staff+OR+transformation+OR+strategy+OR+VP+operations&location=McLean%2C+VA",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Booz Allen Hamilton",
-      "cluster": "A-dc-contractor",
-      "research_notes": "McLean-HQ consulting and tech firm. Transformation and strategy roles in civilian government practice."
-    },
-    {
-      "id": "a_inova_health_nova",
-      "name": "Inova Health System Careers - NoVA Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.inova.org/careers?search=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Inova Health System",
-      "cluster": "A-dc-health",
-      "research_notes": "Largest health system in Northern Virginia. Strategy and transformation leadership at major DC-zone employer."
-    },
-    {
-      "id": "a_medstar_dc",
-      "name": "MedStar Health Careers - DC/MD Strategy & Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://jobs.medstarhealth.org/search/?q=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "tr.data-row",
-        "title": "td.colTitle a",
-        "link": "td.colTitle a",
-        "location": "td.colLocation",
-        "date": "td.colDate"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "MedStar Health",
-      "cluster": "A-dc-health",
-      "research_notes": "Major DC-area health system. Strategy and operations leadership at system-wide level."
-    },
-    {
-      "id": "a_georgetown_university",
-      "name": "Georgetown University Careers - DC Leadership",
-      "category": "jobs",
-      "active_url": "https://georgetown.wd1.myworkdayjobs.com/wday/cxs/georgetown/Georgetown_Careers/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://georgetown.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/georgetown/Georgetown_Careers/jobs",
-        "search_text": "chief of staff OR VP operations OR strategy OR director transformation",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "Georgetown University",
-      "cluster": "A-dc-education",
-      "research_notes": "DC university with health, policy, and global programs. VP, AVP, and CoS roles in academic administration."
-    },
-    {
-      "id": "a_palantir_dc",
-      "name": "Palantir Technologies Careers - DC Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://www.palantir.com/careers/?search=chief+of+staff+OR+strategy+OR+business+operations&location=Washington",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.career-item",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Palantir Technologies",
-      "cluster": "A-dc-tech",
-      "research_notes": "AI/data company with DC office. CoS and strategy ops roles at mission-driven tech in the DC zone."
-    },
-    {
-      "id": "a_mitre_corporation",
-      "name": "MITRE Corporation Careers - McLean/DC Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://careers.mitre.org/us/en/search-results?keywords=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "MITRE Corporation",
-      "cluster": "A-dc-mission-driven",
-      "research_notes": "Federally funded R&D center in McLean. AI and health innovation focus areas. Civilian mission, not defense-heavy."
-    },
-    {
-      "id": "a_wellcome_leap_dc",
-      "name": "Wellcome Leap Careers - DC Health Innovation",
-      "category": "jobs",
-      "active_url": "https://wellcomeleap.org/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.career-item",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Wellcome Leap",
-      "cluster": "A-dc-health-innovation",
-      "research_notes": "Health innovation ARPA in DC. Small, fast-scaling org with big mandate and thin operating layer. Exact match-test profile."
-    },
-    {
-      "id": "a_usajobs_cos",
-      "name": "USAJobs - Federal Civilian CoS / Strategy / Operations (DC)",
-      "category": "jobs",
-      "active_url": "https://data.usajobs.gov/api/search?Keyword=%22chief+of+staff%22+OR+%22strategic+operations%22+OR+%22executive+director%22&LocationName=Washington+DC&ResultsPerPage=50",
-      "alternate_urls": [],
-      "strategy": "json_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://data.usajobs.gov",
-        "endpoint": "/api/search",
-        "search_text": "chief of staff OR strategic operations OR executive director",
-        "limit": 50,
-        "locations": [
-          "Washington, DC"
-        ]
-      },
-      "cluster": "A-dc-federal",
-      "research_notes": "Federal civilian CoS and strategy roles. API requires key from developer.usajobs.gov. Surfaces roles at HHS, ED, and civilian agencies."
-    },
-    {
-      "id": "a_yc_workatastartup",
-      "name": "Y Combinator Work at a Startup - CoS / Operations",
-      "category": "jobs",
-      "active_url": "https://www.workatastartup.com/jobs?query=chief+of+staff+OR+VP+operations+OR+head+of+business+operations&role=operations",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-remote-startup",
-      "research_notes": "YC portfolio companies. Post-funding scaling companies needing operating infrastructure. Role filter narrows to ops."
-    },
-    {
-      "id": "a_otta_cos",
-      "name": "Otta - Chief of Staff / VP Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://otta.com/jobs?title=Chief+of+Staff,VP+Operations,Head+of+Operations,COO&location=Remote,Washington+DC,Orlando",
-      "alternate_urls": [],
-      "strategy": "playwright",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-remote-startup",
-      "research_notes": "Curated tech job platform. Title and location filters produce high-precision results. Strong for mid-size tech."
-    },
-    {
-      "id": "a_builtin_orlando",
-      "name": "Built In Florida/Orlando - Director/VP/CoS",
-      "category": "jobs",
-      "active_url": "https://builtin.com/jobs/orlando?search=chief+of+staff+OR+VP+operations+OR+director+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-orlando-tech",
-      "research_notes": "Regional tech job board. Surfaces mid-size Orlando tech companies with operating leadership roles."
-    },
-    {
-      "id": "a_builtin_dc",
-      "name": "Built In DC - Director/VP/CoS",
-      "category": "jobs",
-      "active_url": "https://builtin.com/jobs/washington-dc?search=chief+of+staff+OR+VP+operations+OR+director+strategy+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-dc-tech",
-      "research_notes": "DC regional tech job board. Mission-driven tech and AI policy company roles."
-    },
-    {
-      "id": "a_guidewell_innovation",
-      "name": "GuideWell Innovation Careers - Orlando Strategy & Ops",
-      "category": "jobs",
-      "active_url": "https://careers.guidewell.com/us/en/search-results?keywords=chief+of+staff+OR+strategy+OR+VP+operations+OR+transformation",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "GuideWell (Florida Blue parent)",
-      "cluster": "A-orlando-health",
-      "research_notes": "Orlando-HQ health innovation company. Strategy and operations leadership at health system innovation arm."
-    },
-    {
-      "id": "a_anthropic_remote",
-      "name": "Anthropic Careers - CoS / Business Operations (Remote/SF)",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/anthropic?q=chief+of+staff+OR+business+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Anthropic",
-      "cluster": "A-remote-ai",
-      "research_notes": "Leading AI company in rapid scaling phase. CoS and operating-layer roles at AI org. Remote-possible. Sector resonance per brief."
-    },
-    {
-      "id": "a_openai_remote",
-      "name": "OpenAI Careers - CoS / Business Operations",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/openai?q=chief+of+staff+OR+business+operations+OR+head+of+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "OpenAI",
-      "cluster": "A-remote-ai",
-      "research_notes": "Defining AI company in extreme scaling. CoS and ops roles at AI org. High sector resonance."
-    },
-    {
-      "id": "a_schmidt_futures",
-      "name": "Schmidt Futures Careers - Strategy & Operations",
-      "category": "jobs",
-      "active_url": "https://schmidtfutures.com/careers/",
-      "alternate_urls": [],
-      "strategy": "html_list",
-      "selectors": {
-        "item_container": "div.job-listing",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "Schmidt Futures",
-      "cluster": "A-dc-mission-driven",
-      "research_notes": "Philanthropic initiative focused on AI and science. Small team with big mandate and ambiguity tolerance. Exact match profile."
-    },
-    {
-      "id": "a_goat_group_orlando",
-      "name": "GOAT Group Careers - Orlando/Remote Strategy & Ops",
-      "category": "jobs",
-      "active_url": "https://boards.greenhouse.io/goaboratory?q=chief+of+staff+OR+operations+OR+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.opening",
-        "title": "a",
-        "link": "a",
-        "location": "span.location",
-        "date": ""
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "GOAT Group",
-      "cluster": "A-orlando-tech",
-      "research_notes": "Consumer tech with Orlando presence. Greenhouse ATS. Scaling company in consumer/entertainment sector."
-    },
-    {
-      "id": "a_national_geographic_dc",
-      "name": "National Geographic Society Careers - DC Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://ngs.wd1.myworkdayjobs.com/wday/cxs/ngs/ngs_external_career_site/jobs",
-      "alternate_urls": [],
-      "strategy": "workday_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 0,
-      "api_config": {
-        "base_url": "https://ngs.wd1.myworkdayjobs.com",
-        "endpoint": "/wday/cxs/ngs/ngs_external_career_site/jobs",
-        "search_text": "chief of staff OR VP operations OR strategy OR director transformation",
-        "limit": 20,
-        "locations": []
-      },
-      "company": "National Geographic Society",
-      "cluster": "A-dc-mission-driven",
-      "research_notes": "Mission-driven DC institution. VP and director strategy/ops roles. Workday API."
-    },
-    {
-      "id": "a_servicenoq_orlando",
-      "name": "ServiceNow Careers - Orlando/DC/Remote Operations Leadership",
-      "category": "jobs",
-      "active_url": "https://careers.servicenow.com/en/jobs/?search=chief+of+staff+OR+VP+operations+OR+strategy+OR+transformation&location=Orlando+OR+Washington",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "company": "ServiceNow",
-      "cluster": "A-orlando-tech",
-      "research_notes": "Enterprise tech with Orlando and DC presence. CoS and strategy roles at AI-forward enterprise platform."
-    },
-    {
-      "id": "a_himalayas_remote_exec",
-      "name": "Himalayas.app - Remote Executive/Operations Roles",
-      "category": "jobs",
-      "active_url": "https://himalayas.app/jobs?query=chief+of+staff+OR+VP+operations+OR+COO+OR+head+of+strategy",
-      "alternate_urls": [],
-      "strategy": "html_search_result",
-      "selectors": {
-        "item_container": "div.job-card",
-        "title": "h3 a",
-        "link": "h3 a",
-        "location": "span.location",
-        "date": "span.date"
-      },
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "cluster": "A-remote-aggregator",
-      "research_notes": "Remote-first job aggregator with good senior filtering. Supplements other remote boards."
-    },
-    {
-      "id": "a_serpapi_google_jobs",
-      "name": "Google Jobs via SerpAPI - CoS / VP Ops (Orlando + DC + Remote)",
-      "category": "jobs",
-      "active_url": "https://serpapi.com/search.json?engine=google_jobs&q=chief+of+staff+OR+VP+operations+OR+head+of+strategy&location=Orlando,+FL",
-      "alternate_urls": [],
-      "strategy": "json_api",
-      "selectors": {},
-      "dead_content_patterns": [],
-      "status": "healthy",
-      "last_verified": "2026-08-20T15:08:23.323581+00:00",
-      "consecutive_empty_runs": 2,
-      "api_config": {
-        "base_url": "https://serpapi.com",
-        "endpoint": "/search.json",
-        "search_text": "chief of staff OR VP operations OR head of strategy",
-        "limit": 50,
-        "locations": [
-          "Orlando, FL",
-          "Washington, DC"
-        ]
-      },
-      "cluster": "A-meta-aggregator",
-      "research_notes": "Meta-aggregator pulling from all job boards. Requires API key. Catches postings missed by individual board monitoring."
     }
   ]
 }
